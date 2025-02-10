@@ -17,8 +17,19 @@ code {
   background-color: #201e34;
 }
 
+.radius-Small{
+  border-radius: 15px;
+}
+
+.travail{
+  margin : auto;
+  margin-top : 20px;
+  padding : 20px;
+}
 /* *********************************************************************************************************************
 Css pour la page utilisateut
  *********************************************************************************************************************** */
 
 /* Participation en cours ********************************* */
+.participationConteneur{
+}
