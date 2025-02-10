@@ -3,8 +3,16 @@ import {Participation_Conteneur} from "../component/utilisateur/participation_en
 
 export function Utilisateur(props) {
 
+    //initialisation
+    const [participation, setParticipation] = useState([]);
+
     return (<>
                 <Participation_Conteneur />
         </>
     );
+}
+
+function getDaysinCalendars(year, month) {
+
+
 }
