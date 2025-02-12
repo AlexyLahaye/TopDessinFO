@@ -25,7 +25,7 @@ export function Participation_Conteneur(props) {
                            <div data-uk-lightbox className="pointer">
 
                                <div data-uk-lightbox>
-                                   <a
+                                   <a className="show_all"
                                       href="http://localhost:3001/participation"
                                       data-type="iframe">Show all</a>
                                </div>

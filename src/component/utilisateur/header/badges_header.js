@@ -32,19 +32,14 @@ export function Badges_header() {
             <div  className="badgeUser">
                 <img src="/test_malau/badge_first_blitz_win.png" />
             </div>
-            <div  className="badgeUser">
-                <img src="/test_malau/badge_first_blitz_win.png" />
+            <div data-uk-lightbox className="pointer">
+
+                <div data-uk-lightbox>
+                    <a className="show_all"
+                       href="http://localhost:3001/participation"
+                       data-type="iframe">Show all</a>
+                </div>
             </div>
-            <div  className="badgeUser">
-                <img src="/test_malau/badge_first_blitz_win.png" />
-            </div>
-            <div  className="badgeUser">
-                <img src="/test_malau/badge_first_blitz_win.png" />
-            </div>
-            <div  className="badgeUser">
-                <img src="/test_malau/badge_first_blitz_win.png" />
-            </div>
-            <div></div>
         </div>
     );
 }

@@ -52,6 +52,14 @@ h6{
   cursor: pointer;
 }
 
+.show_all{
+  font-size: 0.8rem;
+}
+
+.partie_droite{
+  position: relative;
+  top: -300px;
+}
 
 /* *********************************************************************************************************************
 Css pour la page utilisateur
@@ -75,7 +83,7 @@ Css pour la page utilisateur
 .uk-background-width-1-1 {
   position: relative; /* Permet aux enfants `absolute` de se positionner par rapport à lui */
   width: 100%;
-  height: 330px; /* Ajuste selon tes besoins */
+  height: 270px; /* Ajuste selon tes besoins */
   overflow: hidden; /* Empêche tout débordement */
   background: none !important;
 }
@@ -87,68 +95,82 @@ Css pour la page utilisateur
   width: 100%;
   height: 100%;
   object-fit: cover; /* Adapte l'image sans la déformer */
-  z-index: -1; /* Place l'image en arrière-plan */
-  opacity: 0.85;
+  z-index: 1; /* Place l'image en arrière-plan */
+  opacity: 0.35;
+}
+
+.header_user_logo{
+  width: 100%;
+  height: 100%;
 }
 
 .grid-header{
   display: grid;
   align-items: end;
   justify-content: start;
-  grid-template-columns: 15% auto; /* repeat(3, auto) */
-  grid-template-rows: 75px 50px 40px;
+  grid-template-columns: 90px auto; /* repeat(3, auto) */
+  grid-template-rows: 90px 50px 20px 40px;
   width: 40%;
-  padding-top: 50px;
-  margin-left: 5%;
+  padding-top: 40px;
+  margin-left: 4%;
 }
 
 .item1{
   width: 100%;
   height: 100%;
   text-align: center;
-  background-color: blueviolet;
   grid-column: 1 / 2;
-  grid-row: 1 / 3;
+  grid-row: 1 / 2;
+  z-index: 2;
 }
 
-.item2{
+.item2 {
   align-items: flex-end;
-  background-color: chartreuse;
   grid-column: 2 / 3;
   grid-row: 1 / 2;
-  font-size: 2rem;
+  font-size:  clamp(1.3rem, 2vw, 2rem);
+  font-weight: bold;
+  color: white;
   width: 80%;
+  padding-bottom: 10px;
+  z-index: 2;
 }
 
+
 .item3{
-  align-items: flex-end;
-  background-color: darkorange;
   grid-column: 2 / 3;
   grid-row: 2 / 3;
-  text-overflow: ellipsis;
   word-break: break-word;
-  font-size: 0.9rem;
+  font-size:  clamp(0.7rem, 2vw, 0.8rem);
+  font-weight: bold;
+  color: #c0bcaf;
+  height: 100%;
+  max-height: 100px;
   width: 80%;
+  z-index: 2;
 }
 
 .item4{
   width: 100%;
   height: 100%;
-  background-color: hotpink;
+  padding-left: 20px;
   grid-column: 1 / -1;
-  grid-row: 3 / 3;
+  grid-row: 4 / 4;
+  z-index: 2;
 }
 
 .badge-header{
   display: flex;
   width: 100%;
   height: 100%;
+  z-index: 2;
 }
 
 .badgeUser{
   margin-right: 5px;
-  width: 35px;
+  width: clamp(20px, 3vw, 35px);
   height: 100%;
+  z-index: 2;
 }
 
 /* Dernier posts ********************************* */
