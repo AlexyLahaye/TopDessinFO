@@ -7,12 +7,12 @@ export function Card(props) {
     return (<>
 
             <div className={`${props.id}Card cardParticipation`}>
-                <div className={props.type == "normal" ? "cardParticipation backgroundBleuCard radius-Small uk-card uk-card-default uk-box-shadow-hover-large" : "cardParticipation backgroundVioletCard radius-Small uk-card uk-card-default uk-box-shadow-hover-large"}>
+                <div className={props.type === "normal" ? "cardParticipation backgroundBleuCard radius-Small uk-card uk-card-default uk-box-shadow-hover-large" : "cardParticipation backgroundVioletCard radius-Small uk-card uk-card-default uk-box-shadow-hover-large"}>
                     <div className="uk-card-media-top">
 
                         <div className="uk-grid-small uk-flex" data-uk-grid>
                             <div className="uk-width-2-3">
-                                <h3 className="uk-card-title uk-margin-remove"><h6 className="uk-margin-remove">MODE : {props.type}</h6></h3>
+                                <h6 className="uk-margin-remove">MODE : {props.type}</h6>
 
                             </div>
                             <div className=" uk-width-1-3 ">
@@ -21,13 +21,13 @@ export function Card(props) {
                                  </div>
                             </div>
                         </div>
-                        <p className={props.etat == 0 ? "uk-text-meta uk-margin-remove-top " : "uk-hidden"}>
+                        <p className={props.etat === 0 ? "uk-text-meta uk-margin-remove-top " : "uk-hidden"}>
                             Commence : {props.com}
                         </p>
-                        <p className={props.etat == 1 ? "uk-text-meta uk-margin-remove-top " : "uk-hidden"}>
+                        <p className={props.etat === 1 ? "uk-text-meta uk-margin-remove-top " : "uk-hidden"}>
                             En cours  <FontAwesomeIcon icon="fa-solid fa-circle" size="2xs" style={{color: "#00ff40",}} />
                         </p>
-                        <p className={props.etat == 2 ? "uk-text-meta uk-margin-remove-top " : "uk-hidden"}>
+                        <p className={props.etat === 2 ? "uk-text-meta uk-margin-remove-top " : "uk-hidden"}>
                             Fin :{props.fin}
                         </p>
                     </div>
