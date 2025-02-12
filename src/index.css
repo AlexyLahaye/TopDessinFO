@@ -46,9 +46,28 @@ h2, h3{
 /* *********************************************************************************************************************
 Css pour la page utilisateut
  *********************************************************************************************************************** */
+@media (max-width: 1000px) {
+  .allUti {
+    display: none !important;
+  }
+}
+@media (min-width: 1000px) {
+  .allUtiResponsive {
+    display: none !important;
+  }
+}
+
+
+
 /* Header ********************************* */
 .header{
   background-color: red;
+}
+
+/* Dernier posts ********************************* */
+.DernierPostContainer{
+  padding-right: 10%;
+  padding-left: 10%;
 }
 
 /* Participation en cours ********************************* */
