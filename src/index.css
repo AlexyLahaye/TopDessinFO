@@ -7,18 +7,24 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #1a0d26;
 }
 
+h2, h3{
+  font-family: "Candara Light", sans-serif !important;
+  color : #c8cbd3 !important;
+}
 
 .backgroundViolet{
   background-color: #201e34;
 }
 
 .radius-Small{
-  border-radius: 15px;
+  border-radius: 15px !important;
 }
 
 .travail{
@@ -26,10 +32,31 @@ code {
   margin-top : 20px;
   padding : 20px;
 }
+
+.uk-card{
+  color : #c8cbd3 !important;
+  padding: 10px;
+}
+
+.pointer{
+  cursor: pointer;
+}
+
+
 /* *********************************************************************************************************************
 Css pour la page utilisateur
  *********************************************************************************************************************** */
 /********************** Header ************************/
+@media (max-width: 1000px) {
+  .allUti {
+    display: none !important;
+  }
+}
+@media (min-width: 1000px) {
+  .allUtiResponsive {
+    display: none !important;
+  }
+}
 
 .uk-background-width-1-1 {
   position: relative; /* Permet aux enfants `absolute` de se positionner par rapport à lui */
@@ -110,6 +137,11 @@ Css pour la page utilisateur
   height: 100%;
 }
 
+/* Dernier posts ********************************* */
+.DernierPostContainer{
+  padding-right: 10%;
+  padding-left: 10%;
+}
 /* Participation en cours ********************************* */
 .participationConteneur{
   position: relative;
@@ -124,24 +156,73 @@ Css pour la page utilisateur
   z-index : 1;
 }
 
-.test {
+.partieTitre {
   width : 100%;
   height : 100%;
   margin-left : 10%;
 }
 
-.test2{
+.PartieSlider{
   position: relative;
+  width : 95%;
   height: 80%;
   margin-top : 120px;
   z-index : 2;
 }
 
-
-cardParticipation{
-  height: 400px !important;
+.fondPartiBLeu{
+  background-color: #231915;
+  width : 40px;
+  height : 40px;
 }
 
-.uk-card{
-  background-color: red !important;
+.backgroundBleuCard{
+  background: linear-gradient(70deg, #0b356d, #1f1d20) !important;
+}
+.backgroundVioletCard{
+  background: linear-gradient(70deg, #8b4a9b, #1c0422) !important;
+}
+.backgroundBleuBlitz{
+  background-color: #030649;
+  opacity: 0.45;
+}
+.backgroundVioletBlitz{
+  background-color: #ddc7c7;
+  opacity: 0.45;
+}
+
+.cardParticipation{
+  height: 150px !important;
+  width : 190px;
+  font-size : 13px;
+}
+.cardParticipation h6{
+  font-size: 15px;
+}
+.participationConteneur h2{
+  font-size: 18px !important;
+}
+.conTitreParti{
+  padding-top: 40px;
+  padding-right: 100px;
+  padding-left: 40px;
+  justify-content: space-between;
+}
+
+.iconeNbPart{
+  margin-right: 4px;
+  margin-top : 2px;
+}
+.joeurAct{
+  padding-right: 10px;
+}
+.participationPositionnement{
+
+}
+data-uk-dropdown:not(.uk-open) {
+  display: none !important;
+}
+
+.cardParticipation info{
+  bottom: 0px;
 }
