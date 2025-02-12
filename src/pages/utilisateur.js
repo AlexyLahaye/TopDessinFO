@@ -20,14 +20,14 @@ export function Utilisateur(props) {
 
 
     return (<>
-            <div className="uk-container-expend uk-padding-large uk-padding-remove-top">
-                <div className="header uk-container-expend">
-                    mon header
+            <div className="uk-container-expend uk-padding-remove-top">
+                <div className="uk-container-expend">
+                    <Header/>
                 </div>
-                <div data-uk-grid className="allUti">
+                <div data-uk-grid className="allUti uk-padding-large">
                     <div className="uk-width-1-2">
                     </div>
-                    <div className="uk-width-1-2 ">
+                    <div className="uk-width-1-2 partie_droite">
                         <div className="DernierPostContainer">
                             <Dernier_Post posts={posts}/>
                         </div>
