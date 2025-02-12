@@ -2,35 +2,44 @@ import React, { useState, useEffect } from 'react';
 import {Participation_Conteneur} from "../component/utilisateur/participation_en_cours/participation_en_cours";
 import {Dernier_Post} from "../component/utilisateur/dernier_post/dernier_post";
 import {Header} from "../component/utilisateur/header/header";
+import {Rank} from "../component/utilisateur/rank/rank";
 
 export function Utilisateur(props) {
 
     //initialisation
     const [participation, setParticipation] = useState([]);
     const [posts, setPosts] = useState([]);
+    const [ranks, setRanks] = useState([]);
 
     //useState
     useEffect( ()=>{
         let tab = getInfotest();
         let tabPost = getInfoPost();
+        let tabRank = getInfoRank();
         setParticipation(tab);
         setPosts(tabPost);
-
+        setRanks(tabRank);
+        
+        console.log(tabRank);
     }, [])
 
 
     return (<>
-            <div className="uk-container-expend uk-padding-large uk-padding-remove-top">
+            <div className="canteneurUtilisateurAll uk-container-expend  uk-padding-remove-top">
                 <div className="header uk-container-expend">
                     mon header
                 </div>
-                <div data-uk-grid className="allUti">
+                <div data-uk-grid className="allUti uk-padding-large">
                     <div className="uk-width-1-2">
                     </div>
                     <div className="uk-width-1-2 ">
                         <div className="DernierPostContainer">
                             <Dernier_Post posts={posts}/>
                         </div>
+                        <div className="RankContainer radius-Small">
+                            <Rank ranks={ranks}/>
+                        </div>
+
                         <div className="participationPositionnement">
                             <Participation_Conteneur participation={participation}/>
                         </div>
@@ -38,7 +47,7 @@ export function Utilisateur(props) {
                     </div>
                 </div>
 
-                <div className="allUtiResponsive">
+                <div className="allUtiResponsive uk-padding-large">
 
                     <div className="DernierPostContainer">
                         <Dernier_Post posts={posts}/>
@@ -147,6 +156,23 @@ function getInfoPost() {
     }]
 
     return tab;
+}
 
+function getInfoRank() {
 
+    var tab = [{
+        "classe": 1,
+        "rang": "immortal",
+        "mode": "normal"
+    },{
+        "classe": 78,
+        "rang": "immortal",
+        "mode": "blitz"
+    },{
+        "classe": 9972,
+        "rang": "immortal",
+        "mode": "commu"
+    }]
+
+    return tab;
 }
