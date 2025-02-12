@@ -14,10 +14,20 @@ html, body {
   background-color: #1a0d26;
 }
 
+
 h2, h3{
   font-family: "Candara Light", sans-serif !important;
   color : #c8cbd3 !important;
 }
+h4{
+  color: #fff !important;
+}
+
+h6{
+  font-size: 15px;
+  color: #fff !important;
+}
+
 
 .backgroundViolet{
   background-color: #201e34;
@@ -48,12 +58,16 @@ h2, h3{
 
 .partie_droite{
   position: relative;
-  top: -200px;
+  top: -300px;
 }
 
 /* *********************************************************************************************************************
 Css pour la page utilisateur
  *********************************************************************************************************************** */
+.canteneurUtilisateurAll{
+  background-color: #1a0d26;
+}
+
 /********************** Header ************************/
 @media (max-width: 1000px) {
   .allUti {
@@ -218,9 +232,7 @@ Css pour la page utilisateur
   width : 190px;
   font-size : 13px;
 }
-.cardParticipation h6{
-  font-size: 15px;
-}
+
 .participationConteneur h2{
   font-size: 18px !important;
 }
@@ -247,4 +259,36 @@ data-uk-dropdown:not(.uk-open) {
 
 .cardParticipation info{
   bottom: 0px;
+}
+
+/* Rank ********************************* */
+.RankContainer {
+  position: relative; /* Permet de la déplacer sans impacter les autres éléments */
+  left: -100px; /* Décale la div de 100px vers la gauche */
+  top: 70px; /* Décale la div de 100px vers la gauche */
+  width: 110%;
+
+  height: 150px;
+
+  background: linear-gradient(70deg, rgba(211, 109, 137, 0.7), rgba(35, 33, 32, 0.7)) !important;
+
+
+  z-index: 2;
+}
+
+.RankContainer h4{
+  width: 100%;
+  text-align: center;
+}
+.cardRank{
+  height: 150px;
+}
+.imgRank{
+  height: 70px;
+
+}
+
+.positionImage{
+  display: block;
+  text-align: right;
 }
