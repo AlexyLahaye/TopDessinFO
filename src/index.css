@@ -44,8 +44,9 @@ h2, h3{
 
 
 /* *********************************************************************************************************************
-Css pour la page utilisateut
+Css pour la page utilisateur
  *********************************************************************************************************************** */
+/********************** Header ************************/
 @media (max-width: 1000px) {
   .allUti {
     display: none !important;
@@ -57,11 +58,83 @@ Css pour la page utilisateut
   }
 }
 
+.uk-background-width-1-1 {
+  position: relative; /* Permet aux enfants `absolute` de se positionner par rapport à lui */
+  width: 100%;
+  height: 330px; /* Ajuste selon tes besoins */
+  overflow: hidden; /* Empêche tout débordement */
+  background: none !important;
+}
 
+.header_bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Adapte l'image sans la déformer */
+  z-index: -1; /* Place l'image en arrière-plan */
+  opacity: 0.85;
+}
 
-/* Header ********************************* */
-.header{
-  background-color: red;
+.grid-header{
+  display: grid;
+  align-items: end;
+  justify-content: start;
+  grid-template-columns: 15% auto; /* repeat(3, auto) */
+  grid-template-rows: 75px 50px 40px;
+  width: 40%;
+  padding-top: 50px;
+  margin-left: 5%;
+}
+
+.item1{
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background-color: blueviolet;
+  grid-column: 1 / 2;
+  grid-row: 1 / 3;
+}
+
+.item2{
+  align-items: flex-end;
+  background-color: chartreuse;
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  font-size: 2rem;
+  width: 80%;
+}
+
+.item3{
+  align-items: flex-end;
+  background-color: darkorange;
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  text-overflow: ellipsis;
+  word-break: break-word;
+  font-size: 0.9rem;
+  width: 80%;
+}
+
+.item4{
+  width: 100%;
+  height: 100%;
+  background-color: hotpink;
+  grid-column: 1 / -1;
+  grid-row: 3 / 3;
+}
+
+.badge-header{
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.badgeUser{
+  margin-right: 5px;
+  width: 35px;
+  height: 100%;
 }
 
 /* Dernier posts ********************************* */
@@ -69,7 +142,6 @@ Css pour la page utilisateut
   padding-right: 10%;
   padding-left: 10%;
 }
-
 /* Participation en cours ********************************* */
 .participationConteneur{
   position: relative;
