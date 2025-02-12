@@ -1,35 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import {Card} from "./card";
 
-export function Participation_Conteneur(props) {
+export function Dernier_Post(props) {
 
     // initialisation
-    const [participation, setParticipation] = useState([]);
+    const [posts, setPosts] = useState([]);
 
     //UseEffect
     useEffect( ()=>{
-        setParticipation(props.participation);
+        setPosts(props.posts);
 
-    }, [props.participation])
+    }, [props.posts])
 
     return (<>
-
             <div className="travail  participationConteneur uk-container-large">
 
                 <div className="conBackground radius-Small uk-container-large uk-border-rounded">
                     <div className=" partieTitre radius-Small backgroundViolet uk-border-rounded">
                         <div className="conTitreParti uk-flex uk-align-center">
-                           <div>
-                               <h2 className="uk-padding-small uk-padding-remove"> PARTICIPATIONS EN COURS</h2>
-                           </div>
-                           <div data-uk-lightbox className="pointer">
+                            <div>
+                                <h2 className="uk-padding-small uk-padding-remove"> DERNIERS POSTS</h2>
+                            </div>
+                            <div data-uk-lightbox className="pointer">
 
-                               <div data-uk-lightbox>
-                                   <a
-                                      href="http://localhost:3001/participation"
-                                      data-type="iframe">Show all</a>
-                               </div>
-                           </div>
+                                <div data-uk-lightbox>
+                                    <a
+                                        href="http://localhost:3001/post"
+                                        data-type="iframe">Show all</a>
+                                </div>
+                            </div>
 
 
                         </div>
@@ -42,17 +41,17 @@ export function Participation_Conteneur(props) {
 
                         <div className="uk-position-relative uk-visible-toggle uk-light" tabIndex="-1">
 
-                            <div className="uk-slider-items uk-child-width-1-3@s uk-child-width-1-3@m uk-child-width-1-3@l  uk-child-width-1-4@xl uk-grid uk-padding-remove-bottom">
+                            <div className="uk-slider-items  uk-child-width-1-2@s uk-child-width-1-2@m  uk-child-width-1-3@xl uk-grid uk-padding-remove-bottom">
 
-                                {participation.length > 0 &&
-                                    participation.map((parti, cpt) => {
+                                {posts.length > 0 &&
+                                    posts.map((post, cpt) => {
 
                                         return (
-                                            <Card type={parti.type} etat={parti.etat} participant={parti.participant} fin={parti.date_fin} com={parti.date_com} id={parti.id}
-                                                  titre={parti.titre}/>
+                                            <Card id={post.id} chemin={post.chemin}/>
                                         )
                                     })
-                                    }
+                                }
+
                             </div>
 
                             <a className="uk-position-center-left uk-position-small uk-hidden-hover" href

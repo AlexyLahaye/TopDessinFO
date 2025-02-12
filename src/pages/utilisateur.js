@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import {Participation_Conteneur} from "../component/utilisateur/participation_en_cours/participation_en_cours";
+import {Dernier_Post} from "../component/utilisateur/dernier_post/dernier_post";
 
 export function Utilisateur(props) {
 
     //initialisation
     const [participation, setParticipation] = useState([]);
+    const [posts, setPosts] = useState([]);
 
     //useState
     useEffect( ()=>{
         let tab = getInfotest();
+        let tabPost = getInfoPost();
         setParticipation(tab);
+        setPosts(tabPost);
 
     }, [])
 
@@ -17,20 +21,29 @@ export function Utilisateur(props) {
     return (<>
             <div className="uk-container-expend uk-padding-large uk-padding-remove-top">
                 <div className="header uk-container-expend">
-                    le header
+                    mon header
                 </div>
-                <div data-uk-grid >
+                <div data-uk-grid className="allUti">
                     <div className="uk-width-1-2">
-
                     </div>
                     <div className="uk-width-1-2 ">
-                        <div>
-                            <Participation_Conteneur participation={participation}/>
+                        <div className="DernierPostContainer">
+                            <Dernier_Post posts={posts}/>
                         </div>
                         <div className="participationPositionnement">
                             <Participation_Conteneur participation={participation}/>
                         </div>
 
+                    </div>
+                </div>
+
+                <div className="allUtiResponsive">
+
+                    <div className="DernierPostContainer">
+                        <Dernier_Post posts={posts}/>
+                    </div>
+                    <div className="participationPositionnement">
+                        <Participation_Conteneur participation={participation}/>
                     </div>
                 </div>
 
@@ -106,6 +119,30 @@ function getInfotest() {
         "date_com": "31/12",
         "date_fin": "15/02",
         "titre": "Un jour au paradis"
+    }]
+
+    return tab;
+
+
+}
+
+function getInfoPost() {
+
+    var tab = [{
+        "id": 1,
+        "chemin": "img/hwei.jpg"
+    },{
+        "id": 2,
+        "chemin": "img/oeil.jpg"
+    },,{
+        "id": 3,
+        "chemin": "img/visage_jolie.jpg"
+    },{
+        "id": 4,
+        "chemin": "img/visage.jpg"
+    },{
+        "id": 5,
+        "chemin": "img/oeil.jpg"
     }]
 
     return tab;
