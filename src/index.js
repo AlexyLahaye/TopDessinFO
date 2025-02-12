@@ -10,10 +10,16 @@ import Icons from 'uikit/dist/js/uikit-icons';
 
 import Browser from "./pages/browser";
 
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+import { far } from '@fortawesome/free-regular-svg-icons'
+
 // Charger les icônes
 UIkit.use(Icons);
 
 
+// Fontawesome
+library.add(fas, far)
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
