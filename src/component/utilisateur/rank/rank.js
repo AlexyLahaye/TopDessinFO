@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-
 export function Rank(props) {
 
     // initialisation
@@ -16,7 +15,7 @@ export function Rank(props) {
     return (<>
 
 
-            <div className="uk-grid-large uk-child-width-expand@s uk-text-center " data-uk-grid>
+            <div className="uk-grid-column-small uk-grid-row-large uk-child-width-expand@s uk-text-center " data-uk-grid>
 
 
                 <div>

@@ -4,6 +4,8 @@ import {Utilisateur} from "./utilisateur";
 import {Participation} from "./participation";
 import {Posts} from "./posts";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 export default function Browser() {
 
 
