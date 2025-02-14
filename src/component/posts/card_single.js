@@ -1,0 +1,52 @@
+import React, { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import UIkit from 'uikit';
+import {MultipleImage} from "./multiple_image";
+import {NotationEtoile} from "./notation_etoile";
+
+export function CardSingle(props) {
+
+    return (<>
+            <div className="cardPost uk-margin-bottom uk-margin-top">
+                <div className="cardenfant uk-card ">
+
+                    {props.nbImage > 1 ? <MultipleImage images={props.images}/> :
+                        <div className="img uk-card-media-top">
+                            <div data-uk-lightbox>
+                                <a href={props.images[0]}><img src={props.images[0]} alt=""/></a>
+                            </div>
+
+                        </div>
+                    }
+
+                    <div className="uk-card-body uk-padding-remove">
+                        <div className="uk-flex uk-flex-between ">
+                            <div className="uk-padding-small">
+                                <FontAwesomeIcon icon="fa-solid fa-heart" size="2xl" style={{color: "#fe5152",}} /> <span className="nbComment"  >{props.like} </span>
+                            </div>
+                            <div className="uk-padding-small">
+                                <span className="nbComment" > {props.com}</span> <FontAwesomeIcon icon="fa-regular fa-comment-dots" size="2xl" style={{color: "#000000",}} />
+                            </div>
+
+                        </div>
+                        <div className="annexePost">
+                            <img src="img/chapeau-etudiant.png"   className={props.type === "tutoriel" ? "" : "uk-hidden"}alt="Concours blabla"/>
+                        </div>
+                        <div className="uk-flex ">
+
+                            <div className="AjoutCom uk-inline ">
+                                <a className="uk-form-icon" href="#" uk-icon="icon: pencil"></a>
+                                <input className="radius-Small uk-input" type="text" aria-label="Clickable icon" placeholder="Ecrire un commentaire..."/>
+                            </div>
+                            <div className={props.type === "rank" ? "AjoutCom uk-inline" : "uk-hidden"}>
+                                <NotationEtoile note={props.note}/>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </>
+    );
+}

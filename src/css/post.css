@@ -48,3 +48,18 @@ Css pour la page post
     margin: auto;
     width: 50%;
 }
+
+.annexePost{
+    position: absolute;
+    right: 20px;
+    top: 520px;
+}
+
+.annexePost img{
+    height: 80px !important;
+}
+
+.etoile{
+    text-align: right;
+    padding-right: 10px;
+}

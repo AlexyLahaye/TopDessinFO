@@ -7,9 +7,6 @@ export function Rank(props) {
     //UseEffect
     useEffect( ()=>{
         setRanks(props.ranks);
-        console.log("jesuis laaaaaa");
-        console.log(props.ranks);
-
     }, [props.ranks])
 
     return (<>
