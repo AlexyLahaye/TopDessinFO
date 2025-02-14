@@ -3,6 +3,7 @@ import {Participation_Conteneur} from "../component/utilisateur/participation_en
 import {Dernier_Post} from "../component/utilisateur/dernier_post/dernier_post";
 import {Header} from "../component/utilisateur/header/header";
 import {Rank} from "../component/utilisateur/rank/rank";
+import {Evenement_recent} from "../component/utilisateur/evenement_recent/evenement_recent";
 
 export function Utilisateur(props) {
 
@@ -23,6 +24,16 @@ export function Utilisateur(props) {
         console.log(tabRank);
     }, [])
 
+    useEffect(() => {
+        // Désactiver le scroll
+        document.body.style.overflow = "hidden";
+
+        return () => {
+            // Réactiver le scroll en quittant la page
+            document.body.style.overflow = "auto";
+        };
+    }, []);
+
 
     return (<>
             <div className="canteneurUtilisateurAll uk-container-expend  uk-padding-remove-top">
@@ -31,6 +42,7 @@ export function Utilisateur(props) {
                 </div>
                 <div data-uk-grid className="allUti uk-padding-large">
                     <div className="uk-width-1-2">
+                        <Evenement_recent/>
                     </div>
                     <div className="uk-width-1-2 partie_droite">
                         <div className="DernierPostContainer">

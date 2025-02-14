@@ -1,3 +1,33 @@
+/* Style global pour toutes les scrollbars */
+* {
+  scrollbar-color: #6d597a #201e34; /* Firefox */
+  scrollbar-width: thin; /* Firefox */
+}
+
+/* Webkit (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+  width: 4px; /* Largeur de la scrollbar */
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+::-webkit-scrollbar-track {
+  background: #201e34;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #6d597a; /* Violet */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4a3f54;
+}
+
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -148,7 +178,7 @@ Css pour la page utilisateur
   word-break: break-word;
   font-size:  clamp(0.7rem, 2vw, 0.8rem);
   font-weight: bold;
-  color: #c0bcaf;
+  color: #c8cbd3;
   width: clamp(60%, 2vw, 80%);
   height:  100%;
   z-index: 2;
@@ -176,6 +206,81 @@ Css pour la page utilisateur
   height: 100%;
   z-index: 2;
 }
+/********************** Evenement ************************/
+
+.evenement_recent_global{
+  padding-left: 35px;
+  width: 50%;
+  height: 100%;
+}
+
+.evenement_head{
+  display: flex;
+
+  color: white;
+  justify-content: space-between;
+}
+
+.evenement_container {
+  height: 510px;
+  overflow: scroll;
+  margin-top: 50px;
+  padding-left: 5px;
+}
+
+.evenements_border{
+  height: 100%;
+  border-left: solid 3px #6d597a;
+}
+
+.un_evenement{
+  display: grid;
+  grid-template-columns: 10px auto clamp(80%, 100vw, 90%);
+  grid-template-rows: repeat(2, auto);
+  padding-bottom: 40px;
+}
+
+.evenement_dot{
+  grid-column: 1 / 1;
+  grid-row: 1 / 1;
+  margin-left: -8px;
+}
+
+.evenement_img_container{
+  width: 80px;
+  height: 50px;
+  padding-left: 10px;
+  margin-right: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  grid-column: 2 / 2;
+  grid-row: 1 / -1;
+}
+
+.evenement_img{
+  height: 100%;
+  border-radius: 15px;
+  width: auto;
+  object-fit: cover;
+}
+
+.evenement_titre{
+  margin-left: -20px;
+  grid-column: 3 / 3;
+  grid-row: 1 / 1;
+  color: white;
+}
+
+.evenement_date{
+  margin-left: -20px;
+  grid-column: 3 / 3;
+  grid-row: 2 / 2;
+  color: #8c9ed9;
+  font-size:  clamp(0.5rem, 2vw, 0.6rem);
+}
+
 
 /* Dernier posts ********************************* */
 .DernierPostContainer{
