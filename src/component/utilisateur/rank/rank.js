@@ -18,7 +18,7 @@ export function Rank(props) {
                 <div>
                     <div className="cardRank uk-card uk-card-body uk-flex">
                         <div className="positionImage uk-width-1-3">
-                            <img src="img/trophee.png" alt=""  className="radius-Small imgRank"/>
+                            <img src="img/RankGlobalPoussin.png" alt=""  className="radius-Small imgRank"/>
                         </div>
                         <div className="uk-width-2-3 ">
 
