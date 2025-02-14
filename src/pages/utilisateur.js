@@ -25,14 +25,27 @@ export function Utilisateur(props) {
     }, [])
 
     useEffect(() => {
-        // Désactiver le scroll
-        document.body.style.overflow = "hidden";
+        const disableScroll = () => {
+            if (window.innerWidth >= 1900) {
+                document.body.style.overflow = "hidden";
+            } else {
+                document.body.style.overflow = "auto";
+            }
+        };
+
+        // Vérifier au chargement
+        disableScroll();
+
+        // Écouter les changements de taille d'écran (si la fenêtre est redimensionnée)
+        window.addEventListener("resize", disableScroll);
 
         return () => {
-            // Réactiver le scroll en quittant la page
+            // Nettoyer l'écouteur et réactiver le scroll lors du démontage du composant
+            window.removeEventListener("resize", disableScroll);
             document.body.style.overflow = "auto";
         };
     }, []);
+
 
 
     return (<>
