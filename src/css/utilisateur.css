@@ -1,0 +1,231 @@
+/* *********************************************************************************************************************
+Css pour la page utilisateur
+ *********************************************************************************************************************** */
+.canteneurUtilisateurAll{
+    background-color: #1a0d26;
+}
+
+/********************** Header ************************/
+@media (max-width: 1000px) {
+    .allUti {
+        display: none !important;
+    }
+}
+@media (min-width: 1000px) {
+    .allUtiResponsive {
+        display: none !important;
+    }
+}
+
+.uk-background-width-1-1 {
+    position: relative; /* Permet aux enfants `absolute` de se positionner par rapport à lui */
+    width: 100%;
+    height: 270px; /* Ajuste selon tes besoins */
+    overflow: hidden; /* Empêche tout débordement */
+    background: none !important;
+}
+
+.header_bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Adapte l'image sans la déformer */
+    z-index: 1; /* Place l'image en arrière-plan */
+    opacity: 0.35;
+}
+
+.header_user_logo{
+    width: 100%;
+    height: 100%;
+}
+
+.grid-header{
+    display: grid;
+    align-items: end;
+    justify-content: start;
+    grid-template-columns: 90px auto; /* repeat(3, auto) */
+    grid-template-rows: 90px 50px 20px 40px;
+    width: 40%;
+    padding-top: 40px;
+    margin-left: 4%;
+}
+
+.item1{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    z-index: 2;
+}
+
+.item2 {
+    align-items: flex-end;
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    font-size:  clamp(1.3rem, 2vw, 2rem);
+    font-weight: bold;
+    color: white;
+    width: 80%;
+    padding-bottom: 10px;
+    z-index: 2;
+}
+
+
+.item3{
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    word-break: break-word;
+    font-size:  clamp(0.7rem, 2vw, 0.8rem);
+    font-weight: bold;
+    color: #c0bcaf;
+    height: 100%;
+    max-height: 100px;
+    width: 80%;
+    z-index: 2;
+}
+
+.item4{
+    width: 100%;
+    height: 100%;
+    padding-left: 20px;
+    grid-column: 1 / -1;
+    grid-row: 4 / 4;
+    z-index: 2;
+}
+
+.badge-header{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+.badgeUser{
+    margin-right: 5px;
+    width: clamp(20px, 3vw, 35px);
+    height: 100%;
+    z-index: 2;
+}
+
+/* Dernier posts ********************************* */
+.DernierPostContainer{
+    padding-right: 10%;
+    padding-left: 10%;
+}
+/* Participation en cours ********************************* */
+.participationConteneur{
+    position: relative;
+    overflow: visible;
+}
+.conBackground{
+    position: absolute;
+    width : 100%;
+    height : 100%;
+    overflow: hidden;
+
+    z-index : 1;
+}
+
+.partieTitre {
+    width : 100%;
+    height : 100%;
+    margin-left : 10%;
+}
+
+.PartieSlider{
+    position: relative;
+    width : 95%;
+    height: 80%;
+    margin-top : 120px;
+    z-index : 2;
+}
+
+.fondPartiBLeu{
+    background-color: #231915;
+    width : 40px;
+    height : 40px;
+}
+
+.backgroundBleuCard{
+    background: linear-gradient(70deg, #0b356d, #1f1d20) !important;
+}
+.backgroundVioletCard{
+    background: linear-gradient(70deg, #8b4a9b, #1c0422) !important;
+}
+.backgroundBleuBlitz{
+    background-color: #030649;
+    opacity: 0.45;
+}
+.backgroundVioletBlitz{
+    background-color: #ddc7c7;
+    opacity: 0.45;
+}
+
+.cardParticipation{
+    height: 150px !important;
+    width : 190px;
+    font-size : 13px;
+}
+
+.participationConteneur h2{
+    font-size: 18px !important;
+}
+.conTitreParti{
+    padding-top: 40px;
+    padding-right: 100px;
+    padding-left: 40px;
+    justify-content: space-between;
+}
+
+.iconeNbPart{
+    margin-right: 4px;
+    margin-top : 2px;
+}
+.joeurAct{
+    padding-right: 10px;
+}
+.participationPositionnement{
+
+}
+data-uk-dropdown:not(.uk-open) {
+    display: none !important;
+}
+
+.cardParticipation info{
+    bottom: 0px;
+}
+
+/* Rank ********************************* */
+.RankContainer {
+    position: relative; /* Permet de la déplacer sans impacter les autres éléments */
+    left: -100px; /* Décale la div de 100px vers la gauche */
+    top: 70px; /* Décale la div de 100px vers la gauche */
+    width: 110%;
+
+    height: 150px;
+
+    background: linear-gradient(70deg, rgba(211, 109, 137, 0.7), rgba(35, 33, 32, 0.7)) !important;
+
+
+    z-index: 2;
+}
+
+.RankContainer h4{
+    width: 100%;
+    text-align: center;
+}
+.cardRank{
+    height: 150px;
+}
+.imgRank{
+    height: 70px;
+
+}
+
+.positionImage{
+    display: block;
+    text-align: right;
+}
