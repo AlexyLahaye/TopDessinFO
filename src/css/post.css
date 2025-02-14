@@ -1,0 +1,82 @@
+/* *********************************************************************************************************************
+Css pour la page post
+ *********************************************************************************************************************** */
+.conteneurPost{
+    background-color: #1a0d26;
+}
+.cardPost{
+    width: 550px !important;
+    height : 600px !important;
+    /*height : 45em !important;*/
+    margin: auto;
+    background-color: #f2f1eb;
+    position: relative;
+}
+
+.cardenfant{
+    height: 100% !important;
+}
+.img img {
+    width: 550px;
+    height: 450px;
+    object-fit: cover; /* Ajuste l'image pour remplir l'espace */
+}
+.img{
+    border-right : 2px ridge #3c3333;
+    border-top : 2px ridge #3c3333 ;
+    border-bottom : 2px ridge #fefefe ;
+    border-left : 2px ridge #fefefe ;
+
+    margin-top : 10px;
+
+}
+
+.hidden-div {
+    visibility: hidden;
+}
+
+.topCard{
+    height: 450px !important;
+}
+
+.nbComment{
+    color :#000000;
+    margin: 10px;
+    font-size: 18px !important;
+}
+
+.AjoutCom{
+    margin: auto;
+    width: 50%;
+}
+
+.annexePost{
+    position: absolute;
+    right: 20px;
+    top: 520px;
+}
+
+.annexePost img{
+    height: 80px !important;
+}
+
+.etoile{
+    text-align: right;
+    padding-right: 10px;
+}
+
+
+.like {
+    transition: color 0.2s ease-in-out;
+}
+
+.like:hover {
+    color: #fe5152 !important; /* Changement de couleur au survol */
+}
+
+.medaillePost{
+    position: absolute;
+    top : -20px;
+    left : -35px;
+    z-index: 2;
+}

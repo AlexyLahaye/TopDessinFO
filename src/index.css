@@ -91,6 +91,10 @@ h6{
   top: -300px;
 }
 
+.uk-input:focus, .uk-select:focus, .uk-textarea:focus {
+  border: none !important;
+}
+
 /* *********************************************************************************************************************
 Css pour la page utilisateur
  *********************************************************************************************************************** */
@@ -99,12 +103,12 @@ Css pour la page utilisateur
 }
 
 /********************** Header ************************/
-@media (max-width: 1000px) {
+@media (max-width: 1400px) {
   .allUti {
     display: none !important;
   }
 }
-@media (min-width: 1000px) {
+@media (min-width: 1400px) {
   .allUtiResponsive {
     display: none !important;
   }
@@ -397,3 +401,6 @@ data-uk-dropdown:not(.uk-open) {
   display: block;
   text-align: right;
 }
+
+
+
