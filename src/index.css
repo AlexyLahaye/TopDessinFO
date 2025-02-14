@@ -224,6 +224,7 @@ Css pour la page utilisateur
 .evenement_container {
   height: 510px;
   overflow: scroll;
+  overflow-x: hidden;
   margin-top: 50px;
   padding-left: 5px;
 }
@@ -281,6 +282,11 @@ Css pour la page utilisateur
   font-size:  clamp(0.5rem, 2vw, 0.6rem);
 }
 
+@media (min-width: 2000px) {
+  .evenement_container {
+    height: clamp(510px, 100vw, 850px);;
+  }
+}
 
 /* Dernier posts ********************************* */
 .DernierPostContainer{
