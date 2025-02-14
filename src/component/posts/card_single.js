@@ -7,7 +7,12 @@ import {NotationEtoile} from "./notation_etoile";
 export function CardSingle(props) {
 
     return (<>
+
             <div className="cardPost uk-margin-bottom uk-margin-top">
+                <div className="medaillePost">
+                    <img src="img/badge2.png"   className={props.classement === 1 ? "" : "uk-hidden"}alt="Concours blabla"/>
+                    <img src="img/badge15.png"   className={props.classement === 3 ? "" : "uk-hidden"}alt="Concours blabla"/>
+                </div>
                 <div className="cardenfant uk-card ">
 
                     {props.nbImage > 1 ? <MultipleImage images={props.images}/> :
@@ -18,14 +23,13 @@ export function CardSingle(props) {
 
                         </div>
                     }
-
                     <div className="uk-card-body uk-padding-remove">
                         <div className="uk-flex uk-flex-between ">
                             <div className="uk-padding-small">
-                                <FontAwesomeIcon icon="fa-solid fa-heart" size="2xl" style={{color: "#fe5152",}} /> <span className="nbComment"  >{props.like} </span>
+                                <FontAwesomeIcon icon="fa-solid fa-heart" size="2xl" style={props.isLike === 1  ? {color: "#fe5152",} : {color: "#bcbec0",}} className="like"/> <span className="nbComment"  >{props.like} </span>
                             </div>
                             <div className="uk-padding-small">
-                                <span className="nbComment" > {props.com}</span> <FontAwesomeIcon icon="fa-regular fa-comment-dots" size="2xl" style={{color: "#000000",}} />
+                                <span className="nbComment" > {props.com}</span> <FontAwesomeIcon icon="fa-regular fa-comment-dots" size="2xl" style={{color: "#000000"}} />
                             </div>
 
                         </div>

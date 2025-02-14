@@ -6,7 +6,7 @@ import {Card} from "../utilisateur/participation_en_cours/card";
 export function MultipleImage(props) {
 
     return (<>
-            <div className="topCard uk-card-media-top">
+            <div className=" uk-card-media-top">
                 <div className="topCard uk-position-relative" data-uk-slideshow="animation: fade">
 
                     <div className="img topCard uk-slideshow-items">

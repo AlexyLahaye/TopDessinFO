@@ -10,6 +10,7 @@ Css pour la page post
     /*height : 45em !important;*/
     margin: auto;
     background-color: #f2f1eb;
+    position: relative;
 }
 
 .cardenfant{
@@ -62,4 +63,20 @@ Css pour la page post
 .etoile{
     text-align: right;
     padding-right: 10px;
+}
+
+
+.like {
+    transition: color 0.2s ease-in-out;
+}
+
+.like:hover {
+    color: #fe5152 !important; /* Changement de couleur au survol */
+}
+
+.medaillePost{
+    position: absolute;
+    top : -20px;
+    left : -35px;
+    z-index: 2;
 }

@@ -23,7 +23,7 @@ export function Posts(props) {
                 {posts.length > 0 &&
                     posts.map((post, cpt) => {
                         return (
-                            <CardSingle like={post.nbLike} com={post.nbCom} images={post.image}  nbImage={post.nbImage} type={post.type} note={post.note}/>
+                            <CardSingle like={post.nbLike} com={post.nbCom} images={post.image}  nbImage={post.nbImage} type={post.type} note={post.note} isLike={post.is_like} classement={post.classement}/>
                         )
                     })
                 }
@@ -45,7 +45,9 @@ function getInfotest() {
         "date_création": "31/12",
         "type": "post",
         "image": ["img/levre2.jpg"],
-        "note" : 0
+        "note" : 0,
+        "is_like" : 1,
+        "classement" : 0,
     },
         {
             "id": 1,
@@ -56,7 +58,9 @@ function getInfotest() {
             "date_création": "31/12",
             "type": "tutoriel",
             "image": ["img/fee.jpg", "img/oeil.jpg", "img/levre.jpg"],
-            "note" : 0
+            "note" : 0,
+            "is_like" : 0,
+            "classement" : 0,
         },
         {
             "id": 1,
@@ -68,6 +72,8 @@ function getInfotest() {
             "type": "rank",
             "image": ["img/boucle.jpg"],
             "note" : 3.5,
+            "is_like" : 1,
+            "classement" : 1,
         },
         {
             "id": 1,
@@ -79,27 +85,33 @@ function getInfotest() {
             "type": "rank",
             "image": ["img/ange.jpg"],
             "note" : 1,
+            "is_like" : 0,
+            "classement" : 3,
         },
        {
             "id": 1,
-            "nbImage": 3,
+            "nbImage": 1,
             "nbLike": 78,
             "nbCom": 30,
             "Description": "31/12",
             "date_création": "31/12",
             "type": "post",
-            "image": ["img/vintage.jpg"]
+            "image": ["img/vintage.jpg"],
+           "is_like" : 0,
+           "classement" : 0,
         },
         {
             "id": 1,
-            "nbImage": 3,
+            "nbImage": 1,
             "nbLike": 78,
             "nbCom": 30,
             "Description": "31/12",
             "date_création": "31/12",
             "type": "post",
-            "image": ["img/fleur.jpg"]
-        },]
+            "image": ["img/fleur.jpg"],
+            "is_like" : 0,
+            "classement" : 0,
+        }]
 
     return tab;
 
