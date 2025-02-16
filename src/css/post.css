@@ -80,3 +80,11 @@ Css pour la page post
     left : -35px;
     z-index: 2;
 }
+
+.overlay-content {
+    color: white;
+    text-align: center;
+    font-size: 2rem;
+    width : 100%;
+}
+

@@ -23,13 +23,13 @@ export function CardSingle(props) {
 
                         </div>
                     }
-                    <div className="uk-card-body uk-padding-remove">
+                    <div className="uk-card-body uk-padding-remove" >
                         <div className="uk-flex uk-flex-between ">
                             <div className="uk-padding-small">
                                 <FontAwesomeIcon icon="fa-solid fa-heart" size="2xl" style={props.isLike === 1  ? {color: "#fe5152",} : {color: "#bcbec0",}} className="like"/> <span className="nbComment"  >{props.like} </span>
                             </div>
                             <div className="uk-padding-small">
-                                <span className="nbComment" > {props.com}</span> <FontAwesomeIcon icon="fa-regular fa-comment-dots" size="2xl" style={{color: "#000000"}} />
+                                <span className="nbComment" > {props.com}</span> <FontAwesomeIcon icon="fa-regular fa-comment-dots" size="2xl" style={{color: "#000000"}} onClick={() => { props.showOverlay(); props.setIdPostCom(props.id)}}/>
                             </div>
 
                         </div>
