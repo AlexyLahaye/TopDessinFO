@@ -4,6 +4,7 @@ import UIkit from 'uikit';
 import {MultipleImage} from "./multiple_image";
 import {NotationEtoile} from "./notation_etoile";
 
+//affichage des différents posts en mode vielles vignettes vintage
 export function CardSingle(props) {
 
     return (<>

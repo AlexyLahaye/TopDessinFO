@@ -3,33 +3,39 @@ import "../css/post.css";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {CardSingle} from "../component/posts/card_single";
+import {Commentaire} from "../component/global/commentaire.js";
+import {MultipleImage} from "../component/posts/multiple_image";
 
 
 export function Posts(props) {
 
     // initialisation
     const [posts, setPosts] = useState([]);
-    const [infoPost, setInfoPost] = useState([{
-        "id": 0,
-        "nbImage": 1,
-        "nbLike": 78,
-        "nbCom": 30,
-        "Description": "",
-        "date_création": "",
-        "type": "post",
-        "image": ["img/levre2.jpg"],
-        "note" : 0,
-        "is_like" : 1,
-        "classement" : 0,
-    }]);
+    const [infoPost, setInfoPost] = useState("");
     const [idPostCom, setIdPostCom] = useState("test");
+    const [commentaires, setCommentaires] = useState([]);
+
 
     //UseEffect
     useEffect( ()=>{
-        let tab = getInfotest()
+        let tab = getInfotest();
         setPosts(tab);
 
     }, [])
+
+
+    //récupération des commentaire d'un post lors du click
+    useEffect( ()=>{
+        let postRecherche = posts.find(post => post.id === idPostCom);
+        setInfoPost(postRecherche);
+
+        let commentaires = getCom(idPostCom);
+
+        console.log(postRecherche);
+        setCommentaires(commentaires);
+
+
+    }, [idPostCom])
 
     // Afficher l'overlay
     function showOverlay() {
@@ -37,22 +43,11 @@ export function Posts(props) {
         document.body.style.overflow = "hidden"; // Empêche le scroll
     }
 
-// Cacher l'overlay
+    // Cacher l'overlay
     function hideOverlay() {
         document.getElementById("overlay").classList.remove("active");
         document.body.style.overflow = "auto"; // Permet de scroller à nouveau
     }
-
-    //récupération des commentaire d'un post lors du click
-    useEffect( ()=>{
-        let postRecherche = posts.find(post => post.id === idPostCom);
-        console.log(postRecherche);
-        console.log(idPostCom);
-        setInfoPost(postRecherche);
-
-    }, [idPostCom])
-
-
 
     return (<>
             <div className="conteneurPost uk-container-expend  uk-padding-remove-top uk-flex uk-flex-wrap uk-flex-auto ">
@@ -71,14 +66,30 @@ export function Posts(props) {
 
             <div className="overlay" id="overlay" onClick={hideOverlay}>
                 <div className="uk-flex uk-flex-around overlay-content">
+
                     <div className="image uk-width-1-2">
-                        <p>Post en cours d'affichage {idPostCom} rgbf</p>
-                        <img src="img/badge2.png"   className={props.classement === 1 ? "" : "uk-hidden"}alt="Concours blabla"/>
+
+                        {infoPost?.nbImage === 1 ?
+                            <div>
+                                <img src={infoPost?.image[0]} alt=""/>
+                            </div>
+                            
+                            : ""
+                        }
+
+                    </div>
+                    <div className="commentaire uk-width-1-2">
+                        {commentaires.length > 0 &&
+                            commentaires.map((com, cpt) => {
+                                return (
+                                    <>
+                                        <Commentaire utilisateur={com.nom_utilisateur} icone={com.icone_uti} commentaire={com.commentaire} date={com.date}/>
+                                    </>
+                                )
+                            })
+                        }
                     </div>
 
-                    <div className="commentaire uk-width-1-2">
-                        les commentaires
-                    </div>
                 </div>
             </div>
 
@@ -165,6 +176,33 @@ function getInfotest() {
             "is_like" : 0,
             "classement" : 0,
         }]
+
+    return tab;
+
+
+}
+
+function getCom(id) {
+
+    var tab = [{
+        "id_post": 1,
+        "id_Profil_Com": 1,
+        "id_Com": 1,
+        "commentaire": "waouh ! Trop fort",
+        "nom_utilisateur": "ZazouPazard_38",
+        "icone_uti": "img/icone/lapin_alice.png",
+        "date": "02/02/2025",
+
+    },{
+        "id_post": 1,
+        "id_Profil_Com": 2,
+        "id_Com": 2,
+        "commentaire": "bg bg",
+        "nom_utilisateur": "Kanpai",
+        "icone_uti": "img/icone/poisson(1).png",
+        "date": "01/02/2025",
+
+    },]
 
     return tab;
 

@@ -1,0 +1,19 @@
+img{
+    height : 70px;
+}
+
+.conteneurCom{
+    margin-left: 15px;
+}
+
+.leCom{
+    margin-left : 20px;
+    color : #fff;
+    font-size: 18px;
+}
+
+.conteneurCom h3{
+
+    color : white !important;
+   font-size : 28px !important;
+}
