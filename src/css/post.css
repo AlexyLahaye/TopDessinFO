@@ -88,7 +88,24 @@ Css pour la page post
     width : 100%;
 }
 
-.imageCom{
-    height : 80em;
+.conteneurCardCom{
+    height: 300px;
 }
 
+
+.imgCommentaire{
+    height : 700px;
+    position: relative;
+}
+
+.multipleImgCommentaire{
+    width: 90%;
+}
+
+.tailleMultiImgCom{
+    height: 700px !important;
+}
+
+.responsiveCommentaire{
+    width: 100% !important;
+}

@@ -6,7 +6,7 @@ import {Card} from "../utilisateur/participation_en_cours/card";
 export function MultipleImage(props) {
 
     return (<>
-            <div className=" uk-card-media-top">
+            <div className={props.contexte ===  undefined ? "uk-card-media-top" : "uk-hidden"}>
                 <div className="topCard uk-position-relative" data-uk-slideshow="animation: fade">
 
                     <div className="img topCard uk-slideshow-items">
@@ -44,6 +44,46 @@ export function MultipleImage(props) {
                     </div>
                 </div>
 
+            </div>
+
+
+            <div className={props.contexte === "commentaire" ? "" : "uk-hidden"} >
+                <div className="tailleMultiImgCom uk-position-relative " data-uk-slideshow="animation: fade">
+
+                    <div className="tailleMultiImgCom topCard uk-slideshow-items ">
+                        {props.images.length > 0 &&
+                            props.images.map((image, cpt) => {
+
+                                return (
+
+                                    <div>
+                                        <div data-uk-lightbox>
+                                            <a href={image}><img src={image} alt="" data-uk-cover/></a>
+                                        </div>
+
+                                    </div>
+                                )
+                            })
+                        }
+                    </div>
+
+                    <div className=" vuesPlsImage uk-position-bottom-right uk-position-small">
+                        <ul className="uk-thumbnav">
+                            {props.images.length > 0 &&
+                                props.images.map((image, cpt) => {
+
+                                    return (
+                                        <li data-uk-slideshow-item={cpt}>
+                                            <a href="#">
+                                                <img src={image} width="50" height="15" alt=""/>
+                                            </a>
+                                        </li>
+                                    )
+                                })
+                            }
+                        </ul>
+                    </div>
+                </div>
             </div>
         </>
     );

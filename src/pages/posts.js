@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {CardSingle} from "../component/posts/card_single";
 import {Commentaire} from "../component/global/commentaire.js";
 import {MultipleImage} from "../component/posts/multiple_image";
+import {Overlay_Commentaire} from "../component/posts/overlay_commentaire";
 
 
 export function Posts(props) {
@@ -64,34 +65,12 @@ export function Posts(props) {
             </div>
 
 
-            <div className="overlay" id="overlay" onClick={hideOverlay}>
-                <div className="uk-flex uk-flex-around overlay-content">
+            <div className="overlay " id="overlay" >
 
-                    <div className="image uk-width-1-2">
+                <Overlay_Commentaire infoPost={infoPost} commentaires={commentaires} hideOverlay={hideOverlay} />
 
-                        {infoPost?.nbImage === 1 ?
-                            <div>
-                                <img src={infoPost?.image[0]} alt=""/>
-                            </div>
-                            
-                            : ""
-                        }
-
-                    </div>
-                    <div className="commentaire uk-width-1-2">
-                        {commentaires.length > 0 &&
-                            commentaires.map((com, cpt) => {
-                                return (
-                                    <>
-                                        <Commentaire utilisateur={com.nom_utilisateur} icone={com.icone_uti} commentaire={com.commentaire} date={com.date}/>
-                                    </>
-                                )
-                            })
-                        }
-                    </div>
-
-                </div>
             </div>
+
 
 
         </>
