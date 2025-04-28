@@ -77,8 +77,17 @@ export function Utilisateur(props) {
                     <div className="DernierPostContainer">
                         <Dernier_Post posts={posts}/>
                     </div>
+                    <div className="RankContainerResponsive radius-Small">
+                        <div className="conteneurRankReponsive">
+                            <Rank ranks={ranks}/>
+                        </div>
+
+                    </div>
                     <div className="participationPositionnement">
                         <Participation_Conteneur participation={participation}/>
+                    </div>
+                    <div className="EvenementResponsive">
+                        <Evenement_recent/>
                     </div>
                 </div>
 
