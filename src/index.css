@@ -1,3 +1,33 @@
+/* Style global pour toutes les scrollbars */
+* {
+  scrollbar-color: #6d597a #201e34; /* Firefox */
+  scrollbar-width: thin; /* Firefox */
+}
+
+/* Webkit (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+  width: 4px; /* Largeur de la scrollbar */
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+::-webkit-scrollbar-track {
+  background: #201e34;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #6d597a; /* Violet */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4a3f54;
+}
+
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -7,7 +37,376 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #1a0d26;
 }
+
+
+h2, h3{
+  font-family: "Candara Light", sans-serif !important;
+  color : #c8cbd3 !important;
+}
+h4{
+  color: #fff !important;
+}
+
+h6{
+  font-size: 15px;
+  color: #fff !important;
+}
+
+
+.backgroundViolet{
+  background-color: #201e34;
+}
+
+.radius-Small{
+  border-radius: 15px !important;
+}
+
+.travail{
+  margin : auto;
+  margin-top : 20px;
+  padding : 20px;
+}
+
+.uk-card{
+  color : #c8cbd3 !important;
+  padding: 10px;
+}
+
+.pointer{
+  cursor: pointer;
+}
+
+.show_all{
+  font-size: 0.8rem;
+}
+
+.partie_droite{
+  position: relative;
+  top: -300px;
+}
+
+.uk-input:focus, .uk-select:focus, .uk-textarea:focus {
+  border: none !important;
+}
+
+/* *********************************************************************************************************************
+Css pour la page utilisateur
+ *********************************************************************************************************************** */
+.canteneurUtilisateurAll{
+  background-color: #1a0d26;
+}
+
+/********************** Header ************************/
+@media (max-width: 1400px) {
+  .allUti {
+    display: none !important;
+  }
+}
+@media (min-width: 1400px) {
+  .allUtiResponsive {
+    display: none !important;
+  }
+}
+
+.uk-background-width-1-1 {
+  position: relative; /* Permet aux enfants `absolute` de se positionner par rapport à lui */
+  width: 100%;
+  height: 270px; /* Ajuste selon tes besoins */
+  overflow: hidden; /* Empêche tout débordement */
+  background: none !important;
+}
+
+.header_bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Adapte l'image sans la déformer */
+  z-index: 1; /* Place l'image en arrière-plan */
+  opacity: 0.35;
+}
+
+.header_user_logo{
+  padding-top: 25px;
+  width: auto;
+  height: auto;
+}
+
+.grid-header{
+  display: grid;
+  align-items: end;
+  justify-content: start;
+  grid-template-columns: 110px clamp(400px, 100vw, 500px); /* repeat(3, auto) */
+  grid-template-rows: 90px 50px 20px 40px;
+  width: 40%;
+  padding-top: 40px;
+  margin-left: 4%;
+}
+
+.item1{
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  grid-column: 1 / 2;
+  grid-row: 1 / 3;
+  z-index: 2;
+}
+
+.item2 {
+  align-items: flex-end;
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  font-size:  clamp(1.7rem, 2vw, 2rem);
+  font-weight: bold;
+  color: white;
+  width: 80%;
+  padding-bottom: 10px;
+  z-index: 2;
+}
+
+
+.item3{
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  word-break: break-word;
+  font-size:  clamp(0.7rem, 2vw, 0.8rem);
+  font-weight: bold;
+  color: #c8cbd3;
+  width: clamp(60%, 2vw, 80%);
+  height:  100%;
+  z-index: 2;
+}
+
+.item4{
+  width: 100%;
+  height: 100%;
+  padding-left: 20px;
+  grid-column: 1 / -1;
+  grid-row: 4 / 4;
+  z-index: 2;
+}
+
+.badge-header{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.badgeUser{
+  margin-right: 5px;
+  width: clamp(20px, 3vw, 35px);
+  height: 100%;
+  z-index: 2;
+}
+/********************** Evenement ************************/
+
+.evenement_recent_global{
+  padding-left: 35px;
+  width: 50%;
+  height: 100%;
+}
+
+.evenement_head{
+  display: flex;
+
+  color: white;
+  justify-content: space-between;
+}
+
+.evenement_container {
+  height: 510px;
+  overflow: scroll;
+  overflow-x: hidden;
+  margin-top: 50px;
+  padding-left: 5px;
+}
+
+.evenements_border{
+  height: 100%;
+  border-left: solid 3px #6d597a;
+}
+
+.un_evenement{
+  display: grid;
+  grid-template-columns: 10px auto clamp(80%, 100vw, 90%);
+  grid-template-rows: repeat(2, auto);
+  padding-bottom: 40px;
+}
+
+.evenement_dot{
+  grid-column: 1 / 1;
+  grid-row: 1 / 1;
+  margin-left: -8px;
+}
+
+.evenement_img_container{
+  width: 80px;
+  height: 50px;
+  padding-left: 10px;
+  margin-right: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  grid-column: 2 / 2;
+  grid-row: 1 / -1;
+}
+
+.evenement_img{
+  height: 100%;
+  border-radius: 15px;
+  width: auto;
+  object-fit: cover;
+}
+
+.evenement_titre{
+  margin-left: -20px;
+  grid-column: 3 / 3;
+  grid-row: 1 / 1;
+  color: white;
+}
+
+.evenement_date{
+  margin-left: -20px;
+  grid-column: 3 / 3;
+  grid-row: 2 / 2;
+  color: #8c9ed9;
+  font-size:  clamp(0.5rem, 2vw, 0.6rem);
+}
+
+@media (min-width: 2000px) {
+  .evenement_container {
+    height: clamp(510px, 100vw, 850px);;
+  }
+}
+
+/* Dernier posts ********************************* */
+.DernierPostContainer{
+  padding-right: 10%;
+  padding-left: 10%;
+}
+/* Participation en cours ********************************* */
+.participationConteneur{
+  position: relative;
+  overflow: visible;
+}
+.conBackground{
+  position: absolute;
+  width : 100%;
+  height : 100%;
+  overflow: hidden;
+
+  z-index : 1;
+}
+
+.partieTitre {
+  width : 100%;
+  height : 100%;
+  margin-left : 10%;
+}
+
+.PartieSlider{
+  position: relative;
+  width : 95%;
+  height: 80%;
+  margin-top : 120px;
+  z-index : 2;
+}
+
+.fondPartiBLeu{
+  background-color: #231915;
+  width : 40px;
+  height : 40px;
+}
+
+.backgroundBleuCard{
+  background: linear-gradient(70deg, #0b356d, #1f1d20) !important;
+}
+.backgroundVioletCard{
+  background: linear-gradient(70deg, #8b4a9b, #1c0422) !important;
+}
+.backgroundBleuBlitz{
+  background-color: #030649;
+  opacity: 0.45;
+}
+.backgroundVioletBlitz{
+  background-color: #ddc7c7;
+  opacity: 0.45;
+}
+
+.cardParticipation{
+  height: 150px !important;
+  width : 190px;
+  font-size : 13px;
+}
+
+.participationConteneur h2{
+  font-size: 18px !important;
+}
+.conTitreParti{
+  padding-top: 40px;
+  padding-right: 100px;
+  padding-left: 40px;
+  justify-content: space-between;
+}
+
+.iconeNbPart{
+  margin-right: 4px;
+  margin-top : 2px;
+}
+.joeurAct{
+  padding-right: 10px;
+}
+.participationPositionnement{
+
+}
+data-uk-dropdown:not(.uk-open) {
+  display: none !important;
+}
+
+.cardParticipation info{
+  bottom: 0px;
+}
+
+/* Rank ********************************* */
+.RankContainer {
+  position: relative; /* Permet de la déplacer sans impacter les autres éléments */
+  left: -100px; /* Décale la div de 100px vers la gauche */
+  top: 70px; /* Décale la div de 100px vers la gauche */
+  width: 110%;
+
+  height: 150px;
+
+  background: linear-gradient(70deg, rgba(211, 109, 137, 0.7), rgba(35, 33, 32, 0.7)) !important;
+
+
+  z-index: 2;
+}
+
+.RankContainer h4{
+  width: 100%;
+  text-align: center;
+}
+.cardRank{
+  height: 150px;
+}
+.imgRank{
+  height: 70px;
+
+}
+
+.positionImage{
+  display: block;
+  text-align: right;
+}
+
+
+
