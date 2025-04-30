@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {Evenement_liste} from "./evenement_liste";
 
 export function Evenement_recent(props) {
@@ -11,14 +11,14 @@ export function Evenement_recent(props) {
 
                     <div data-uk-lightbox>
                         <a className="show_all"
-                           href="http://localhost:3001/participation"
+                           href="/participation"
                            data-type="iframe">Show all</a>
                     </div>
                 </div>
             </div>
 
             <div className="evenement_container">
-                <Evenement_liste/>
+                <Evenement_liste recentEves={props.recentEves}/>
             </div>
         </div>
     );

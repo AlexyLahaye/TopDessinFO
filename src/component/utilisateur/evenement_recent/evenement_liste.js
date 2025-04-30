@@ -1,24 +1,17 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 export function Evenement_liste(props) {
-    // Exemple de données pour tester (à remplacer par des données dynamiques)
-    const evenementsArray = [
-        { titre: "Participation au concours du mois", date: "2024-11-11", img: null },
-        { titre: "Championnat Régional", date: "2024-12-01", img: "Badge1.png" },
-        { titre: "Tournoi Blitz", date: "2024-11-11", img: null },
-        { titre: "Ajout post", date: "2024-12-01", img: "hwei.jpg" },
-        { titre: "Tournoi Blitz", date: "2024-11-11", img: null },
-        { titre: "Championnat Régional", date: "2024-12-01", img: "Badge8.png" },
-        { titre: "Obtention icone 'Champimignon'", date: "2024-11-11", img: "champi.png" },
-        { titre: "Championnat Régional", date: "2024-12-01", img: null },
-        { titre: "Tournoi Blitz", date: "2024-11-11", img: "Badge15.png" },
-        { titre: "Tournoi Blitz", date: "2024-11-11", img: null },
-        { titre: "Tournoi Blitz", date: "2024-11-11", img: null },
-        { titre: "Tournoi Blitz", date: "2024-11-11", img: null },
-    ];
+    // initialisation
+    const [recentEves, setRecentEves] = useState([]);
+
+    //UseEffect
+    useEffect( ()=>{
+        setRecentEves(props.recentEves);
+
+    }, [props.recentEves])
 
     // Générer la liste des événements avec `.map()`
-    const evenements = evenementsArray.map((evenement, index) => (
+    const evenements = recentEves.map((evenement, index) => (
         <div key={index} className="un_evenement">
             <div className="evenement_dot">
                 <FontAwesomeIcon icon="fa-solid fa-circle" size="xs" color="#8b9dd8"></FontAwesomeIcon>

@@ -25,7 +25,7 @@ export function Dernier_Post(props) {
 
                                 <div data-uk-lightbox>
                                     <a className="show_all"
-                                        href="http://localhost:3000/post"
+                                        href="/post"
                                         data-type="iframe">Show all</a>
                                 </div>
                             </div>
