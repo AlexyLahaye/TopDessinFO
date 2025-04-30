@@ -18,9 +18,6 @@ export function NotationEtoile(props) {
             }
             let emptyStars = 5 - etoilePleine - demiEtoile; // Étoiles vides restantes
 
-            console.log("MA note " + props.note)
-            console.log("mes setoiles" +etoilePleine)
-            console.log("Demi etoile : " +demiEtoile)
             setNbStarEntier(etoilePleine);
             setNbEtoileSeule(emptyStars)
             setdemiEtoile(demiEtoile);

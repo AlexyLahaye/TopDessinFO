@@ -4,6 +4,7 @@ import {Dernier_Post} from "../component/utilisateur/dernier_post/dernier_post";
 import {Header} from "../component/utilisateur/header/header";
 import {Rank} from "../component/utilisateur/rank/rank";
 import {Evenement_recent} from "../component/utilisateur/evenement_recent/evenement_recent";
+import {Reseau} from "../component/utilisateur/reseau_sociaux/reseau_sociaux";
 
 export function Utilisateur(props) {
 
@@ -11,17 +12,20 @@ export function Utilisateur(props) {
     const [participation, setParticipation] = useState([]);
     const [posts, setPosts] = useState([]);
     const [ranks, setRanks] = useState([]);
+    const [reseaux, setReseaux] = useState([]);
 
     //useState
     useEffect( ()=>{
         let tab = getInfotest();
         let tabPost = getInfoPost();
         let tabRank = getInfoRank();
+        let tabReseaux = getInfoReseaux();
+
         setParticipation(tab);
         setPosts(tabPost);
         setRanks(tabRank);
-        
-        console.log(tabRank);
+        setReseaux(tabReseaux);
+
     }, [])
 
     useEffect(() => {
@@ -53,8 +57,15 @@ export function Utilisateur(props) {
                 <div className="uk-container-expend">
                     <Header/>
                 </div>
+
+
                 <div data-uk-grid className="allUti uk-padding-large">
+
+
                     <div className="uk-width-1-2">
+                        <div className="reseaux uk-flex uk-flex-wrap uk-margin">
+                            <Reseau reseaux={reseaux}/>
+                        </div>
                         <Evenement_recent/>
                     </div>
                     <div className="uk-width-1-2 partie_droite">
@@ -70,6 +81,8 @@ export function Utilisateur(props) {
                         </div>
 
                     </div>
+
+
                 </div>
 
                 <div className="allUtiResponsive uk-padding-large">
@@ -77,8 +90,21 @@ export function Utilisateur(props) {
                     <div className="DernierPostContainer">
                         <Dernier_Post posts={posts}/>
                     </div>
+                    <div className="RankContainerResponsive radius-Small">
+                        <div className="conteneurRankReponsive">
+                            <Rank ranks={ranks}/>
+                        </div>
+
+                    </div>
                     <div className="participationPositionnement">
                         <Participation_Conteneur participation={participation}/>
+                    </div>
+                    <div className="EvenementResponsive">
+                        <Evenement_recent/>
+                    </div>
+
+                    <div className=" uk-flex uk-flex-wrap uk-margin">
+                        <Reseau reseaux={reseaux}/>
                     </div>
                 </div>
 
@@ -197,6 +223,20 @@ function getInfoRank() {
         "classe": 9972,
         "rang": "immortal",
         "mode": "commu"
+    }]
+
+    return tab;
+}
+
+function getInfoReseaux() {
+
+    var tab = [{
+        "instagram": "malaury__",
+        "twitter": "AA",
+        "tiktok": "MalauryZazou",
+        "discord": "kiun__4567",
+        "twitch": "",
+        "etsy": ""
     }]
 
     return tab;

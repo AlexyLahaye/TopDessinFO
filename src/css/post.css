@@ -80,3 +80,32 @@ Css pour la page post
     left : -35px;
     z-index: 2;
 }
+
+.overlay-content {
+    color: white;
+    text-align: center;
+    font-size: 2rem;
+    width : 100%;
+}
+
+.conteneurCardCom{
+    height: 300px;
+}
+
+
+.imgCommentaire{
+    height : 700px;
+    position: relative;
+}
+
+.multipleImgCommentaire{
+    width: 90%;
+}
+
+.tailleMultiImgCom{
+    height: 700px !important;
+}
+
+.responsiveCommentaire{
+    width: 100% !important;
+}

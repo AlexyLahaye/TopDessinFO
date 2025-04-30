@@ -3,8 +3,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {Utilisateur} from "./utilisateur";
 import {Participation} from "./participation";
 import {Posts} from "./posts";
+import {Connexion} from "./connexion";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 
 export default function Browser() {
 
@@ -15,6 +17,7 @@ export default function Browser() {
                     <Route path='/' element={<Utilisateur />} />
                     <Route path='/participation' element={<Participation />} />
                     <Route path='/post' element={<Posts />} />
+                    <Route path='/connexion' element={<Connexion />} />
 
                 </Routes>
             </BrowserRouter>

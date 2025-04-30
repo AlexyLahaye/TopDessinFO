@@ -79,7 +79,7 @@ h6{
 }
 
 .pointer{
-  cursor: pointer;
+  cursor: pointer !important;
 }
 
 .show_all{
@@ -95,9 +95,58 @@ h6{
   border: none !important;
 }
 
+.marginAuto{
+  margin : auto;
+}
+
+.perso-margin-auto{
+  margin : auto;
+}
+.perso-longeur-100{
+  width: 100%;
+}
+.perso-longeur-80{
+  width: 80%;
+}
+.perso-longeur-50{
+  width: 50%;
+}
+.perso-longeur-30{
+  width: 30%;
+}
+
+/* *********************************************************************************************************************
+Overlay
+ *********************************************************************************************************************** */
+/* Superposition (overlay) */
+.overlay {
+  position: fixed; /* Fixée par rapport à la fenêtre */
+  top: 0;
+  left: 0;
+  width: 100vw; /* Prend toute la largeur de la fenêtre */
+  height: 100vh; /* Prend toute la hauteur de la fenêtre */
+  background: rgba(0, 0, 0, 0.8); /* Transparence */
+  display: none; /* Cachée par défaut */
+  z-index: 1000; /* Placée au-dessus de tout le reste */
+}
+
+/* Lorsque l'overlay est activée, on la rend visible */
+.overlay.active {
+  display: flex;
+}
+
+
 /* *********************************************************************************************************************
 Css pour la page utilisateur
  *********************************************************************************************************************** */
+
+.reseaux{
+  position: absolute;
+  top : 10px;
+
+  font-size: 15px;
+  color: #fff !important;
+}
 .canteneurUtilisateurAll{
   background-color: #1a0d26;
 }
@@ -391,6 +440,21 @@ data-uk-dropdown:not(.uk-open) {
   z-index: 2;
 }
 
+
+.RankContainerResponsive{
+  height: 150px;
+  width: 100%;
+  margin-top: 50px;
+
+  background: linear-gradient(70deg, rgba(211, 109, 137, 0.7), rgba(35, 33, 32, 0.7)) !important;
+
+  z-index: 2;
+}
+
+.EvenementResponsive{
+  margin-top : 50px;
+}
+
 .RankContainer h4{
   width: 100%;
   text-align: center;
@@ -409,4 +473,14 @@ data-uk-dropdown:not(.uk-open) {
 }
 
 
+/* *********************************************************************************************************************
+Css pour la page connexion
+ *********************************************************************************************************************** */
+.connexionContainer{
+  width: 70em !important;
+}
+
+.connexionContainer img{
+  height: 90%;
+}
 
