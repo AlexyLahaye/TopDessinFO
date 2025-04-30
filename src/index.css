@@ -79,7 +79,7 @@ h6{
 }
 
 .pointer{
-  cursor: pointer;
+  cursor: pointer !important;
 }
 
 .show_all{
@@ -93,6 +93,26 @@ h6{
 
 .uk-input:focus, .uk-select:focus, .uk-textarea:focus {
   border: none !important;
+}
+
+.marginAuto{
+  margin : auto;
+}
+
+.perso-margin-auto{
+  margin : auto;
+}
+.perso-longeur-100{
+  width: 100%;
+}
+.perso-longeur-80{
+  width: 80%;
+}
+.perso-longeur-50{
+  width: 50%;
+}
+.perso-longeur-30{
+  width: 30%;
 }
 
 /* *********************************************************************************************************************
@@ -445,4 +465,14 @@ data-uk-dropdown:not(.uk-open) {
 }
 
 
+/* *********************************************************************************************************************
+Css pour la page connexion
+ *********************************************************************************************************************** */
+.connexionContainer{
+  width: 70em !important;
+}
+
+.connexionContainer img{
+  height: 90%;
+}
 
