@@ -6,6 +6,8 @@ export async function inscription(   setEtat,
                                      setMessError,
                                      setSuccess,
                                      setMessSuccess,
+                                     setMdpcacheVerif,
+                                     setMdpcache,
                                      inputEmail,
                                      inputMdp,
                                      inputMdpVerif,
@@ -25,33 +27,39 @@ export async function inscription(   setEtat,
         if(inputMdp !== inputMdpVerif ){
             setError(true);
             setMessError("Les mots de passes ne sont pas égaux.")
+            setInputMdp("")
+            setInputMdpVerif("")
         }
         else if (inputMdp.length < 8 ) {
             setError(true);
             setMessError("Le mot de passe doit faire au minimum 8 caractères.")
+            setInputMdp("")
+            setInputMdpVerif("")
         }
         else{
 
-            const data = await inscriptionRoute(inputEmail, inputPseudo, inputMdp)
+            const [status, data] = await inscriptionRoute(inputEmail, inputPseudo, inputMdp);
 
-            console.log(data[1].success)
-            if(data[0] == 200){
+
+            if(status == 200){
                 setError(false);
                 setSuccess(true);
                 setEtat('con')
-                setMessSuccess(data[1].success)
+                setMessSuccess(data.success)
+
+                setMdpcacheVerif(true)
+                setMdpcache(true)
 
                 setInputMdp("")
                 setInputMdpVerif("")
                 setInputPseudo("")
             }
             else{
+
                 setError(true);
-                setMessError(data[1].error)
+                setMessError(data.error)
+
             }
-
-
-            setError(false)
         }
 
 

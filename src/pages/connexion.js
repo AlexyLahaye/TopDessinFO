@@ -12,6 +12,9 @@ export function Connexion(props) {
     const [success, setSuccess] = useState(false);
     const [messSuccess, setMessSuccess] = useState("");
 
+    const [mdpCache, setMdpCache] = useState(true)
+    const [mdpCacheVerif, setMdpCacheVerif] = useState(true)
+
     const [etat, setEtat] = useState("con");
 
     const [inputEmail, setInputEmail] =useState ('')
@@ -76,21 +79,29 @@ export function Connexion(props) {
 
                                 <div className="uk-margin">
                                     <div className="uk-inline perso-longeur-80">
-                                        <span className="uk-form-icon" data-uk-icon="icon: mail"></span>
+                                        <span className="uk-form-icon " data-uk-icon="icon: mail"></span>
                                         <input className="uk-input" type="text"  placeholder="Email" aria-label="Not clickable icon"   value={inputEmail} onChange={handleChangeEmail}/>
                                     </div>
                                 </div>
 
                                 <div className="uk-margin">
                                     <div className="uk-inline perso-longeur-80">
-                                        <span className="uk-form-icon uk-form-icon-flip" data-uk-icon="icon: lock"></span>
-                                        <input className="uk-input" type="password" placeholder="Mot de passe" aria-label="Not clickable icon"  value={inputMdp} onChange={handleChangeMdp}/>
+                                        <span className=" uk-form-icon uk-form-icon-flip " style={{ pointerEvents: "auto", cursor: "pointer" }} data-uk-icon={mdpCache  ? "icon: lock" : "icon: unlock" }
+                                              onClick={
+                                            () => { if( mdpCache ) {setMdpCache(false)} else(setMdpCache(true) )}
+                                        }></span>
+                                        <input className="uk-input" type={mdpCache ? "password" : "text" } placeholder="Mot de passe" aria-label="Not clickable icon"  value={inputMdp} onChange={handleChangeMdp}/>
                                     </div>
+
                                 </div>
+
                                 <div className="uk-margin"  style={{ visibility: etat === "inscr" ? "visible" : "hidden" }}>
                                     <div className="uk-inline perso-longeur-80">
-                                        <span className="uk-form-icon uk-form-icon-flip" data-uk-icon="icon: lock"></span>
-                                        <input className="uk-input" type="password" placeholder="Confirmation du mot de passe" aria-label="Not clickable icon" value={inputMdpVerif} onChange={handleChangeMdpVerif}/>
+                                        <span className="uk-form-icon uk-form-icon-flip"  style={{ pointerEvents: "auto", cursor: "pointer" }} data-uk-icon={mdpCacheVerif  ? "icon: lock" : "icon: unlock" }
+                                              onClick={
+                                                  () => { if( mdpCacheVerif ) {setMdpCacheVerif(false)} else(setMdpCacheVerif(true) )}
+                                              }></span>
+                                        <input className="uk-input" type={mdpCacheVerif ? "password" : "text" } placeholder="Confirmation du mot de passe" aria-label="Not clickable icon" value={inputMdpVerif} onChange={handleChangeMdpVerif}/>
                                     </div>
                                 </div>
                                 <div className="uk-margin" style={{ visibility: etat === "inscr" ? "visible" : "hidden" }}>
@@ -107,27 +118,56 @@ export function Connexion(props) {
 
                                 <div>
                                     <p uk-margin className="uk-flex  uk-flex-between ">
-                                        <button className="uk-button uk-button-default" onClick={() => {
-                                            if( etat === "con" ) {setEtat("inscr")}else{ inscription(
-                                                setEtat,
-                                                setError,
-                                                setMessError,
-                                                setSuccess,
-                                                setMessSuccess,
-                                                inputEmail,
-                                                inputMdp,
-                                                inputMdpVerif,
-                                                inputPseudo,
-                                                setInputEmail,
-                                                setInputMdp,
-                                                setInputMdpVerif,
-                                                setInputPseudo
-                                                );
-                                            } } }
+                                        <button className="uk-button uk-button-default"
+                                                onClick={() => {
+
+                                                    if( etat === "con" ) {
+                                                        setEtat("inscr")
+                                                        setError(false)
+                                                        setSuccess(false)
+                                                        setMdpCacheVerif(true)
+                                                        setMdpCache(true)
+                                                        setInputMdpVerif("")
+                                                        setInputMdp("")
+                                                    }
+                                                    else{ inscription(
+                                                        setEtat,
+                                                        setError,
+                                                        setMessError,
+                                                        setSuccess,
+                                                        setMessSuccess,
+                                                        setMdpCacheVerif,
+                                                        setMdpCache,
+                                                        inputEmail,
+                                                        inputMdp,
+                                                        inputMdpVerif,
+                                                        inputPseudo,
+                                                        setInputEmail,
+                                                        setInputMdp,
+                                                        setInputMdpVerif,
+                                                        setInputPseudo
+                                                        );
+                                                    } } }
                                         >
                                             S'inscrire
                                         </button>
-                                        <button className="uk-button uk-button-default" onClick={() => { if( etat === "inscr" ) {setEtat("con")}else{ connexion()} } }>Connexion</button>
+                                        <button className="uk-button uk-button-default"
+                                                onClick={() => {
+
+                                                    if( etat === "inscr" ) {
+                                                        setEtat("con")
+                                                        setError(false)
+                                                        setSuccess(false)
+                                                        setMdpCacheVerif(true)
+                                                        setMdpCache(true)
+                                                        setInputMdpVerif("")
+                                                        setInputMdp("")
+                                                    }else{
+                                                        connexion()}
+                                                }
+                                        }>
+                                            Connexion
+                                        </button>
                                     </p>
                                 </div>
 

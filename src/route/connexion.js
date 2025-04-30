@@ -1,32 +1,22 @@
 import {route} from './route';
 
-export async function inscriptionRoute( email, pseudo, mdp) {
-    try{
-        return fetch(route +"users/crea", {
+
+export async function inscriptionRoute(email, pseudo, mdp) {
+    try {
+        const response = await fetch(route + "users/crea", {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 "email": email,
                 "pseudo": pseudo,
                 "mdp":  mdp
-            })
-        })
-            // la on transforme en json
-            .then(
+            }),
+        });
 
-                async res =>{
-                    const mess = await res.json();
-                    return [res.status, mess]
-                }
-            )
-            .then(data => {
-                 console.log(data);
-                return data;
-            });
+        const data = await response.json(); // ici on attend le corps JSON
 
+        return [response.status, data]; // tableau contenant le status et la réponse
+    } catch (error) {
+        return [500, { error: "Erreur réseau ou serveur" }];
     }
-    catch(error){
-        return "j'ai une erreur" +  error
-    }
-
 }
