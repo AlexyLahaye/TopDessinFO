@@ -66,7 +66,7 @@ export function Utilisateur(props) {
 
 
             <div className="canteneurUtilisateurAll uk-container-expend  uk-padding-remove-top">
-                <div className="uk-container-expend">
+                <div className="headerUti uk-container-expend">
                     <Header/>
                 </div>
 
@@ -99,6 +99,10 @@ export function Utilisateur(props) {
 
                 <div className="allUtiResponsive uk-padding-large">
 
+                    <div className=" uk-flex uk-flex-wrap uk-margin">
+                        <Reseau reseaux={reseaux}/>
+                    </div>
+
                     <div className="DernierPostContainer">
                         <Dernier_Post posts={posts}/>
                     </div>
@@ -115,9 +119,7 @@ export function Utilisateur(props) {
                         <Evenement_recent/>
                     </div>
 
-                    <div className=" uk-flex uk-flex-wrap uk-margin">
-                        <Reseau reseaux={reseaux}/>
-                    </div>
+
                 </div>
 
             </div>

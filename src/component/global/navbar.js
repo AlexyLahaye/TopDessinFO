@@ -18,11 +18,11 @@ export function NavbarHorizontal(props) {
 
     return (<>
 
-        <nav className="navBarHorizontale uk-navbar-container">
-            <div className="uk-container">
+        <nav className="navBarHorizontale  backgroundViolet">
+            <div className="uk-container ">
                 <div data-uk-navbar>
 
-                    <div className="uk-navbar-left">
+                    <div className="uk-navbar-left ">
 
                         <a className="uk-navbar-item uk-logo" href="#" aria-label="Back to Home">Logo</a>
 
@@ -66,10 +66,10 @@ export function NavbarVertical(props) {
 
 
             <div
-                className="navBarVertical uk-card uk-card-default uk-card-body uk-padding-remove uk-margin-remove uk-flex uk-flex-middle uk-height-viewport"
+                className="navBarVertical uk-card  uk-card-body uk-padding-remove uk-margin-remove uk-flex uk-flex-middle uk-height-viewport backgroundViolet"
                 style={{ width: "60px" }}
             >
-                <div className="alignitemNavBarVert uk-flex uk-flex-column uk-flex-center uk-width-1-1">
+                <div className="alignitemNavBarVert uk-flex uk-flex-column uk-flex-center uk-width-1-1 ">
                     <a href="#" className="uk-padding-small" uk-icon="icon: home; ratio: 2"></a>
                     <a href="#" className="uk-padding-small" uk-icon="icon: cart; ratio: 2"></a>
                     <a href="#" className="uk-padding-small">

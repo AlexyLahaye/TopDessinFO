@@ -63,6 +63,7 @@ h6{
   background-color: #201e34;
 }
 
+
 .radius-Small{
   border-radius: 15px !important;
 }
@@ -144,15 +145,16 @@ Overlay
 }
 
 .navBarVertical{
-  position: absolute;
+  position: fixed;
   top : 0px;
   left: 0px;
   z-index: 5;
   height: 100vh;
+
 }
 
 .navBarHorizontale{
-  position: absolute;
+  position: fixed;
   top : 0px;
   left: 0px;
   z-index: 4;
@@ -201,6 +203,14 @@ Css pour la page utilisateur
   .allUtiResponsive {
     display: none !important;
   }
+}
+
+.allUtiResponsive{
+  margin-left: 60px ;
+}
+
+.headerUti{
+  margin-left: 60px;
 }
 
 .uk-background-width-1-1 {
@@ -393,6 +403,7 @@ Css pour la page utilisateur
   height : 100%;
   overflow: hidden;
 
+  margin-top : 15px;
   z-index : 1;
 }
 
@@ -476,7 +487,7 @@ data-uk-dropdown:not(.uk-open) {
 
   background: linear-gradient(70deg, rgba(211, 109, 137, 0.7), rgba(35, 33, 32, 0.7)) !important;
 
-
+  margin-top: -15px;
   z-index: 2;
 }
 
