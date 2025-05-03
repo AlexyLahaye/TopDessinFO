@@ -5,6 +5,7 @@ import {Header} from "../component/utilisateur/header/header";
 import {Rank} from "../component/utilisateur/rank/rank";
 import {Evenement_recent} from "../component/utilisateur/evenement_recent/evenement_recent";
 import {Reseau} from "../component/utilisateur/reseau_sociaux/reseau_sociaux";
+import {NavbarHorizontal, NavbarVertical} from "../component/global/navbar";
 
 export function Utilisateur(props) {
 
@@ -53,6 +54,17 @@ export function Utilisateur(props) {
 
 
     return (<>
+
+
+            <div className="navBarHorizontale">
+                <NavbarHorizontal />
+
+            </div>
+            <div className="navBarVertical">
+                <NavbarVertical />
+            </div>
+
+
             <div className="canteneurUtilisateurAll uk-container-expend  uk-padding-remove-top">
                 <div className="uk-container-expend">
                     <Header/>
@@ -62,7 +74,7 @@ export function Utilisateur(props) {
                 <div data-uk-grid className="allUti uk-padding-large">
 
 
-                    <div className="uk-width-1-2">
+                    <div className="evenementRec uk-width-1-2">
                         <div className="reseaux uk-flex uk-flex-wrap uk-margin">
                             <Reseau reseaux={reseaux}/>
                         </div>
