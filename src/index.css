@@ -159,16 +159,12 @@ Overlay
   left: 0px;
   z-index: 4;
   width: 100%;
-}
-
-.navBarHorizontale {
   height: 70px;
 }
 
-.navBarHorizontale .uk-navbar-left {
-  height: 100%;
-  display: flex;
-  align-items: center;
+
+.navBarHorizontale .uk-navbar-nav {
+  margin-left : 80px;
 }
 
 
