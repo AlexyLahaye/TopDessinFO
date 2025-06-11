@@ -17,7 +17,7 @@ export function Reseau(props) {
                 <>
                     <div className={reseaux[0].instagram === "" ? "uk-hidden" : "uk-padding-small"}>
                       <span className="uk-padding-small">
-                         <a href={`https://instagram.com/${reseaux[0].instagram}`} className="uk-icon-button pointer" uk-icon="instagram" style={{ backgroundColor: "#201e34" }}></a> {reseaux[0].instagram}
+                         <a href={`https://instagram.com/${reseaux[0].instagram}/`} className="uk-icon-button pointer" uk-icon="instagram" style={{ backgroundColor: "#201e34" }}></a> {reseaux[0].instagram}
                       </span>
                     </div>
 

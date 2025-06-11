@@ -30,6 +30,7 @@ export default function Browser() {
             <BrowserRouter>
                 <Routes>
                     <Route path='/' element={<Utilisateur tokenManager={tokenManager} token={token} />  } />
+                    <Route path='/utilisateur/:id' element={<Utilisateur />} />
                     <Route path='/participation' element={<Participation tokenManager={tokenManager} token={token} />} />
                     <Route path='/post' element={<Posts tokenManager={tokenManager}  token={token} />} />
                     <Route path='/connexion' element={<Connexion tokenManager={tokenManager} token={token} />} />

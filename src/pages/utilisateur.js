@@ -5,6 +5,7 @@ import {Header} from "../component/utilisateur/header/header";
 import {Rank} from "../component/utilisateur/rank/rank";
 import {Evenement_recent} from "../component/utilisateur/evenement_recent/evenement_recent";
 import {Reseau} from "../component/utilisateur/reseau_sociaux/reseau_sociaux";
+import {NavbarHorizontal, NavbarVertical} from "../component/global/navbar";
 
 export function Utilisateur(props) {
 
@@ -62,19 +63,27 @@ export function Utilisateur(props) {
     }, []);
 
     return (<>
+
+            <div className="navBarHorizontale">
+                <NavbarHorizontal />
+            </div>
+            <div className="navBarVertical">
+                <NavbarVertical />
+            </div>
+
+            <div className="uk-container-expend">
+                <Header dataUser={user} aquiredBadges={aquiredBadges}/>
+            </div>
+
+
+
             <div className="canteneurUtilisateurAll uk-container-expend  uk-padding-remove-top">
-
-
-
-                <div className="uk-container-expend">
-                    <Header dataUser={user} aquiredBadges={aquiredBadges}/>
-                </div>
 
 
                 <div data-uk-grid className="allUti uk-padding-large">
 
 
-                    <div className="uk-width-1-2">
+                    <div className="evenementRec uk-width-1-2">
                         <div className="reseaux uk-flex uk-flex-wrap uk-margin">
                             <Reseau reseaux={reseaux}/>
                         </div>
@@ -97,7 +106,12 @@ export function Utilisateur(props) {
 
                 </div>
 
+
                 <div className="allUtiResponsive uk-padding-large">
+
+                    <div className=" uk-flex uk-flex-wrap uk-margin">
+                        <Reseau reseaux={reseaux}/>
+                    </div>
 
                     <div className="DernierPostContainer">
                         <Dernier_Post posts={posts}/>
@@ -115,9 +129,7 @@ export function Utilisateur(props) {
                         <Evenement_recent recentEves={recentEves}/>
                     </div>
 
-                    <div className=" uk-flex uk-flex-wrap uk-margin">
-                        <Reseau reseaux={reseaux}/>
-                    </div>
+
                 </div>
 
             </div>
@@ -231,19 +243,19 @@ function getInfoPost() {
 
     var tab = [{
         "id": 1,
-        "chemin": "img/hwei.jpg"
+        "chemin": "/img/hwei.jpg"
     },{
         "id": 2,
-        "chemin": "img/oeil.jpg"
+        "chemin": "/img/oeil.jpg"
     },,{
         "id": 3,
-        "chemin": "img/visage_jolie.jpg"
+        "chemin": "/img/visage_jolie.jpg"
     },{
         "id": 4,
-        "chemin": "img/visage.jpg"
+        "chemin": "/img/visage.jpg"
     },{
         "id": 5,
-        "chemin": "img/oeil.jpg"
+        "chemin": "/img/oeil.jpg"
     }]
 
     return tab;

@@ -63,6 +63,7 @@ h6{
   background-color: #201e34;
 }
 
+
 .radius-Small{
   border-radius: 15px !important;
 }
@@ -136,13 +137,63 @@ Overlay
 }
 
 
+.navBar{
+  height: 30px;
+}
+.navBar a {
+  display : block !important;
+}
+
+.navBarVertical{
+  position: fixed;
+  top : 0px;
+  left: 0px;
+  z-index: 4;
+  height: 100vh;
+
+}
+.aNavVerti{
+  color : #c8cbd3 !important;
+}
+
+.aNavVerti:hover{
+  color : #0f6ecd !important;
+}
+
+
+.navBarHorizontale{
+  position: fixed;
+  top : 0px;
+  left: 0px;
+  z-index: 5;
+  width: 100%;
+  height: 70px;
+}
+
+.logoImg{
+
+  Height : 60px;
+}
+
+.ulNavbar{
+  margin-left : 80px;
+}
+
+.EditProfilNavbar{
+  padding-right: 15px !important;
+}
+
+
 /* *********************************************************************************************************************
 Css pour la page utilisateur
  *********************************************************************************************************************** */
 
+.evenementRec{
+  position: relative; /* Permet aux enfants `absolute` de se positionner par rapport à lui */
+}
 .reseaux{
   position: absolute;
-  top : 10px;
+  top : -68px;
 
   font-size: 15px;
   color: #fff !important;
@@ -151,16 +202,27 @@ Css pour la page utilisateur
   background-color: #1a0d26;
 }
 
+
+
 /********************** Header ************************/
 @media (max-width: 1400px) {
   .allUti {
     display: none !important;
+
   }
 }
 @media (min-width: 1400px) {
   .allUtiResponsive {
     display: none !important;
   }
+}
+
+.allUtiResponsive{
+  margin-left: 60px ;
+}
+
+.headerUti{
+  margin-left: 60px;
 }
 
 .uk-background-width-1-1 {
@@ -255,6 +317,9 @@ Css pour la page utilisateur
   height: 100%;
   z-index: 2;
 }
+
+
+
 /********************** Evenement ************************/
 
 .evenement_recent_global{
@@ -353,6 +418,7 @@ Css pour la page utilisateur
   height : 100%;
   overflow: hidden;
 
+  margin-top : 15px;
   z-index : 1;
 }
 
@@ -436,7 +502,7 @@ data-uk-dropdown:not(.uk-open) {
 
   background: linear-gradient(70deg, rgba(211, 109, 137, 0.7), rgba(35, 33, 32, 0.7)) !important;
 
-
+  margin-top: -15px;
   z-index: 2;
 }
 
