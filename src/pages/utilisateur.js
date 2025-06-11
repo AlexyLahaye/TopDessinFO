@@ -26,7 +26,6 @@ export function Utilisateur(props) {
         let tabPost = getInfoPost();
         let tabRank = getInfoRank();
         let tabRecentEve = getInfoRecentEven();
-
         let tabReseaux = getInfoReseaux();
 
         setUser(tabUser);
