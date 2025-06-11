@@ -63,28 +63,21 @@ export function Utilisateur(props) {
     }, []);
 
     return (<>
-            <div className="canteneurUtilisateurAll uk-container-expend  uk-padding-remove-top">
-
-                {user?.id_user}
-                {posts[3]?.id}
-                {aquiredBadges[1]?.cc}
-
-    return (<>
-
 
             <div className="navBarHorizontale">
                 <NavbarHorizontal />
-
             </div>
             <div className="navBarVertical">
                 <NavbarVertical />
             </div>
 
-                <div className="headerUti  allUti uk-container-expend">
-            <div className="canteneurUtilisateurAll uk-container-expend  uk-padding-remove-top">
+            <div className="uk-container-expend">
+                <Header dataUser={user} aquiredBadges={aquiredBadges}/>
+            </div>
 
-                    <Header/>
-                </div>
+
+
+            <div className="canteneurUtilisateurAll uk-container-expend  uk-padding-remove-top">
 
 
                 <div data-uk-grid className="allUti uk-padding-large">
@@ -113,9 +106,6 @@ export function Utilisateur(props) {
 
                 </div>
 
-                <div className="  allUtiResponsive uk-container-expend">
-                    <Header/>
-                </div>
 
                 <div className="allUtiResponsive uk-padding-large">
 

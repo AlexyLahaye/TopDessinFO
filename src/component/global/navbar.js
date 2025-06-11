@@ -40,7 +40,7 @@ export function NavbarHorizontal(props) {
                     <ul className="uk-navbar-nav EditProfilNavbar">
                         <li><a href="#" className="aNavVerti"><FontAwesomeIcon icon="fa-solid fa-toolbox" size="2xl" /></a></li>
                         <li><a href="#" className="aNavVerti"><FontAwesomeIcon icon="fa-solid fa-gears" size="2xl"/></a></li>
-                        <li><a href="utilisateur/5" className="aNavVerti"><FontAwesomeIcon icon="fa-solid fa-user-pen" size="2xl" /></a></li>
+                        <li><a href="/utilisateur/5" className="aNavVerti"><FontAwesomeIcon icon="fa-solid fa-user-pen" size="2xl" /></a></li>
                     </ul>
 
                 </div>
