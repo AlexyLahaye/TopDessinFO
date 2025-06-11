@@ -1,5 +1,5 @@
 import {route} from "../route/route";
-import {inscriptionRoute} from "../route/connexion";
+import {inscriptionRoute, connexionRoute} from "../route/connexion";
 
 export async function inscription(   setEtat,
                                      setError,
@@ -53,18 +53,51 @@ export async function inscription(   setEtat,
                 setInputMdp("")
                 setInputMdpVerif("")
                 setInputPseudo("")
+
             }
             else{
-
                 setError(true);
                 setMessError(data.error)
-
             }
         }
+    }
+}
 
-
+// Fonction pour se connecter
+export async function connexion(
+    setError,
+    setMessError,
+    inputEmail,
+    inputMdp,
+    tokenManager, // ajoute ceci pour stocker le token côté front
+    navigate // si tu utilises react-router-dom v6, pour rediriger après
+) {
+    // vérifie les champs
+    if (!inputEmail || !inputMdp) {
+        setError(true);
+        setMessError("Veuillez remplir tous les champs.");
+        return;
     }
 
+    const [status, data] = await connexionRoute(inputEmail, inputMdp);
+
+    if (status === 200 && data.token) {
+        // Stock le token
+        tokenManager(data.token);
+
+        // Redirection
+        if (navigate) navigate('/');
+    } else {
+        // Erreur d'identifiants
+        setError(true);
+        setMessError(data.error || "Identifiants incorrects ou compte inexistant.");
+    }
+}
 
 
+// Fonction pour déconnecter l'utilisateur
+export function logout() {
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('id_user');
+    window.location.href = '/Connexion';
 }
