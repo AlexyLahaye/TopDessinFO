@@ -15,6 +15,7 @@ export default function Browser() {
             <BrowserRouter>
                 <Routes>
                     <Route path='/' element={<Utilisateur />} />
+                    <Route path='/utilisateur/:id' element={<Utilisateur />} />
                     <Route path='/participation' element={<Participation />} />
                     <Route path='/post' element={<Posts />} />
                     <Route path='/connexion' element={<Connexion />} />
