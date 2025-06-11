@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import {inscription} from "../function/connexion";
+import {inscription, connexion} from "../function/connexion";
+import {useNavigate} from "react-router-dom";
 
 
 
 export function Connexion(props) {
+
+    const navigate = useNavigate();
 
     //initialisation
     const [error, setError] = useState(false);
@@ -35,14 +38,6 @@ export function Connexion(props) {
     const handleChangePseudo = (event) => {
         setInputPseudo(event.target.value);
     };
-
-    //autres
-    const connexion = async () =>{
-        setError(true)
-        alert('yo')
-    }
-
-
 
 
     return (<>
@@ -163,7 +158,12 @@ export function Connexion(props) {
                                                         setInputMdpVerif("")
                                                         setInputMdp("")
                                                     }else{
-                                                        connexion()}
+                                                        connexion(setError,
+                                                            setMessError,
+                                                            inputEmail,
+                                                            inputMdp,
+                                                            props.tokenManager,
+                                                            navigate)}
                                                 }
                                         }>
                                             Connexion

@@ -64,10 +64,6 @@ export function Utilisateur(props) {
     return (<>
             <div className="canteneurUtilisateurAll uk-container-expend  uk-padding-remove-top">
 
-                {user?.id_user}
-                {posts[3]?.id}
-                {aquiredBadges[1]?.cc}
-
 
 
                 <div className="uk-container-expend">
