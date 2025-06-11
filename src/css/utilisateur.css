@@ -229,3 +229,8 @@ data-uk-dropdown:not(.uk-open) {
     display: block;
     text-align: right;
 }
+
+
+.modification:hover{
+    color: #0f6ecd !important;
+}

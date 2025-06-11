@@ -530,12 +530,15 @@ data-uk-dropdown:not(.uk-open) {
 }
 .imgRank{
   height: 70px;
-
 }
 
 .positionImage{
   display: block;
   text-align: right;
+}
+
+.modification:hover{
+  color: #0f6ecd !important;
 }
 
 
@@ -550,3 +553,29 @@ Css pour la page connexion
   height: 90%;
 }
 
+/* *********************************************************************************************************************
+Css pour modal
+ *********************************************************************************************************************** */
+.testModal{
+  position: relative;
+}
+.ImageModal{
+  position : absolute;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  z-index: -1;
+  height : 100%;
+}
+
+.centrer-contenu {
+  display: flex;
+  justify-content: center; /* centre horizontalement */
+  align-items: center;      /* centre verticalement si nécessaire */
+}
+
+.inputModif{
+  background-color: rgba(255, 255, 255, 0.5); /* blanc avec 80% d'opacité */
+}

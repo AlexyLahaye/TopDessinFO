@@ -19,7 +19,7 @@ export function Header(props) {
                     <div className="item1">
                         <img className="header_user_logo" src={"/img/" + userInfo?.icon_user} />
                     </div>
-                    <div className="item2">{userInfo?.nickname_user}</div>
+                    <div className="item2">{userInfo?.nickname_user}  <span className="modification pointer" uk-icon="pencil" data-uk-toggle="target: #modifPseudo"/></div>
                     <div className="item3">{userInfo?.legend_user}</div>
                     <div className="item4">
                         <div className="badge-header">
