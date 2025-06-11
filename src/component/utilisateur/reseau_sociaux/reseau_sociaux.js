@@ -50,6 +50,15 @@ export function Reseau(props) {
                         <a href="" className="uk-icon-button" uk-icon="etsy" style={{ backgroundColor: "#201e34" }}></a> {reseaux[0].etsy}
                       </span>
                     </div>
+
+                    <div className="uk-padding-small  ">
+
+                        <span className="modification pointer" uk-icon="pencil" data-uk-toggle="target: #modifReseau"/>
+
+                    </div>
+
+
+
                 </>
 
             )}

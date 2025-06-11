@@ -51,6 +51,7 @@ export function Posts(props) {
     }
 
     return (<>
+
             <div className="conteneurPost uk-container-expend  uk-padding-remove-top uk-flex uk-flex-wrap uk-flex-auto ">
 
                 {posts.length > 0 &&

@@ -6,6 +6,19 @@ import {Rank} from "../component/utilisateur/rank/rank";
 import {Evenement_recent} from "../component/utilisateur/evenement_recent/evenement_recent";
 import {Reseau} from "../component/utilisateur/reseau_sociaux/reseau_sociaux";
 import {NavbarHorizontal, NavbarVertical} from "../component/global/navbar";
+import { Modal_Modif_Reseaux} from "../component/modal/utilisateur/modifReseaux";
+import {Modal_Modif_Pseudo} from "../component/modal/utilisateur/modificationPseudo";
+
+
+
+// **************************************************************************************************************
+// pour marcher ce composant à besoin de :
+//
+//
+// id : id utilisateur
+// currentUser : true/false  > pour savoir si l'utilisateur est l'utilisateur courant ou pas
+//
+
 
 export function Utilisateur(props) {
 
@@ -19,10 +32,11 @@ export function Utilisateur(props) {
     const [recentEves, setRecentEves] = useState([]);
     const [reseaux, setReseaux] = useState([]);
 
+
     //useState
     useEffect( ()=>{
         let tabUser = getInfoHeader();
-        let tabAquiredBadge = getInfoAquiredBadge()
+        let tabAquiredBadge = getInfoAquiredBadge();
         let tab = getInfotest();
         let tabPost = getInfoPost();
         let tabRank = getInfoRank();
@@ -79,13 +93,13 @@ export function Utilisateur(props) {
 
             <div className="canteneurUtilisateurAll uk-container-expend  uk-padding-remove-top">
 
-
                 <div data-uk-grid className="allUti uk-padding-large">
 
 
                     <div className="evenementRec uk-width-1-2">
                         <div className="reseaux uk-flex uk-flex-wrap uk-margin">
-                            <Reseau reseaux={reseaux}/>
+                            <Reseau reseaux={reseaux}  isCurrentUser={props.isCurrentUser} />
+
                         </div>
                         <Evenement_recent recentEves={recentEves}/>
                     </div>
@@ -133,6 +147,9 @@ export function Utilisateur(props) {
                 </div>
 
             </div>
+
+            <Modal_Modif_Reseaux />
+            <Modal_Modif_Pseudo />
 
         </>
     );
