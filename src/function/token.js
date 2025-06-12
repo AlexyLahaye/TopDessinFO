@@ -22,3 +22,8 @@ export function getToken() {
     sessionStorage.removeItem('token');
     return null;
 }
+
+//TODO Pourait aussi gérer dans cette fonction les droits ?
+export function isAuthorized() {
+    return getToken() !== null;
+}

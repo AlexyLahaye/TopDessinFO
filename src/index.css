@@ -140,7 +140,7 @@ Overlay
 .navBar{
   height: 30px;
 }
-.navBar a {
+.navBar div {
   display : block !important;
 }
 
