@@ -9,6 +9,8 @@ import {NavbarHorizontal, NavbarVertical} from "../component/global/navbar";
 import { Modal_Modif_Reseaux} from "../component/modal/utilisateur/modifReseaux";
 import {Modal_Modif_Pseudo} from "../component/modal/utilisateur/modificationPseudo";
 
+import{getInfoReseaux} from "../function/utilisateur/reseaux"
+
 
 
 // **************************************************************************************************************
@@ -32,16 +34,28 @@ export function Utilisateur(props) {
     const [recentEves, setRecentEves] = useState([]);
     const [reseaux, setReseaux] = useState([]);
 
+    const token = sessionStorage.getItem("token");
+
 
     //useState
     useEffect( ()=>{
+
+
+        const fetchData = async () => {
+
+            const tabReseaux = await  getInfoReseaux(token);
+            setReseaux(tabReseaux);
+
+        }
+
+        fetchData();
+
         let tabUser = getInfoHeader();
         let tabAquiredBadge = getInfoAquiredBadge();
         let tab = getInfotest();
         let tabPost = getInfoPost();
         let tabRank = getInfoRank();
         let tabRecentEve = getInfoRecentEven();
-        let tabReseaux = getInfoReseaux();
 
         setUser(tabUser);
         setAquiredBadges(tabAquiredBadge)
@@ -49,7 +63,7 @@ export function Utilisateur(props) {
         setPosts(tabPost);
         setRanks(tabRank);
         setRecentEves(tabRecentEve);
-        setReseaux(tabReseaux);
+
     }, [])
 
     // Gestion de la scroll bar apparante ou non
@@ -148,7 +162,7 @@ export function Utilisateur(props) {
 
             </div>
 
-            <Modal_Modif_Reseaux />
+            <Modal_Modif_Reseaux token={token}/>
             <Modal_Modif_Pseudo />
 
         </>
@@ -344,20 +358,6 @@ function getInfoRecentEven(){
         "img":"Badge15.png"
     },
     ]
-
-    return tab;
-}
-
-function getInfoReseaux() {
-
-    var tab = [{
-        "instagram": "malaury__",
-        "twitter": "AA",
-        "tiktok": "MalauryZazou",
-        "discord": "kiun__4567",
-        "twitch": "",
-        "etsy": ""
-    }]
 
     return tab;
 }
