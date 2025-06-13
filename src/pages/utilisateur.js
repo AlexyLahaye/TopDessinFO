@@ -9,6 +9,8 @@ import {NavbarHorizontal, NavbarVertical} from "../component/global/navbar";
 import { Modal_Modif_Reseaux} from "../component/modal/utilisateur/modifReseaux";
 import {Modal_Modif_Pseudo} from "../component/modal/utilisateur/modificationPseudo";
 
+import{getInfoReseaux} from "../function/utilisateur/reseaux"
+import {getID} from "../function/token";
 
 
 // **************************************************************************************************************
@@ -18,12 +20,13 @@ import {Modal_Modif_Pseudo} from "../component/modal/utilisateur/modificationPse
 // id : id utilisateur
 // currentUser : true/false  > pour savoir si l'utilisateur est l'utilisateur courant ou pas
 //
+//
+// **************************************************************************************************************
 
 
 export function Utilisateur(props) {
 
     //initialisation
-
     const [user, setUser] = useState();
     const [aquiredBadges, setAquiredBadges] = useState([]);
     const [participation, setParticipation] = useState([]);
@@ -32,16 +35,40 @@ export function Utilisateur(props) {
     const [recentEves, setRecentEves] = useState([]);
     const [reseaux, setReseaux] = useState([]);
 
+    const [utiCourant, setUtiCourant] = useState(false);
+
+    const token = sessionStorage.getItem("token");
 
     //useState
     useEffect( ()=>{
+
+        // récupération des données depuis le back
+        const fetchData = async () => {
+
+            if (props.idUtilisateur !== undefined){
+                const tabReseaux = await getInfoReseaux(token, props.idUtilisateur);
+                setReseaux(tabReseaux);
+            }
+
+        }
+
+        fetchData();
+
+        // vérification que l'utilisateur est l'utilisateur courant ou pas
+        const idToken = getID();
+        if(idToken ===  props.idUtilisateur){
+            setUtiCourant(true);
+        }
+        else{
+            setUtiCourant(false);
+        }
+
         let tabUser = getInfoHeader();
         let tabAquiredBadge = getInfoAquiredBadge();
         let tab = getInfotest();
         let tabPost = getInfoPost();
         let tabRank = getInfoRank();
         let tabRecentEve = getInfoRecentEven();
-        let tabReseaux = getInfoReseaux();
 
         setUser(tabUser);
         setAquiredBadges(tabAquiredBadge)
@@ -49,8 +76,8 @@ export function Utilisateur(props) {
         setPosts(tabPost);
         setRanks(tabRank);
         setRecentEves(tabRecentEve);
-        setReseaux(tabReseaux);
-    }, [])
+
+    }, [props.idUtilisateur])
 
     // Gestion de la scroll bar apparante ou non
     useEffect(() => {
@@ -86,7 +113,7 @@ export function Utilisateur(props) {
             </div>
 
             <div className="uk-container-expend">
-                <Header dataUser={user} aquiredBadges={aquiredBadges}/>
+                <Header dataUser={user} aquiredBadges={aquiredBadges} utiCourant={utiCourant}/>
             </div>
 
 
@@ -98,7 +125,7 @@ export function Utilisateur(props) {
 
                     <div className="evenementRec uk-width-1-2">
                         <div className="reseaux uk-flex uk-flex-wrap uk-margin">
-                            <Reseau reseaux={reseaux}  isCurrentUser={props.isCurrentUser} />
+                            <Reseau reseaux={reseaux}  isCurrentUser={props.isCurrentUser} utiCourant={utiCourant}/>
 
                         </div>
                         <Evenement_recent recentEves={recentEves}/>
@@ -124,7 +151,7 @@ export function Utilisateur(props) {
                 <div className="allUtiResponsive uk-padding-large">
 
                     <div className=" uk-flex uk-flex-wrap uk-margin">
-                        <Reseau reseaux={reseaux}/>
+                        <Reseau reseaux={reseaux} utiCourant={utiCourant}/>
                     </div>
 
                     <div className="DernierPostContainer">
@@ -148,7 +175,7 @@ export function Utilisateur(props) {
 
             </div>
 
-            <Modal_Modif_Reseaux />
+            <Modal_Modif_Reseaux idUtilisateur={props.idUtilisateur}/>
             <Modal_Modif_Pseudo />
 
         </>
@@ -344,20 +371,6 @@ function getInfoRecentEven(){
         "img":"Badge15.png"
     },
     ]
-
-    return tab;
-}
-
-function getInfoReseaux() {
-
-    var tab = [{
-        "instagram": "malaury__",
-        "twitter": "AA",
-        "tiktok": "MalauryZazou",
-        "discord": "kiun__4567",
-        "twitch": "",
-        "etsy": ""
-    }]
 
     return tab;
 }
