@@ -1,5 +1,20 @@
 import React, { useState, useEffect } from "react";
 
+
+//pour fonctionner ce composant à besoin
+//
+//
+//  [] : un tableau  avec comme donnée
+//  {
+//         "instagram": "",
+//         "twitter": "",
+//
+//     }
+//
+// utiCourant : pour afficher ou pas le crayon
+//
+//
+
 export function Header(props) {
 
     const [userInfo, setUserInfo] = useState([]);
@@ -19,7 +34,12 @@ export function Header(props) {
                     <div className="item1">
                         <img className="header_user_logo" src={"/img/" + userInfo?.icon_user} />
                     </div>
-                    <div className="item2">{userInfo?.nickname_user}  <span className="modification pointer" uk-icon="pencil" data-uk-toggle="target: #modifPseudo"/></div>
+                    <div className= "item2">
+                       {userInfo?.nickname_user}
+                        <span className= "modification pointer " style={{ display: props.utiCourant === false ? 'none' : 'inline-block' }}
+                              uk-icon="pencil" data-uk-toggle="target: #modifPseudo"/>
+
+                    </div>
                     <div className="item3">{userInfo?.legend_user}</div>
                     <div className="item4">
                         <div className="badge-header">

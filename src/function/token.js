@@ -22,3 +22,11 @@ export function getToken() {
     sessionStorage.removeItem('token');
     return null;
 }
+
+export function getID() {
+
+    let token = getToken();
+    token = jwtDecode(token) ;
+
+    return token.id;
+}

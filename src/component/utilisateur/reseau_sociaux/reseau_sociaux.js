@@ -1,5 +1,23 @@
 import React, { useState, useEffect } from 'react';
 
+//pour ofnctionner ce composant à besoin
+//
+//
+//  [] : un tableau  avec comme donnée
+//  {
+//         "instagram": "",
+//         "twitter": "",
+//         "discord": "",
+//         "twitch": null,
+//         "tiktok": "",
+//         "etsy": null
+//     }
+//
+// utiCourant : pour afficher ou pas le crayon
+//
+//
+
+
 export function Reseau(props) {
 
     // initialisation
@@ -51,7 +69,7 @@ export function Reseau(props) {
                       </span>
                     </div>
 
-                    <div className="uk-padding-small  ">
+                    <div className={props.utiCourant === true ? "uk-padding-small  " : "uk-hidden"} >
 
                         <span className="modification pointer" uk-icon="pencil" data-uk-toggle="target: #modifReseau"/>
 

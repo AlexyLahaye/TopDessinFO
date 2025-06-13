@@ -1,13 +1,11 @@
 import {route} from './route';
 
-
-
 // GET
 
-export async function getReseaux(token) {
+export async function getReseaux(token, id_utilisateur) {
 
     try {
-        const response = await fetch(route +"users/getReseaux", {
+        const response = await fetch(route +`users/getReseaux/${id_utilisateur}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

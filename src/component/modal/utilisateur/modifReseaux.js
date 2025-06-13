@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from 'react';
 
 import {setVar} from "../../../function/utilisateur/reseaux";
+import {getToken} from "../../../function/token";
+
+
+// POur fonctionner ce composant à besoin :
+//
+//
+// idUtilisateur : afin de récupérer les bonne sinfos par rapport à l'utilisateur
+//
+//
 
 export function Modal_Modif_Reseaux(props) {
 
     // initialisation
-    const [token, setToken] = useState("");
-
     const [error, setError] = useState(false);
     const [messError, setMessError] = useState("");
 
@@ -54,11 +61,10 @@ export function Modal_Modif_Reseaux(props) {
         setInputEtsy(event.target.value);
     };
 
-
-
     //UseEffect
     useEffect( ()=>{
-        setToken(props.token);
+
+        const token = getToken();
 
         const setVariable = async () =>{
 
@@ -69,20 +75,20 @@ export function Modal_Modif_Reseaux(props) {
                 setTwitch,
                 setDiscord,
                 setEtsy,
-                props.token
+                token,
+                props.idUtilisateur
             );
 
         }
 
         setVariable() ;
 
-
-    }, [props.token])
+    }, [props.idUtilisateur])
 
 
     return (<>
 
-            {token !== "" && (
+            {props.idUtilisateur !== undefined && (
 
                 <>
 
