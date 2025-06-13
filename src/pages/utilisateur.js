@@ -46,7 +46,6 @@ export function Utilisateur(props) {
         const fetchData = async () => {
 
             if (props.idUtilisateur !== undefined){
-                console.log(props.idUtilisateur)
                 const tabReseaux = await getInfoReseaux(token, props.idUtilisateur);
                 setReseaux(tabReseaux);
             }
@@ -176,7 +175,7 @@ export function Utilisateur(props) {
 
             </div>
 
-            <Modal_Modif_Reseaux idUtilisateur={props.idUtilisateur}  />
+            <Modal_Modif_Reseaux idUtilisateur={props.idUtilisateur}/>
             <Modal_Modif_Pseudo />
 
         </>

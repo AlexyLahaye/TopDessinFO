@@ -32,7 +32,6 @@ export async function setVar(
             setTwitch(data.success.twitch || "");
             setDiscord(data.success.discord || "");
             setEtsy(data.success.etsy || "");
-
         }
 
 
