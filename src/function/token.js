@@ -23,6 +23,15 @@ export function getToken() {
     return null;
 }
 
+export function getID() {
+
+    let token = getToken();
+    token = jwtDecode(token) ;
+
+    return token.id;
+}
+
+
 //TODO Pourait aussi gérer dans cette fonction les droits ?
 export function isAuthorized() {
     return getToken() !== null;
