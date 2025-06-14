@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect , useRef} from 'react';
 
-import {setVar} from "../../../function/utilisateur/reseaux";
+import {setVar, updateInfoReseaux} from "../../../function/utilisateur/reseaux";
 import {getToken} from "../../../function/token";
 
+import {hideALert, hideModal} from "../../../function/modal";
 
 // POur fonctionner ce composant à besoin :
 //
@@ -27,44 +28,36 @@ export function Modal_Modif_Reseaux(props) {
     const [discord, setDiscord] = useState(true);
     const [etsy, setEtsy] = useState(true);
 
+    const token = getToken();
 
-
-    const [inputInstagram, setInputInstagram] = useState('');
-    const [inputTwitter, setInputTwitter] = useState('');
-    const [inputTiktok, setInputTiktok] = useState('');
-    const [inputTwitch, setInputTwitch] = useState('');
-    const [inputDiscord, setInputDiscord] = useState('');
-    const [inputEtsy, setInputEtsy] = useState('');
 
     // changement des input
     const handleChangeInstagram = (event) => {
-        setInputInstagram(event.target.value);
+        setInstagram(event.target.value);
     };
 
     const handleChangeTwitter = (event) => {
-        setInputTwitter(event.target.value);
+        setTwitter(event.target.value);
     };
 
     const handleChangeTiktok = (event) => {
-        setInputTiktok(event.target.value);
+        setTiktok(event.target.value);
     };
 
     const handleChangeTwitch = (event) => {
-        setInputTwitch(event.target.value);
+        setTwitch(event.target.value);
     };
 
     const handleChangeDiscord = (event) => {
-        setInputDiscord(event.target.value);
+        setDiscord(event.target.value);
     };
 
     const handleChangeEtsy = (event) => {
-        setInputEtsy(event.target.value);
+        setEtsy(event.target.value);
     };
 
     //UseEffect
     useEffect( ()=>{
-
-        const token = getToken();
 
         const setVariable = async () =>{
 
@@ -83,7 +76,8 @@ export function Modal_Modif_Reseaux(props) {
 
         setVariable() ;
 
-    }, [props.idUtilisateur])
+
+    }, [props.idUtilisateur,  props.rechargePage])
 
 
     return (<>
@@ -92,109 +86,144 @@ export function Modal_Modif_Reseaux(props) {
 
                 <>
 
-                    <div id="modifReseau" data-uk-modal>
-                        <div className="uk-modal-dialog">
-                            <button className="uk-modal-close-default" type="button" data-uk-close></button>
-                            <div className="uk-modal-header">
-                                <h2 className="uk-modal-title">Modification Réseaux Sociaux</h2>
-                            </div>
-                            <div className=" testModal  uk-modal-body ">
 
-                                <div className="">
+                        <div  className="overlay " id="modalModifReseaux">
 
-                                    <div className="uk-margin centrer-contenu">
-                                        <div className="uk-inline perso-longeur-80 ">
-                                            <span className="uk-form-icon" uk-icon="instagram"></span>
-                                            <input
-                                                className="uk-input inputModif"
-                                                type="text"
-                                                aria-label="Not clickable icon"
-                                                value={instagram}
-                                                onChange={handleChangeInstagram}
-                                            />
-                                        </div>
+                            <div className="overlayModal">
+
+                                <div className="uk-modal-header">
+                                    <h2 className="uk-modal-title">Modification Réseaux Sociaux</h2>
+                                </div>
+                                <div className="contentModal uk-modal-body">
+
+                                    <div className={error ? "uk-alert-danger uk-margin" : "uk-hidden"} data-uk-alert="">
+                                        <a href="#" className="uk-alert-close" data-uk-close></a>
+                                        <p>{messError}</p>
+                                    </div>
+                                    <div className={success ? "uk-alert-success uk-margin" : "uk-hidden"} data-uk-alert="">
+                                        <a href="#" className="uk-alert-close" data-uk-close></a>
+                                        <p>{messSuccess}</p>
                                     </div>
 
-                                    <div className="uk-margin centrer-contenu">
-                                        <div className="uk-inline perso-longeur-80">
-                                            <span className="uk-form-icon" uk-icon="twitter"></span>
-                                            <input
-                                                className="uk-input inputModif"
-                                                type="text"
-                                                aria-label="Not clickable icon"
-                                                value={twitter}
-                                                onChange={handleChangeTwitter}
-                                            />
+                                    <div className="">
+
+
+                                        <div className="uk-margin centrer-contenu">
+                                            <div className="uk-inline perso-longeur-80 ">
+                                                <span className="uk-form-icon" uk-icon="instagram"></span>
+                                                <input
+                                                    className="uk-input inputModif"
+                                                    type="text"
+                                                    aria-label="Not clickable icon"
+                                                    value={instagram}
+                                                    onChange={handleChangeInstagram}
+                                                    maxLength="25"
+
+                                                />
+                                            </div>
                                         </div>
+
+                                        <div className="uk-margin centrer-contenu">
+                                            <div className="uk-inline perso-longeur-80">
+                                                <span className="uk-form-icon" uk-icon="twitter"></span>
+                                                <input
+                                                    className="uk-input inputModif"
+                                                    type="text"
+                                                    aria-label="Not clickable icon"
+                                                    value={twitter}
+                                                    onChange={handleChangeTwitter}
+                                                    maxLength="25"
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div className="uk-margin centrer-contenu">
+                                            <div className="uk-inline perso-longeur-80">
+                                                <span className="uk-form-icon" uk-icon="tiktok"></span>
+                                                <input
+                                                    className="uk-input inputModif"
+                                                    type="text"
+                                                    aria-label="Not clickable icon"
+                                                    value={tiktok}
+                                                    onChange={handleChangeTiktok}
+                                                    maxLength="25"
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div className="uk-margin centrer-contenu">
+                                            <div className="uk-inline perso-longeur-80">
+                                                <span className="uk-form-icon" uk-icon="discord"></span>
+                                                <input
+                                                    className="uk-input inputModif"
+                                                    type="text"
+                                                    aria-label="Not clickable icon"
+                                                    value={discord}
+                                                    onChange={handleChangeDiscord}
+                                                    maxLength="25"
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div className="uk-margin centrer-contenu">
+                                            <div className="uk-inline perso-longeur-80">
+                                                <span className="uk-form-icon" uk-icon="twitch"></span>
+                                                <input
+                                                    className="uk-input inputModif"
+                                                    type="text"
+                                                    aria-label="Not clickable icon"
+                                                    value={twitch}
+                                                    onChange={handleChangeTwitch}
+                                                    maxLength="25"
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div className="uk-margin centrer-contenu">
+                                            <div className="uk-inline perso-longeur-80">
+                                                <span className="uk-form-icon" uk-icon="etsy"></span>
+                                                <input
+                                                    className="uk-input inputModif"
+                                                    type="text"
+                                                    aria-label="Not clickable icon"
+                                                    value={etsy}
+                                                    onChange={handleChangeEtsy}
+                                                    maxLength="25"
+                                                />
+                                            </div>
+                                        </div>
+
                                     </div>
 
-                                    <div className="uk-margin centrer-contenu">
-                                        <div className="uk-inline perso-longeur-80">
-                                            <span className="uk-form-icon" uk-icon="tiktok"></span>
-                                            <input
-                                                className="uk-input inputModif"
-                                                type="text"
-                                                aria-label="Not clickable icon"
-                                                value={tiktok}
-                                                onChange={handleChangeTiktok}
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <div className="uk-margin centrer-contenu">
-                                        <div className="uk-inline perso-longeur-80">
-                                            <span className="uk-form-icon" uk-icon="discord"></span>
-                                            <input
-                                                className="uk-input inputModif"
-                                                type="text"
-                                                aria-label="Not clickable icon"
-                                                value={discord}
-                                                onChange={handleChangeDiscord}
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <div className="uk-margin centrer-contenu">
-                                        <div className="uk-inline perso-longeur-80">
-                                            <span className="uk-form-icon" uk-icon="twitch"></span>
-                                            <input
-                                                className="uk-input inputModif"
-                                                type="text"
-                                                aria-label="Not clickable icon"
-                                                value={twitch}
-                                                onChange={handleChangeTwitch}
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <div className="uk-margin centrer-contenu">
-                                        <div className="uk-inline perso-longeur-80">
-                                            <span className="uk-form-icon" uk-icon="etsy"></span>
-                                            <input
-                                                className="uk-input inputModif"
-                                                type="text"
-                                                aria-label="Not clickable icon"
-                                                value={etsy}
-                                                onChange={handleChangeEtsy}
-                                            />
-                                        </div>
-                                    </div>
-
-
+                                    <img className="ImageModal" src="/img/tache_encre.png" />
                                 </div>
 
-                                <img className= "ImageModal"  src="/img/tache_encre.png" />
+                                <div className="uk-modal-footer uk-text-right">
+                                    <button
+                                        className="uk-button uk-button-default uk-modal-close"
+                                        type="button"
+                                        onClick={() => {
 
-                            </div>
-                            <div className="uk-modal-footer uk-text-right">
-                                <button className="uk-button uk-button-default uk-modal-close" type="button">Cancel
-                                </button>
-                                <button className="uk-button uk-button-primary" type="button" onClick={ () => { }} >Save</button>
+                                            hideALert(setError, setMessError, setSuccess, setMessSuccess,);
+                                            hideModal("modalModifReseaux");
+                                        }}
+                                    >
+                                        retour
+                                    </button>
+
+                                    <button
+                                        className="uk-button uk-button-primary"
+                                        type="button"
+                                        onClick={ () => {
+                                            console.log("je click");
+                                            updateInfoReseaux(token, props.idUtilisateur, instagram, twitter, discord, twitch, tiktok, etsy,
+                                                setError, setMessError, setSuccess, setMessSuccess, props.setRechargePage , props.rechargePage);}}
+                                    >
+                                        Enregistrer
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-
 
                 </>
 
