@@ -136,6 +136,7 @@ Overlay
   display: flex;
 }
 
+/*********************************************************************************************************************** */
 
 .navBar{
   height: 30px;
@@ -192,8 +193,7 @@ Css pour la page utilisateur
   position: relative; /* Permet aux enfants `absolute` de se positionner par rapport à lui */
 }
 .reseaux{
-  position: absolute;
-  top : -68px;
+ margin-top: -50px;
 
   font-size: 15px;
   color: #fff !important;
@@ -556,8 +556,18 @@ Css pour la page connexion
 /* *********************************************************************************************************************
 Css pour modal
  *********************************************************************************************************************** */
-.testModal{
+.contentModal{
   position: relative;
+  z-index: 3 !important;
+
+}
+.overlayModal{
+  background-color: white;
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* recentrage précis */
 }
 .ImageModal{
   position : absolute;
@@ -569,6 +579,8 @@ Css pour modal
   z-index: -1;
   height : 100%;
 }
+
+
 
 .centrer-contenu {
   display: flex;

@@ -2,6 +2,11 @@ import {jwtDecode} from 'jwt-decode';
 
 // Fonction pour vérifier si le token est valide
 export function isTokenValid(token) {
+
+    if (!token) {
+        return null;
+    }
+
     try {
         const { exp } = jwtDecode(token);
         if (Date.now() >= exp * 1000) {
@@ -26,6 +31,11 @@ export function getToken() {
 export function getID() {
 
     let token = getToken();
+
+    if (!token ) {
+        return null;
+    }
+
     token = jwtDecode(token) ;
 
     return token.id;

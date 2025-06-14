@@ -11,6 +11,7 @@ import {Modal_Modif_Pseudo} from "../component/modal/utilisateur/modificationPse
 
 import{getInfoReseaux} from "../function/utilisateur/reseaux"
 import {getID} from "../function/token";
+import {inscription} from "../function/connexion";
 
 
 // **************************************************************************************************************
@@ -36,6 +37,7 @@ export function Utilisateur(props) {
     const [reseaux, setReseaux] = useState([]);
 
     const [utiCourant, setUtiCourant] = useState(false);
+    const [rechargePage, setRechargePage] = useState(false);
 
     const token = sessionStorage.getItem("token");
 
@@ -77,7 +79,7 @@ export function Utilisateur(props) {
         setRanks(tabRank);
         setRecentEves(tabRecentEve);
 
-    }, [props.idUtilisateur])
+    }, [props.idUtilisateur, rechargePage])
 
     // Gestion de la scroll bar apparante ou non
     useEffect(() => {
@@ -115,8 +117,6 @@ export function Utilisateur(props) {
             <div className="uk-container-expend">
                 <Header dataUser={user} aquiredBadges={aquiredBadges} utiCourant={utiCourant}/>
             </div>
-
-
 
             <div className="canteneurUtilisateurAll uk-container-expend  uk-padding-remove-top">
 
@@ -175,7 +175,10 @@ export function Utilisateur(props) {
 
             </div>
 
-            <Modal_Modif_Reseaux idUtilisateur={props.idUtilisateur}/>
+
+
+
+            <Modal_Modif_Reseaux idUtilisateur={props.idUtilisateur} setRechargePage={setRechargePage} rechargePage={rechargePage}/>
             <Modal_Modif_Pseudo />
 
         </>
