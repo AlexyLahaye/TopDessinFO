@@ -24,15 +24,15 @@ export function getToken() {
 }
 
 export function getID() {
+    const token = getToken();
+    if (!token) return null;
 
-    let token = getToken();
-    token = jwtDecode(token) ;
-
-    return token.id;
+    const decoded = jwtDecode(token);
+    return decoded.id;
 }
 
-
-//TODO Pourait aussi gérer dans cette fonction les droits ?
 export function isAuthorized() {
+    const token = getToken();
+    console.log(token);
     return getToken() !== null;
 }

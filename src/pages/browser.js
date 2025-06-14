@@ -6,14 +6,14 @@ import {Posts} from "./posts";
 import {Connexion} from "./connexion";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import useAuth from "../hooks/useAuth";
 import {getID} from "../function/token";
+import SecuredRoute from "./securedRoute";
 
 
 export default function Browser() {
 
-    const idUtilisateurCourant = getID();
 
+    const idUtilisateurCourant = getID();
 
     const [token, setToken] = useState("");
     const [idUtilisateur, setIdUtilisateur]= useState(idUtilisateurCourant);
@@ -31,17 +31,39 @@ export default function Browser() {
         sessionStorage.setItem("token", jwtToken);
     };
 
-    useAuth();
 
     return (<>
             <BrowserRouter>
                 <Routes>
-                    <Route path='/' element={<Utilisateur tokenManager={tokenManager} token={token} />  } />
-                    <Route path='/utilisateur/:id' element={<Utilisateur idUtilisateur={idUtilisateur}  setIdUtilisateur={setIdUtilisateur}/>  } />
-                    <Route path='/participation' element={<Participation tokenManager={tokenManager} token={token} />} />
-                    <Route path='/post' element={<Posts tokenManager={tokenManager}  token={token} />} />
-                    <Route path='/connexion' element={<Connexion tokenManager={tokenManager} token={token} />} />
+                    {/* Page publique */}
+                    <Route path='/connexion' element={
+                        <Connexion tokenManager={tokenManager} token={token} />
+                    } />
 
+                    {/* Routes protégées */}
+                    <Route path='/' element={
+                        <SecuredRoute>
+                            <Utilisateur tokenManager={tokenManager} token={token} />
+                        </SecuredRoute>
+                    } />
+
+                    <Route path='/utilisateur/:id' element={
+                        <SecuredRoute>
+                            <Utilisateur idUtilisateur={idUtilisateur} setIdUtilisateur={setIdUtilisateur} />
+                        </SecuredRoute>
+                    } />
+
+                    <Route path='/participation' element={
+                        <SecuredRoute>
+                            <Participation tokenManager={tokenManager} token={token} />
+                        </SecuredRoute>
+                    } />
+
+                    <Route path='/post' element={
+                        <SecuredRoute>
+                            <Posts tokenManager={tokenManager} token={token} />
+                        </SecuredRoute>
+                    } />
                 </Routes>
             </BrowserRouter>
         </>

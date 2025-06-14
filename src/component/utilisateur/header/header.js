@@ -22,6 +22,8 @@ export function Header(props) {
 
     useEffect( ()=>{
         setUserInfo(props.dataUser)
+        console.log(userInfo);
+        console.log('userInfo');
         setBadges(props.aquiredBadges)
     }, [props.dataUser, props.aquiredBadges])
 
@@ -29,18 +31,18 @@ export function Header(props) {
     return(
         <div>
             <div className="uk-background-width-1-1 uk-background-muted">
-                <img className="header_bg" src={"/test_malau/" + userInfo?.bg_img_user} />
+                <img className="header_bg" src={"/test_malau/" + userInfo?.banner} />
                 <div className="grid-header">
                     <div className="item1">
-                        <img className="header_user_logo" src={"/img/" + userInfo?.icon_user} />
+                        <img className="header_user_logo" src={"/img/" + userInfo?.icone} />
                     </div>
                     <div className= "item2">
-                       {userInfo?.nickname_user}
+                       {userInfo?.pseudo}
                         <span className= "modification pointer " style={{ display: props.utiCourant === false ? 'none' : 'inline-block' }}
                               uk-icon="pencil" data-uk-toggle="target: #modifPseudo"/>
 
                     </div>
-                    <div className="item3">{userInfo?.legend_user}</div>
+                    <div className="item3">{userInfo?.description}</div>
                     <div className="item4">
                         <div className="badge-header">
 

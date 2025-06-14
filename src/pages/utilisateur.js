@@ -10,6 +10,7 @@ import { Modal_Modif_Reseaux} from "../component/modal/utilisateur/modifReseaux"
 import {Modal_Modif_Pseudo} from "../component/modal/utilisateur/modificationPseudo";
 
 import{getInfoReseaux} from "../function/utilisateur/reseaux"
+import{getInfoNonSensible} from "../function/utilisateur/info"
 import {getID} from "../function/token";
 
 
@@ -46,7 +47,10 @@ export function Utilisateur(props) {
         const fetchData = async () => {
 
             if (props.idUtilisateur !== undefined){
+                const tabUser = await getInfoNonSensible(token, 1);
                 const tabReseaux = await getInfoReseaux(token, props.idUtilisateur);
+
+                setUser(tabUser);
                 setReseaux(tabReseaux);
             }
 
@@ -63,14 +67,13 @@ export function Utilisateur(props) {
             setUtiCourant(false);
         }
 
-        let tabUser = getInfoHeader();
         let tabAquiredBadge = getInfoAquiredBadge();
         let tab = getInfotest();
         let tabPost = getInfoPost();
         let tabRank = getInfoRank();
         let tabRecentEve = getInfoRecentEven();
 
-        setUser(tabUser);
+
         setAquiredBadges(tabAquiredBadge)
         setParticipation(tab);
         setPosts(tabPost);

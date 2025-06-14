@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import "../../css/commentaire.css";
@@ -38,10 +39,23 @@ export function NavbarHorizontal(props) {
                 <div className="uk-navbar-right backgroundViolet ">
 
                     <ul className="uk-navbar-nav EditProfilNavbar">
-                        <li><div href="#" className="aNavVerti"><FontAwesomeIcon icon="fa-solid fa-toolbox" size="2xl" /></div></li>
-                        <li><div href="#" className="aNavVerti"><FontAwesomeIcon icon="fa-solid fa-gears" size="2xl"/></div></li>
-                        <li><div href="/utilisateur/5"  className="aNavVerti"><FontAwesomeIcon icon="fa-solid fa-user-pen" size="2xl" /></div></li>
+                        <li>
+                            <Link to="/boite-outil" className="aNavVerti">
+                                <FontAwesomeIcon icon="fa-solid fa-toolbox" size="2xl" />
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/parametres" className="aNavVerti">
+                                <FontAwesomeIcon icon="fa-solid fa-gears" size="2xl" />
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to={`/utilisateur/${props.id_utilisateur || 1}`} className="aNavVerti">
+                                <FontAwesomeIcon icon="fa-solid fa-user-pen" size="2xl" />
+                            </Link>
+                        </li>
                     </ul>
+
 
                 </div>
             </nav>
@@ -63,24 +77,24 @@ export function NavbarVertical(props) {
                 className=" navBarVertical uk-card  uk-card-body uk-padding-remove uk-margin-remove uk-flex uk-flex-middle uk-height-viewport backgroundViolet"
                 style={{ width: "60px" }}
             >
-                <div className=" uk-flex uk-flex-column uk-flex-center uk-width-1-1 ">
-
-                    <a href="#" className="uk-padding-small aNavVerti">
+                <div className="uk-flex uk-flex-column uk-flex-center uk-width-1-1 ">
+                    <Link to="/" className="uk-padding-small aNavVerti">
                         <FontAwesomeIcon icon="fa-solid fa-house" size="2xl" />
-                    </a>
-                    <a href="#" className="uk-padding-small aNavVerti">
+                    </Link>
+                    <Link to="/monnaie" className="uk-padding-small aNavVerti">
                         <FontAwesomeIcon icon="fa-solid fa-coins" size="2xl" />
-                    </a>
-                    <a href="#" className="uk-padding-small aNavVerti">
+                    </Link>
+                    <Link to="/taches" className="uk-padding-small aNavVerti">
                         <FontAwesomeIcon icon="fa-solid fa-list-check" size="2xl" />
-                    </a>
-                    <a href="#" className="uk-padding-small aNavVerti">
+                    </Link>
+                    <Link to="/concours" className="uk-padding-small aNavVerti">
                         <FontAwesomeIcon icon="fa-solid fa-trophy" size="2xl" />
-                    </a>
-                    <a href="#" className="uk-padding-small aNavVerti">
+                    </Link>
+                    <Link to="/tutoriels" className="uk-padding-small aNavVerti">
                         <FontAwesomeIcon icon="fa-solid fa-graduation-cap" size="2xl" />
-                    </a>
+                    </Link>
                 </div>
+
             </div>
 
 
