@@ -116,6 +116,15 @@ h6{
   width: 30%;
 }
 
+.conteneurAllPage{
+  padding-top : 90px;
+  padding-left : 80px;
+  padding-right: 30px;
+  background-color: #1a0d26 !important;
+
+
+}
+
 /* *********************************************************************************************************************
 Overlay
  *********************************************************************************************************************** */
@@ -590,4 +599,36 @@ Css pour modal
 
 .inputModif{
   background-color: rgba(255, 255, 255, 0.5) !important; /* blanc avec 80% d'opacité */
+}
+
+/* *********************************************************************************************************************
+Css pour la page parametre
+ *********************************************************************************************************************** */
+
+.imageDecoParametreDroite{
+
+  position : absolute;
+
+  right : 15px;
+  bottom: 10px;
+
+
+  height : 40%;
+
+}
+
+.imageDecoParametreGauche{
+
+  position : absolute;
+
+  left : 65px;
+  bottom: 10px;
+
+
+  height : 40%;
+
+}
+
+.parametreBox{
+  width: 80%;
 }
