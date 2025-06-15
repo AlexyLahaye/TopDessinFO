@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {logout} from "../../function/connexion";
-import {initVar, modifMail, modifMdp} from "../../function/parametre/profil";
+import {initVar, modifMail, modifMdp, suppUser} from "../../function/parametre/profil";
 import {getID} from "../../function/token";
 
 
@@ -111,7 +111,7 @@ export function Profil(props) {
                 <hr className="uk-divider-icon"/>
                 <div className="uk-flex uk-flex-around">
                     <button className="uk-button uk-button-secondary" onClick={()=>{ logout()}}>Déconnexion</button>
-                    <button className="uk-button uk-button-danger">Supprimer mon compte</button>
+                    <button className="uk-button uk-button-danger"  onClick={()=>{ suppUser(token , id_utilisateur) }}>Supprimer mon compte</button>
                 </div>
 
             </div>

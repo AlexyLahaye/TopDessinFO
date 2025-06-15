@@ -151,3 +151,29 @@ export async function updateMdp(token, userId, mdp) {
         return [500, { error: "Erreur réseau ou serveur" }];
     }
 }
+
+export async function deleteUser(token, userId) {
+
+    if (!token) {
+        return [];
+    }
+    try {
+        const response = await fetch(route + "users/suppUser", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`},
+            body: JSON.stringify({
+                "id": userId
+
+            }),
+        });
+
+        const data = await response.json(); // ici on attend le corps JSON
+
+        return [response.status, data]; // tableau contenant le status et la réponse
+
+    } catch (error) {
+        return [500, { error: "Erreur réseau ou serveur" }];
+    }
+}

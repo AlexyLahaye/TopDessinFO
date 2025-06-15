@@ -1,14 +1,13 @@
 import {getMail} from "../utilisateur/info";
-import {getMailUser, updateMail, updateMdp} from "../../route/utilisateur";
+import {deleteUser, getMailUser, updateMail, updateMdp} from "../../route/utilisateur";
+import {logout} from "../connexion";
 
 
 export async function initVar(token , id_utilisateur, setMail) {
 
     const mail = await getMail(token , id_utilisateur);
 
-
     setMail(mail)
-
 
 }
 
@@ -92,6 +91,18 @@ export async function modifMdp(token , id_utilisateur, mdp, setMdp , mdpVerif, s
         setMdpVerif("");
         setMdp("");
     }
+}
+
+
+
+export async function suppUser(token , id_utilisateur) {
+
+
+        const [status, data] = await deleteUser(token , id_utilisateur);
+        if(status === 200){
+            logout();
+        }
+
 }
 
 
