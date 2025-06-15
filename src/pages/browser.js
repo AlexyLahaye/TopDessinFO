@@ -21,16 +21,15 @@ export default function Browser() {
 
     useEffect(() => {
         const storedToken = sessionStorage.getItem("token");
-        if (storedToken) {
-            setToken(storedToken);
-        }
+        setToken(storedToken);
+        setIdUtilisateur(getID());
     }, []);
 
     const tokenManager = (jwtToken) => {
         setToken(jwtToken);
         sessionStorage.setItem("token", jwtToken);
+        setIdUtilisateur(getID());
     };
-
 
     return (<>
             <BrowserRouter>
@@ -47,9 +46,9 @@ export default function Browser() {
                         </SecuredRoute>
                     } />
 
-                    <Route path='/utilisateur/:id' element={
-                        <SecuredRoute>
-                            <Utilisateur idUtilisateur={idUtilisateur} setIdUtilisateur={setIdUtilisateur} />
+                    <Route path="/utilisateur/:pseudo" element={
+                        <SecuredRoute token={token}>
+                            <Utilisateur idCurrentUser={idUtilisateurCourant}/>
                         </SecuredRoute>
                     } />
 

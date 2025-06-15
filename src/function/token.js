@@ -36,6 +36,14 @@ export function getID() {
     return decoded.id;
 }
 
+export function getPseudo(){
+    const token = getToken();
+    if (!token) return null;
+
+    const decoded = jwtDecode(token);
+    return decoded.pseudo;
+}
+
 export function isAuthorized() {
     const token = getToken();
     console.log(token);

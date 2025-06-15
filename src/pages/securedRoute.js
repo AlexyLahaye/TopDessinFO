@@ -1,12 +1,20 @@
-import { Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import { isAuthorized } from '../function/token';
 
-export default function SecuredRoute({ children }) {
-    if (!isAuthorized()) {
-        return <Navigate to="/Connexion" replace />;
+export default function SecuredRoute({ children, token }) {
+    const loc = useLocation();
+
+    if (loc.pathname === '/connexion') {
+        return children;
     }
-    //TODO c'est ici que l'on peut faire des verification pour du spécifique, isAdmin, isBanned, ta capté hehe
-    // tu passe ene props une donnée dans protectedRoute et tu la traite ici,
-    //Le return children sert comme un then ou un next,
+
+    if (token === null) {
+        return <div>Chargement de la session...</div>;
+    }
+
+    if (!isAuthorized()) {
+        return <Navigate to="/connexion" replace />;
+    }
+
     return children;
 }

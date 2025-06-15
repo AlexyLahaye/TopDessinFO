@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import "../../css/commentaire.css";
+import {getID, getPseudo} from "../../function/token";
 
 //Pour fonctionner ce component à besoin des props suivante :
 
@@ -14,7 +15,8 @@ import "../../css/commentaire.css";
 export function NavbarHorizontal(props) {
 
     // initialisation
-
+    const pseudoCurrentUser = getPseudo()
+    const idCurrentUser = getID()
     //UseEffect
 
     return (<>
@@ -50,7 +52,7 @@ export function NavbarHorizontal(props) {
                             </Link>
                         </li>
                         <li>
-                            <Link to={`/utilisateur/${props.id_utilisateur || 1}`} className="aNavVerti">
+                            <Link to={`/utilisateur/${pseudoCurrentUser}`+`#${idCurrentUser}`} className="aNavVerti">
                                 <FontAwesomeIcon icon="fa-solid fa-user-pen" size="2xl" />
                             </Link>
                         </li>

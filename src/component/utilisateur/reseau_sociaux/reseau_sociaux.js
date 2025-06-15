@@ -27,8 +27,6 @@ export function Reseau(props) {
     //UseEffect
     useEffect( ()=>{
         setReseaux(props.reseaux);
-        console.log(reseaux);
-        console.log('reseaux');
     }, [props.reseaux])
 
     return (<>
