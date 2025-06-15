@@ -31,7 +31,7 @@ export function Header(props) {
     return(
         <div>
             <div className="uk-background-width-1-1 uk-background-muted">
-                <img className="header_bg" src={"/test_malau/" + userInfo?.banner} />
+                <img className="header_bg" src={"/img/" + userInfo?.banner} />
                 <div className="grid-header">
                     <div className="item1">
                         <img className="header_user_logo" src={"/img/" + userInfo?.icone} />
