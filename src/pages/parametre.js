@@ -53,10 +53,6 @@ export function Parametre(props) {
                         <img className="imageDecoParametreDroite" src="/img/back/deco_site/tempete.png" />
                     </div>
 
-
-
-
-
                 </div>
 
 

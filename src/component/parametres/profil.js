@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {logout} from "../../function/connexion";
-import {initVar, modifMail} from "../../function/parametre/profil";
+import {initVar, modifMail, modifMdp} from "../../function/parametre/profil";
 import {getID} from "../../function/token";
 
 
@@ -17,9 +17,18 @@ export function Profil(props) {
     const [messSuccess, setMessSuccess] = useState("");
 
     const [mail, setMail] = useState([]);
+    const [mdp, setMdp] = useState([]);
+    const [mdpVerif, setMdpVerif] = useState([]);
 
+    //onchange handle
     const handleChangeMail = (event) => {
         setMail(event.target.value);
+    };
+    const handleChangeMdp = (event) => {
+        setMdp(event.target.value);
+    };
+    const handleChangeMdpVerif = (event) => {
+        setMdpVerif(event.target.value);
     };
 
     const token = sessionStorage.getItem("token");
@@ -73,7 +82,7 @@ export function Profil(props) {
                                               onClick={
                                                   () => { if( mdpCache ) {setMdpCache(false)} else(setMdpCache(true) )}
                                               }></span>
-                        <input className="uk-input" type={mdpCache ? "password" : "text" } placeholder="Mot de passe" aria-label="Not clickable icon"  />
+                        <input className="uk-input" type={mdpCache ? "password" : "text" } placeholder="Mot de passe" aria-label="Not clickable icon"  value={mdp} onChange={handleChangeMdp}/>
                     </div>
 
                 </div>
@@ -84,9 +93,15 @@ export function Profil(props) {
                                               onClick={
                                                   () => { if( mdpCacheVerif ) {setMdpCacheVerif(false)} else(setMdpCacheVerif(true) )}
                                               }></span>
-                        <input className="uk-input" type={mdpCacheVerif ? "password" : "text" } placeholder="Confirmation du mot de passe" aria-label="Not clickable icon" />
+                        <input className="uk-input" type={mdpCacheVerif ? "password" : "text" } placeholder="Confirmation du mot de passe" aria-label="Not clickable icon"  value={mdpVerif} onChange={handleChangeMdpVerif}/>
                     </div>
-                    <button className="uk-margin-left uk-button uk-button-primary">Modifier</button>
+                    <button className="uk-margin-left uk-button uk-button-primary"
+                            onClick={ ()=>{
+                                        modifMdp(token , id_utilisateur, mdp, setMdp , mdpVerif, setMdpVerif ,
+                                        setError, setMessError, setSuccess, setMessSuccess)
+                                    }}>
+                        Modifier
+                    </button>
                 </div>
 
 

@@ -124,3 +124,30 @@ export async function updateMail(token, userId, mail) {
         return [500, { error: "Erreur réseau ou serveur" }];
     }
 }
+
+export async function updateMdp(token, userId, mdp) {
+
+    if (!token) {
+        return [];
+    }
+    try {
+        const response = await fetch(route + "users/modifMdp", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`},
+            body: JSON.stringify({
+                "id": userId,
+                "mdp": mdp,
+
+            }),
+        });
+
+        const data = await response.json(); // ici on attend le corps JSON
+
+        return [response.status, data]; // tableau contenant le status et la réponse
+
+    } catch (error) {
+        return [500, { error: "Erreur réseau ou serveur" }];
+    }
+}

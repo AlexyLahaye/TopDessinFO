@@ -1,5 +1,5 @@
 import {getMail} from "../utilisateur/info";
-import {getMailUser, updateMail} from "../../route/utilisateur";
+import {getMailUser, updateMail, updateMdp} from "../../route/utilisateur";
 
 
 export async function initVar(token , id_utilisateur, setMail) {
@@ -13,7 +13,8 @@ export async function initVar(token , id_utilisateur, setMail) {
 }
 
 
-export async function modifMail(token , id_utilisateur, mail, setMail , setError, setMessError, setSuccess, setMessSuccess) {
+export async function modifMail(token , id_utilisateur, mail, setMail ,
+                                setError, setMessError, setSuccess, setMessSuccess) {
 
     if (mail.trim() === "") {
 
@@ -49,8 +50,49 @@ export async function modifMail(token , id_utilisateur, mail, setMail , setError
 
         }
     }
-
-
-
-
 }
+
+export async function modifMdp(token , id_utilisateur, mdp, setMdp , mdpVerif, setMdpVerif ,
+                                setError, setMessError, setSuccess, setMessSuccess) {
+
+    if (mdp !== mdpVerif) {
+
+        setError(true);
+        setMessError("Les mots de passe ne coîncident pas.");
+        setMdp("");
+        setMdpVerif("");
+
+    } else if (mdp.trim().length < 8) {
+
+        setError(true);
+        setMessError("Le mot de passe doit faire plus de 8 caractères.");
+        setMdpVerif("");
+
+    } else {
+        const [status, data] = await updateMdp(token , id_utilisateur, mdp);
+        if(status === 200){
+
+            setError(false);
+            setMessError("");
+
+            setSuccess(true);
+            setMessSuccess(data.success);
+
+        }
+        else{
+
+            setError(true);
+            setMessError(data.error);
+
+            setSuccess(false);
+            setMessSuccess("");
+
+        }
+
+        setMdpVerif("");
+        setMdp("");
+    }
+}
+
+
+
