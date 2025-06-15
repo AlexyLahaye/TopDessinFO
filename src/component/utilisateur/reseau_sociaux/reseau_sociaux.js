@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import {showModal} from "../../../function/modal";
 
 //pour ofnctionner ce composant à besoin
 //
@@ -73,7 +74,7 @@ export function Reseau(props) {
 
                     <div className={props.utiCourant === true ? "uk-padding-small  " : "uk-hidden"} >
 
-                        <span className="modification pointer" uk-icon="pencil" data-uk-toggle="target: #modifReseau"/>
+                        <span className="modification pointer" uk-icon="pencil" onClick={() =>{ showModal("modalModifReseaux")}}/>
 
                     </div>
 
