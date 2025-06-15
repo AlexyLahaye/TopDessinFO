@@ -24,7 +24,7 @@ export function Modal_Shemas_EXEMPLE(props) {
 
     return (<>
 
-            {la variable que l'on veut !== undefined && (
+            {"la variable que l'on veut !"== undefined && (
 
                 <>
 
