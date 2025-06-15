@@ -1,20 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import {logout} from "../../function/connexion";
+import {initVar, modifMail} from "../../function/parametre/profil";
+import {getID} from "../../function/token";
 
 
 export function Profil(props) {
 
     // initialisation
-    const [posts, setPosts] = useState([]);
-
-
     const [mdpCache, setMdpCache] = useState(true)
     const [mdpCacheVerif, setMdpCacheVerif] = useState(true)
 
+    const [error, setError] = useState(false);
+    const [messError, setMessError] = useState("");
+
+    const [success, setSuccess] = useState(false);
+    const [messSuccess, setMessSuccess] = useState("");
+
+    const [mail, setMail] = useState([]);
+
+    const handleChangeMail = (event) => {
+        setMail(event.target.value);
+    };
+
+    const token = sessionStorage.getItem("token");
+    const id_utilisateur = getID();
 
     //UseEffect
     useEffect( ()=>{
 
+        initVar(token, id_utilisateur, setMail)
 
     }, [])
 
@@ -22,14 +36,30 @@ export function Profil(props) {
     return (<>
 
             <div className="parametreBox travail">
+
+                <div className={error ? "uk-alert-danger uk-margin" : "uk-hidden"} data-uk-alert="">
+                    <a href="#" className="uk-alert-close" data-uk-close></a>
+                    <p>{messError}</p>
+                </div>
+                <div className={success ? "uk-alert-success uk-margin" : "uk-hidden"} data-uk-alert="">
+                    <a href="#" className="uk-alert-close" data-uk-close></a>
+                    <p>{messSuccess}</p>
+                </div>
+
+
+            </div>
+
+            <div className="parametreBox travail">
                 <h2 className="uk-heading-line"><span>Modification Profil</span></h2>
 
                 <div className="uk-margin">
                     <div className="uk-inline perso-longeur-30">
                         <span className="uk-form-icon " data-uk-icon="icon: mail"></span>
-                        <input className="uk-input" type="text"  placeholder="Email" aria-label="Not clickable icon"   />
+                        <input className="uk-input" type="text"  placeholder="Email" aria-label="Not clickable icon"  value={mail} onChange={handleChangeMail} />
                     </div>
-                    <button className="uk-margin-left uk-button uk-button-primary">Modifier</button>
+                    <button className="uk-margin-left uk-button uk-button-primary"
+                            onClick={() => {modifMail( token , id_utilisateur, mail, setMail,
+                                setError, setMessError, setSuccess, setMessSuccess)}}>Modifier</button>
                 </div>
             </div>
 
