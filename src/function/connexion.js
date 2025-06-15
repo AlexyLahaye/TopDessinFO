@@ -98,6 +98,5 @@ export async function connexion(
 // Fonction pour déconnecter l'utilisateur
 export function logout() {
     sessionStorage.removeItem('token');
-    sessionStorage.removeItem('id_user');
     window.location.href = '/Connexion';
 }
