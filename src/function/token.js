@@ -29,14 +29,15 @@ export function getToken() {
 }
 
 export function getID() {
+    const token = getToken();
+    if (!token) return null;
 
-    let token = getToken();
+    const decoded = jwtDecode(token);
+    return decoded.id;
+}
 
-    if (!token ) {
-        return null;
-    }
-
-    token = jwtDecode(token) ;
-
-    return token.id;
+export function isAuthorized() {
+    const token = getToken();
+    console.log(token);
+    return getToken() !== null;
 }
