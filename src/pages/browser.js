@@ -8,6 +8,7 @@ import {Connexion} from "./connexion";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {getID} from "../function/token";
 import SecuredRoute from "./securedRoute";
+import {Parametre} from "./parametre";
 
 
 export default function Browser() {
@@ -63,6 +64,17 @@ export default function Browser() {
                             <Posts tokenManager={tokenManager} token={token} />
                         </SecuredRoute>
                     } />
+
+                    <Route path='/parametres' element={
+                        <SecuredRoute>
+                            <Parametre tokenManager={tokenManager} token={token} />
+                        </SecuredRoute>
+                    } />
+
+
+
+
+
                 </Routes>
             </BrowserRouter>
         </>

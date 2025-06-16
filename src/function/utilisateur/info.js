@@ -1,4 +1,4 @@
-import {getInfoNS, updateUser} from "../../route/utilisateur";
+import {getInfoNS, updateUser, getMailUser} from "../../route/utilisateur";
 
 export async function getInfoNonSensible(token , id_utilisateur) {
 
@@ -8,6 +8,19 @@ export async function getInfoNonSensible(token , id_utilisateur) {
     }
 
 }
+
+
+export async function getMail(token , id_utilisateur) {
+
+    const [status, data] = await getMailUser(token, id_utilisateur );
+    if(status === 200){
+        return data.success.email;
+    }
+
+}
+
+
+
 
 export async function updateInfoUser(
     token,

@@ -45,6 +45,25 @@ export async function getInfoNS(token, id_utilisateur) {
     }
 }
 
+export async function getMailUser(token, id_utilisateur) {
+    try {
+        const response = await fetch(`${route}users/mail/${id_utilisateur}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        const data = await response.json(); // réponse JSON du backend
+
+        return [response.status, data]; // tableau contenant le code HTTP et la réponse
+    } catch (error) {
+        console.error("Erreur lors de l'appel à user/mail:", error);
+        return [500, { error: "Erreur réseau ou serveur" }];
+    }
+}
+
 
 // POST
 
@@ -67,6 +86,86 @@ export async function updateReseaux(token, userId, instagram, twitter, discord, 
                 "twitch": twitch,
                 "tiktok": tiktok,
                 "etsy": etsy
+            }),
+        });
+
+        const data = await response.json(); // ici on attend le corps JSON
+
+        return [response.status, data]; // tableau contenant le status et la réponse
+
+    } catch (error) {
+        return [500, { error: "Erreur réseau ou serveur" }];
+    }
+}
+
+export async function updateMail(token, userId, mail) {
+
+    if (!token) {
+        return [];
+    }
+    try {
+        const response = await fetch(route + "users/modifMail", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`},
+            body: JSON.stringify({
+                "id": userId,
+                "mail": mail,
+
+            }),
+        });
+
+        const data = await response.json(); // ici on attend le corps JSON
+
+        return [response.status, data]; // tableau contenant le status et la réponse
+
+    } catch (error) {
+        return [500, { error: "Erreur réseau ou serveur" }];
+    }
+}
+
+export async function updateMdp(token, userId, mdp) {
+
+    if (!token) {
+        return [];
+    }
+    try {
+        const response = await fetch(route + "users/modifMdp", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`},
+            body: JSON.stringify({
+                "id": userId,
+                "mdp": mdp,
+
+            }),
+        });
+
+        const data = await response.json(); // ici on attend le corps JSON
+
+        return [response.status, data]; // tableau contenant le status et la réponse
+
+    } catch (error) {
+        return [500, { error: "Erreur réseau ou serveur" }];
+    }
+}
+
+export async function deleteUser(token, userId) {
+
+    if (!token) {
+        return [];
+    }
+    try {
+        const response = await fetch(route + "users/suppUser", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`},
+            body: JSON.stringify({
+                "id": userId
+
             }),
         });
 

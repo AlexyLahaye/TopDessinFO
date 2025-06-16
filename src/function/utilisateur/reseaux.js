@@ -15,14 +15,13 @@ export async function getInfoReseaux(token , id_utilisateur) {
 export async function updateInfoReseaux(token, id_utilisateur, instagram, twitter, discord, twitch, tiktok, etsy,
                                         setError, setMessError, setSuccess, setMessSuccess, setRechargePage, rechargePage) {
 
-    if(instagram === "") instagram = null;
-    if(twitter === "") twitter = null;
-    if(discord === "") discord = null;
-    if(twitch === "") twitch = null;
-    if(tiktok === "") tiktok = null;
-    if(etsy === "") etsy = null;
+    if (instagram.trim() === "") instagram = null;
+    if(twitter.trim() === "") twitter = null;
+    if(discord.trim() === "") discord = null;
+    if(twitch.trim() === "") twitch = null;
+    if(tiktok.trim() === "") tiktok = null;
+    if(etsy.trim() === "") etsy = null;
 
-    console.log("je passe dedans")
 
     const [status, data] = await updateReseaux(token, id_utilisateur, instagram, twitter, discord, twitch, tiktok, etsy );
 
