@@ -56,7 +56,7 @@ export function Header(props) {
                 <img className="header_bg" src={"/img/" + userInfo?.banner} />
                 <div className="grid-header">
                     <div className="item1">
-                        <img className="header_user_logo" src={"/img/" + userInfo?.icone} />
+                        <img className="header_user_logo" src={"/img/icone/" + userInfo?.icone} />
                     </div>
                     <div className= "item2">
                        {userInfo?.pseudo}

@@ -1,4 +1,4 @@
-import {followFriend, estAmi, ajoutAmi, suppAmi} from "../../route/follows";
+import {followFriend, estAmi, ajoutAmi, suppAmi, amis} from "../../route/follows";
 
 export async function isFriend(token , id_utilisateur, idToken, ami, setAmi) {
 
@@ -36,6 +36,12 @@ export async function deleteFriend(token , id_utilisateur, idToken, ami, setAmi)
 
 }
 
+export async function getFriends(token ,  idToken ) {
+
+    const [status, data] = await amis(token,  idToken  );
+    return data.success;
+
+}
 
 
 

@@ -72,9 +72,6 @@ export default function Browser() {
                     } />
 
 
-
-
-
                 </Routes>
             </BrowserRouter>
         </>
