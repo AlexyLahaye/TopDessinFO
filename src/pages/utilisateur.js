@@ -11,8 +11,6 @@ import {Modal_Modif_Pseudo} from "../component/modal/utilisateur/modificationPse
 
 import{getInfoReseaux} from "../function/utilisateur/reseaux"
 import{getInfoNonSensible} from "../function/utilisateur/info"
-import {getID} from "../function/token";
-import {inscription} from "../function/connexion";
 import {useLocation, useParams} from "react-router-dom";
 
 

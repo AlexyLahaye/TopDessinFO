@@ -78,3 +78,32 @@ export async function updateReseaux(token, userId, instagram, twitter, discord, 
         return [500, { error: "Erreur réseau ou serveur" }];
     }
 }
+
+// PATCH
+
+export async function updateUser(token, userId, fields = {}) {
+    // `fields` est un objet contenant uniquement les propriétés à modifier,
+    // par exemple : { pseudo: "...", description: "...", mdp: "..." }
+
+    if (!token) {
+        return [401, { error: "Token manquant" }];
+    }
+
+    try {
+        const response = await fetch(`${route}users/${userId}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(fields),
+        });
+
+        const data = await response.json();
+        return [response.status, data];
+    } catch (error) {
+        console.error("Erreur updateUser:", error);
+        return [500, { error: "Erreur réseau ou serveur" }];
+    }
+}
+

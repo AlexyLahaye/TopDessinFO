@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import {showModal} from "../../../function/modal";
 
 
 //pour fonctionner ce composant à besoin
@@ -38,7 +39,7 @@ export function Header(props) {
                     <div className= "item2">
                        {userInfo?.pseudo}
                         <span className= "modification pointer " style={{ display: props.utiCourant === false ? 'none' : 'inline-block' }}
-                              uk-icon="pencil" data-uk-toggle="target: #modifPseudo"/>
+                              uk-icon="pencil" onClick={() =>{ showModal("modalModifProfil")}}/>
 
                     </div>
                     <div className="item3">{userInfo?.description}</div>
