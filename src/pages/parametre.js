@@ -8,6 +8,7 @@ import {MultipleImage} from "../component/posts/multiple_image";
 import {Overlay_Commentaire} from "../component/posts/overlay_commentaire";
 import {NavbarHorizontal, NavbarVertical} from "../component/global/navbar";
 import {Profil} from "../component/parametres/profil";
+import {ListeAmis} from "../component/parametres/listeAmis";
 
 
 export function Parametre(props) {
@@ -36,6 +37,7 @@ export function Parametre(props) {
 
                 <ul className="uk-subnav uk-subnav-pill" uk-switcher="animation: uk-animation-fade">
                     <li><a href="#">Profil</a></li>
+                    <li><a href="#">Liste amis</a></li>
                     <li><a href="#">Participation</a></li>
                     <li><a href="#">Signalement</a></li>
                 </ul>
@@ -43,6 +45,9 @@ export function Parametre(props) {
                 <div className="uk-switcher uk-margin">
                     <div>
                         <Profil />
+                    </div>
+                    <div>
+                        <ListeAmis />
                     </div>
                     <div>
                         Hello again!
