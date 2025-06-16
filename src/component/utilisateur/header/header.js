@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import {showModal} from "../../../function/modal";
 
 
 //pour fonctionner ce composant à besoin
@@ -22,14 +23,13 @@ export function Header(props) {
 
     useEffect( ()=>{
         setUserInfo(props.dataUser)
-        console.log(userInfo);
-        console.log('userInfo');
         setBadges(props.aquiredBadges)
     }, [props.dataUser, props.aquiredBadges])
 
 
     return(
         <div>
+            {userInfo && (
             <div className="uk-background-width-1-1 uk-background-muted">
                 <img className="header_bg" src={"/img/" + userInfo?.banner} />
                 <div className="grid-header">
@@ -39,7 +39,7 @@ export function Header(props) {
                     <div className= "item2">
                        {userInfo?.pseudo}
                         <span className= "modification pointer " style={{ display: props.utiCourant === false ? 'none' : 'inline-block' }}
-                              uk-icon="pencil" data-uk-toggle="target: #modifPseudo"/>
+                              uk-icon="pencil" onClick={() =>{ showModal("modalModifProfil")}}/>
 
                     </div>
                     <div className="item3">{userInfo?.description}</div>
@@ -68,6 +68,7 @@ export function Header(props) {
                     </div>
                 </div>
             </div>
+            )}
         </div>
     );
 }

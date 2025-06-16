@@ -11,8 +11,7 @@ import {Modal_Modif_Pseudo} from "../component/modal/utilisateur/modificationPse
 
 import{getInfoReseaux} from "../function/utilisateur/reseaux"
 import{getInfoNonSensible} from "../function/utilisateur/info"
-import {getID} from "../function/token";
-import {inscription} from "../function/connexion";
+import {useLocation, useParams} from "react-router-dom";
 
 
 // **************************************************************************************************************
@@ -42,31 +41,43 @@ export function Utilisateur(props) {
 
     const token = sessionStorage.getItem("token");
 
+    const location = useLocation();         // contient aussi le fragment
+
+    const userId = location.hash ? location.hash.slice(1) : null;
+    // slice(1) enlève "#" pour ne garder que "42"
+    //Vérif si la page appartien à l'utilisateur actif
+    let isCurrentUser = false;
+
     //useState
-    useEffect( ()=>{
+    useEffect(() => {
+
+        console.log(userId);
+        console.log('userId');
 
         // récupération des données depuis le back
         const fetchData = async () => {
 
-            if (props.idUtilisateur !== undefined){
-                const tabUser = await getInfoNonSensible(token, 1);
-                const tabReseaux = await getInfoReseaux(token, props.idUtilisateur);
+            if (userId !== undefined && userId !== null && userId) {
+                // Appel API avec le token et l'ID
+                const tabUser = await getInfoNonSensible(token, userId)
+                const tabReseaux = await getInfoReseaux(token, userId);
 
                 setUser(tabUser);
                 setReseaux(tabReseaux);
+
             }
 
         }
 
         fetchData();
 
-        // vérification que l'utilisateur est l'utilisateur courant ou pas
-        const idToken = getID();
-        if(idToken ===  props.idUtilisateur){
-            setUtiCourant(true);
-        }
-        else{
-            setUtiCourant(false);
+        //On fais la vérification si l'id de l'utilisateur actif est egal à celui qui est recherché
+        if (props.idCurrentUser){
+            if ( props.idCurrentUser.toString() === userId){
+                //Si oui alors on set les pencils a visible pour permettre la modification de certaine données.
+                isCurrentUser = true;
+                setUtiCourant(true);
+            } 
         }
 
         let tabAquiredBadge = getInfoAquiredBadge();
@@ -82,7 +93,7 @@ export function Utilisateur(props) {
         setRanks(tabRank);
         setRecentEves(tabRecentEve);
 
-    }, [props.idUtilisateur, rechargePage])
+    }, [userId, rechargePage])
 
     // Gestion de la scroll bar apparante ou non
     useEffect(() => {
@@ -106,15 +117,15 @@ export function Utilisateur(props) {
             window.removeEventListener("resize", disableScroll);
             document.body.style.overflow = "auto";
         };
-    }, []);
+    }, [userId]);
 
     return (<>
 
             <div className="navBarHorizontale">
-                <NavbarHorizontal />
+                <NavbarHorizontal idUtilisateur={userId}/>
             </div>
             <div className="navBarVertical">
-                <NavbarVertical />
+                <NavbarVertical idUtilisateur={userId}/>
             </div>
 
             <div className="uk-container-expend">
@@ -128,7 +139,7 @@ export function Utilisateur(props) {
 
                     <div className="evenementRec uk-width-1-2">
                         <div className="reseaux uk-flex uk-flex-wrap uk-margin">
-                            <Reseau reseaux={reseaux}  isCurrentUser={props.isCurrentUser} utiCourant={utiCourant}/>
+                            <Reseau reseaux={reseaux} isCurrentUser={isCurrentUser} utiCourant={utiCourant}/>
 
                         </div>
                         <Evenement_recent recentEves={recentEves}/>
@@ -179,27 +190,13 @@ export function Utilisateur(props) {
             </div>
 
 
-
-
-            <Modal_Modif_Reseaux idUtilisateur={props.idUtilisateur} setRechargePage={setRechargePage} rechargePage={rechargePage}/>
-            <Modal_Modif_Pseudo />
+            <Modal_Modif_Reseaux idUtilisateur={userId} setRechargePage={setRechargePage}
+                                 rechargePage={rechargePage}/>
+            <Modal_Modif_Pseudo idUtilisateur={userId} setRechargePage={setRechargePage}
+                                rechargePage={rechargePage}/>
 
         </>
     );
-}
-
-function getInfoHeader(){
-    var tab = {
-            "id_user":1,
-            //Max 13 charac
-            "nickname_user":"Zazou Studio",
-            //Max 112 charac
-            "legend_user":"Rouge, bleu, vert, jaune, toute les couleurs font vivre l'esprit",
-            "icon_user":"champi.png",
-            "bg_img_user":"spiderBG.jpg"
-        }
-
-    return tab;
 }
 
 function getInfoAquiredBadge(){
