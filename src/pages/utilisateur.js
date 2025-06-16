@@ -72,12 +72,12 @@ export function Utilisateur(props) {
         fetchData();
 
         //On fais la vérification si l'id de l'utilisateur actif est egal à celui qui est recherché
-        if ( props.idCurrentUser.toString() === userId){
-            //Si oui alors on set les pencils a visible pour permettre la modification de certaine données.
-            isCurrentUser = true;
-            setUtiCourant(true);
-        } else{
-            setUtiCourant(false);
+        if (props.idCurrentUser){
+            if ( props.idCurrentUser.toString() === userId){
+                //Si oui alors on set les pencils a visible pour permettre la modification de certaine données.
+                isCurrentUser = true;
+                setUtiCourant(true);
+            } 
         }
 
         let tabAquiredBadge = getInfoAquiredBadge();
