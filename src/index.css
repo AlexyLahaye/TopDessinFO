@@ -482,6 +482,11 @@ Css pour la page utilisateur
   justify-content: space-between;
 }
 
+.icone{
+  height : 100px;
+
+}
+
 .iconeNbPart{
   margin-right: 4px;
   margin-top : 2px;
@@ -631,4 +636,8 @@ Css pour la page parametre
 
 .parametreBox{
   width: 80%;
+}
+
+.listeAmis{
+  padding-top : 40px;
 }

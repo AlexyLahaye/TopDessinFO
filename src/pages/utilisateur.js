@@ -36,6 +36,7 @@ export function Utilisateur(props) {
     const [recentEves, setRecentEves] = useState([]);
     const [reseaux, setReseaux] = useState([]);
 
+
     const [utiCourant, setUtiCourant] = useState(false);
     const [rechargePage, setRechargePage] = useState(false);
 
@@ -48,11 +49,10 @@ export function Utilisateur(props) {
     //Vérif si la page appartien à l'utilisateur actif
     let isCurrentUser = false;
 
+
+
     //useState
     useEffect(() => {
-
-        console.log(userId);
-        console.log('userId');
 
         // récupération des données depuis le back
         const fetchData = async () => {
@@ -119,17 +119,18 @@ export function Utilisateur(props) {
         };
     }, [userId]);
 
+
     return (<>
 
             <div className="navBarHorizontale">
-                <NavbarHorizontal idUtilisateur={userId}/>
+                <NavbarHorizontal />
             </div>
             <div className="navBarVertical">
-                <NavbarVertical idUtilisateur={userId}/>
+                <NavbarVertical />
             </div>
 
             <div className="uk-container-expend">
-                <Header dataUser={user} aquiredBadges={aquiredBadges} utiCourant={utiCourant}/>
+                <Header dataUser={user} aquiredBadges={aquiredBadges} utiCourant={utiCourant}  idUtilisateur={userId} />
             </div>
 
             <div className="canteneurUtilisateurAll uk-container-expend  uk-padding-remove-top">
