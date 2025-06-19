@@ -125,6 +125,18 @@ h6{
 
 }
 
+.uk-multiline-truncate {
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* Nombre de lignes visibles */
+  -webkit-box-orient: vertical;
+  overflow: auto;
+  text-overflow: ellipsis;
+}
+
+.textAreaGrand{
+  width : 400px !important;
+}
+
 /* *********************************************************************************************************************
 Overlay
  *********************************************************************************************************************** */
@@ -612,7 +624,7 @@ Css pour la page parametre
 
 .imageDecoParametreDroite{
 
-  position : absolute;
+  position : fixed;
 
   right : 15px;
   bottom: 10px;
@@ -624,7 +636,7 @@ Css pour la page parametre
 
 .imageDecoParametreGauche{
 
-  position : absolute;
+  position : fixed;
 
   left : 65px;
   bottom: 10px;
@@ -641,3 +653,24 @@ Css pour la page parametre
 .listeAmis{
   padding-top : 40px;
 }
+
+.signalement  .uk-tab > .uk-active > a{
+  color : #1e87f0;
+}
+
+.signalement  .uk-tab > .uk-active > .admin{
+  color : red !important;
+  border-color: red !important;
+}
+
+
+.messagerieReclamation{
+
+  overflow: auto;
+  height : 30em !important;
+}
+
+.aAccordion{
+  color : #c8cbd3 !important;
+}
+
