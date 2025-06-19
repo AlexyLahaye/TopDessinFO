@@ -8,6 +8,7 @@ import {Reseau} from "../component/utilisateur/reseau_sociaux/reseau_sociaux";
 import {NavbarHorizontal, NavbarVertical} from "../component/global/navbar";
 import { Modal_Modif_Reseaux} from "../component/modal/utilisateur/modifReseaux";
 import {Modal_Modif_Pseudo} from "../component/modal/utilisateur/modificationPseudo";
+import {Modal_Add_Post} from "../component/modal/utilisateur/addPost";
 
 import{getInfoReseaux} from "../function/utilisateur/reseaux"
 import{getInfoNonSensible} from "../function/utilisateur/info"
@@ -194,6 +195,8 @@ export function Utilisateur(props) {
             <Modal_Modif_Reseaux idUtilisateur={userId} setRechargePage={setRechargePage}
                                  rechargePage={rechargePage}/>
             <Modal_Modif_Pseudo idUtilisateur={userId} setRechargePage={setRechargePage}
+                                rechargePage={rechargePage}/>
+            <Modal_Add_Post idUtilisateur={userId} setRechargePage={setRechargePage}
                                 rechargePage={rechargePage}/>
 
         </>

@@ -29,6 +29,7 @@ export function getToken() {
 }
 
 export function getID() {
+    console.log('COUUUUUUCOPUUUU')
     const token = getToken();
     if (!token) return null;
 
