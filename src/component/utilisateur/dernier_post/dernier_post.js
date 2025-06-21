@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {Card} from "./card";
+import {showModal} from "../../../function/modal";
 
 export function Dernier_Post(props) {
 
@@ -19,7 +20,7 @@ export function Dernier_Post(props) {
                     <div className=" partieTitre radius-Small backgroundViolet uk-border-rounded">
                         <div className="conTitreParti uk-flex uk-align-center">
                             <div>
-                                <h2 className="uk-padding-small uk-padding-remove"> DERNIERS POSTS</h2>
+                                <h2 className="uk-padding-small uk-padding-remove"> DERNIERS POSTS  <button uk-icon="icon: plus-circle" onClick={() =>{ showModal("modalAjoutPost")}}></button></h2>
                             </div>
                             <div data-uk-lightbox className="pointer">
 

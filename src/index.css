@@ -147,6 +147,45 @@ Overlay
 
 /*********************************************************************************************************************** */
 
+/* ✅ Surbrillance verte lors du glisser */
+.drop-area.drop-hover {
+  border: 2px dashed #32d296 !important;
+  background-color: #eaffea !important;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* ✅ Bouton supprimer rond et discret */
+.delete-button {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: none;
+  background-color: rgba(200, 0, 0, 0.8);
+  color: white;
+  font-size: 14px;
+  line-height: 24px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  z-index: 10;
+}
+
+.delete-button:hover {
+  background-color: rgba(255, 0, 0, 1);
+}
+
+/* ✅ Transition fluide entre les cartes */
+.image-preview-grid .draggable-card {
+  transition: transform 0.2s ease;
+}
+
+
+
+
+/************************************************************************************************************************ */
+
 .navBar{
   height: 30px;
 }
