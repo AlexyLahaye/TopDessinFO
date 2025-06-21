@@ -14,7 +14,7 @@ export async function addPost(
     userId,
     resetForm // une fonction pour réinitialiser les champs si tu veux
 ) {
-    if (!inputDescription || !inputCategorie || !inputType || !inputEtat) {
+    if (!inputDescription || !inputCategorie || !inputType) {
         setError(true);
         setMessError("Tous les champs doivent être remplis.");
         return;
@@ -25,7 +25,6 @@ export async function addPost(
     formData.append("description", inputDescription);
     formData.append("categorie", inputCategorie);
     formData.append("type", inputType);
-    formData.append("etat", inputEtat);
     formData.append("userId", userId);
     formData.append("hashtags", JSON.stringify(inputHashtags));
 
