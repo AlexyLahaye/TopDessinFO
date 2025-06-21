@@ -26,8 +26,6 @@ export function Signalement(props) {
     //UseEffect
     useEffect( ()=>{
 
-        const container = document.getElementById("id3");
-        container.scrollTop = container.scrollHeight;
     }, [])
 
 
