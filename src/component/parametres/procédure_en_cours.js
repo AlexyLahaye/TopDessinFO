@@ -1,8 +1,18 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
+import {getInfoNonSensible} from "../../function/utilisateur/info";
+import {getInfoReseaux} from "../../function/utilisateur/reseaux";
 
 
 export function Procedure_en_Cours(props) {
 
+    const [signalements, setSignalement] = useState("");
+
+    //UseEffect
+    useEffect( ()=>{
+
+        const container = document.getElementById("id3");
+        container.scrollTop = container.scrollHeight;
+    }, [])
 
     return (<>
 

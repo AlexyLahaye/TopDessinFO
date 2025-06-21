@@ -5,6 +5,8 @@ import {getID} from "../../function/token";
 import {CardSingle} from "../posts/card_single";
 import {Modal_Reclamation_Post} from "../modal/parametre/reclamation_post";
 import {Procedure_en_Cours} from "./procédure_en_cours";
+import {recupSignalementPost} from "../../function/parametre/signalement";
+import ReclamationMessagerie from "./reclamation";
 
 
 export function Signalement(props) {
@@ -73,10 +75,10 @@ export function Signalement(props) {
                                 </div>
 
                                 <div>
-                                  <Procedure_en_Cours/>
+                                  <Procedure_en_Cours  token={token}/>
                                 </div>
                                 <div>
-                                    <Procedure_en_Cours/>
+                                    <ReclamationMessagerie  token={token}/>
                                 </div>
                             </div>
                         </div>
