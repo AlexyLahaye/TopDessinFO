@@ -3,7 +3,6 @@ import React, { useState, useEffect , useRef} from 'react';
 import {setVar, updateInfoReseaux} from "../../../function/utilisateur/reseaux";
 import {getToken} from "../../../function/token";
 
-import ModalPortal from '../modalPortail';
 import {hideModal} from "../../../function/modal";
 
 // POur fonctionner ce composant à besoin d'être appelé par la fonction :

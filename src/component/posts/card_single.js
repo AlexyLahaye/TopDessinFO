@@ -4,6 +4,9 @@ import UIkit from 'uikit';
 import {MultipleImage} from "./multiple_image";
 import {NotationEtoile} from "./notation_etoile";
 
+import {showModal} from "../../function/modal";
+import {Modal_Reclamation_Post} from "../modal/parametre/reclamation_post";
+
 //affichage des différents posts en mode vielles vignettes vintage
 export function CardSingle(props) {
 
@@ -24,7 +27,7 @@ export function CardSingle(props) {
 
                         </div>
                     }
-                    <div className="uk-card-body uk-padding-remove" >
+                    <div className={props.context == "parametre_mine" ? "uk-hidden" : "uk-card-body uk-padding-remove"} >
                         <div className="uk-flex uk-flex-between ">
                             <div className="uk-padding-small">
                                 <FontAwesomeIcon icon="fa-solid fa-heart" size="2xl" style={props.isLike === 1  ? {color: "#fe5152",} : {color: "#bcbec0",}} className="like"/> <span className="nbComment"  >{props.like} </span>
@@ -50,8 +53,18 @@ export function CardSingle(props) {
                         </div>
 
                     </div>
+                    <div className={props.context == "parametre_mine" ? "uk-card-body uk-padding-remove" : "uk-hidden" } >
+                        <div className="uk-padding-small uk-multiline-truncate">
+                            {props.description}
+                        </div>
+                        <div className="uk-flex uk-flex-center uk-margin-top">
+                            <button className="uk-button uk-button-danger" onClick={() =>{ showModal("modalReclamationPost")}} >Porter réclamation</button>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+
         </>
     );
 }
