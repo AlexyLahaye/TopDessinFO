@@ -22,7 +22,6 @@ export function Posts() {
 
     const token = sessionStorage.getItem("token");
     const userIdSelected = sessionStorage.getItem("userIdSelected");
-    const token = sessionStorage.getItem("token");
     const id_utilisateur = getID();
 
     // Appel API pour récupérer les posts du user
