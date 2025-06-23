@@ -28,9 +28,13 @@ export function Commentaire(props) {
                 </div>
                 <div className="conteneurCom">
                     <h3 className="uk-text-left uk-padding-remove uk-margin-remove">
-                        <Link to={`/utilisateur/${props.utilisateur}`+`#${props.id_utilisateur}`} className="h3Like" >
+                        <a
+                            href={`/utilisateur/${props.utilisateur}#${props.id_utilisateur}`}
+                            className="h3Like"
+                            target="_top"
+                        >
                             {props.utilisateur}
-                        </Link>
+                        </a>
                         <span className={props.tokenId === props.id_utilisateur ?  "pointer uk-margin-small-left" : "uk-hidden" }   style={{ color: 'red' }}
                               onClick={async () =>{
                                   const supp = await suppCom(token, props.tokenId, props.idCom);
