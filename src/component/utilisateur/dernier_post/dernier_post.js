@@ -1,17 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import {Card} from "./card";
 import {showModal} from "../../../function/modal";
+import {useNavigate} from "react-router-dom";
 
 export function Dernier_Post(props) {
 
     // initialisation
     const [posts, setPosts] = useState([]);
+    const navigate = useNavigate();
 
     //UseEffect
     useEffect( ()=>{
         setPosts(props.posts);
-
     }, [props.posts])
+
+    function handleShowAllPosts() {
+        sessionStorage.setItem("userIdSelected", props.userId);
+    }
 
     return (<>
             <div className="travail  participationConteneur uk-container-large">
@@ -26,8 +31,9 @@ export function Dernier_Post(props) {
 
                                 <div data-uk-lightbox>
                                     <a className="show_all"
-                                        href="/post"
-                                        data-type="iframe">Show all</a>
+                                       href="/post"
+                                       data-type="iframe"
+                                       onClick={handleShowAllPosts}>Show all</a>
                                 </div>
                             </div>
 
@@ -46,9 +52,8 @@ export function Dernier_Post(props) {
 
                                 {posts.length > 0 &&
                                     posts.map((post, cpt) => {
-
                                         return (
-                                            <Card id={post.id} chemin={post.chemin}/>
+                                            <Card id={post.id} chemin={`http://localhost:3333/uploads/${post.image_1}`} />
                                         )
                                     })
                                 }

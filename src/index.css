@@ -141,6 +141,120 @@ h6{
   width : 400px !important;
 }
 
+/* ////////////////////////////////// HOME PAGE //////////////////////////////////////////////////////////////// */
+
+/* Loader centré */
+.loader {
+  text-align: center;
+  font-size: 2rem;
+  padding: 2rem;
+  color: #888;
+}
+
+/* Conteneur principal avec padding pour éviter les navbars */
+.accueil-container {
+    padding-top: 40px; /* pour éviter la navbar horizontale */
+}
+
+/* Grille responsive avec UIkit */
+.uk-grid-match > div {
+  margin-bottom: 1rem;
+}
+
+/* Carte post */
+.uk-card.post-card {
+  break-inside: avoid;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+/* Image principale */
+.uk-card.post-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+  transition: 0.3s ease-in-out;
+}
+
+/* Compteur d'image */
+.image-counter {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 3px 7px;
+  font-size: 0.75rem;
+  border-radius: 8px;
+  z-index: 3;
+}
+
+/* Boutons de navigation */
+.uk-icon-button {
+  background-color: rgba(255, 255, 255, 0.9);
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  font-size: 1rem;
+  z-index: 3;
+}
+
+.uk-icon-button:hover {
+  background-color: rgba(255, 255, 255, 1);
+}
+
+/* Positionnement des flèches */
+.uk-position-center-left.uk-icon-button,
+.uk-position-center-right.uk-icon-button {
+  transform: translateY(-50%);
+  top: 50%;
+}
+
+/* Description du post */
+.post-description {
+  padding: 8px 12px;
+  font-size: 0.85rem;
+  color: #333;
+  white-space: normal;
+  word-break: break-word;
+}
+
+/* Responsive */
+@media (max-width: 1400px) {
+  .accueil-container {
+    padding-left: 60px;
+  }
+
+  .uk-card.post-card img {
+    height: 160px;
+  }
+}
+
+@media (max-width: 992px) {
+  .accueil-container {
+    padding-left: 40px;
+  }
+
+  .uk-card.post-card img {
+    height: 140px;
+  }
+}
+
+@media (max-width: 600px) {
+  .accueil-container {
+    padding-top: 50px;
+    padding-left: 0;
+  }
+
+  .uk-card.post-card img {
+    height: 120px;
+  }
+}
+
+
 /* *********************************************************************************************************************
 Overlay
  *********************************************************************************************************************** */
