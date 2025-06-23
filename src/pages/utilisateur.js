@@ -12,7 +12,8 @@ import {Modal_Add_Post} from "../component/modal/utilisateur/addPost";
 
 import{getInfoReseaux} from "../function/utilisateur/reseaux"
 import{getInfoNonSensible} from "../function/utilisateur/info"
-import {useLocation, useParams} from "react-router-dom";
+import {useLocation} from "react-router-dom";
+import {getInfoPost} from "../route/post";
 
 
 // **************************************************************************************************************
@@ -60,11 +61,13 @@ export function Utilisateur(props) {
 
             if (userId !== undefined && userId !== null && userId) {
                 // Appel API avec le token et l'ID
-                const tabUser = await getInfoNonSensible(token, userId)
+                const tabUser = await getInfoNonSensible(token, userId);
                 const tabReseaux = await getInfoReseaux(token, userId);
+                const tabPost = await getInfoPost(userId);
 
                 setUser(tabUser);
                 setReseaux(tabReseaux);
+                setPosts(tabPost[1])
 
             }
 
@@ -80,18 +83,13 @@ export function Utilisateur(props) {
                 setUtiCourant(true);
             } 
         }
-
         let tabAquiredBadge = getInfoAquiredBadge();
         let tab = getInfotest();
-        let tabPost = getInfoPost();
         let tabRank = getInfoRank();
         let tabRecentEve = getInfoRecentEven();
 
-
         setAquiredBadges(tabAquiredBadge)
         setParticipation(tab);
-        setPosts(tabPost);
-        setRanks(tabRank);
         setRecentEves(tabRecentEve);
 
     }, [userId, rechargePage])
@@ -148,7 +146,7 @@ export function Utilisateur(props) {
                     </div>
                     <div className="uk-width-1-2 partie_droite">
                         <div className="DernierPostContainer">
-                            <Dernier_Post posts={posts}/>
+                            <Dernier_Post posts={posts} userId={userId} setShowedPosts={props.setShowedPosts}/>
                         </div>
                         <div className="RankContainer radius-Small">
                             <Rank ranks={ranks}/>
@@ -171,7 +169,7 @@ export function Utilisateur(props) {
                     </div>
 
                     <div className="DernierPostContainer">
-                        <Dernier_Post posts={posts}/>
+                        <Dernier_Post posts={posts} userId={userId} setShowedPosts={props.setShowedPosts}/>
                     </div>
                     <div className="RankContainerResponsive radius-Small">
                         <div className="conteneurRankReponsive">
@@ -289,29 +287,6 @@ function getInfotest() {
 
     return tab;
 }
-
-function getInfoPost() {
-
-    var tab = [{
-        "id": 1,
-        "chemin": "/img/hwei.jpg"
-    },{
-        "id": 2,
-        "chemin": "/img/oeil.jpg"
-    },,{
-        "id": 3,
-        "chemin": "/img/visage_jolie.jpg"
-    },{
-        "id": 4,
-        "chemin": "/img/visage.jpg"
-    },{
-        "id": 5,
-        "chemin": "/img/oeil.jpg"
-    }]
-
-    return tab;
-}
-
 function getInfoRank() {
 
     var tab = [{

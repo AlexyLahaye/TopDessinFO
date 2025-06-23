@@ -9,6 +9,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {getID} from "../function/token";
 import SecuredRoute from "./securedRoute";
 import {Parametre} from "./parametre";
+import Accueil from "./accueil";
+
 
 
 export default function Browser() {
@@ -18,6 +20,7 @@ export default function Browser() {
 
     const [token, setToken] = useState("");
     const [idUtilisateur, setIdUtilisateur]= useState(idUtilisateurCourant);
+    const [showedPosts, setShowedPosts]= useState("");
     console.log(idUtilisateur)
 
     useEffect(() => {
@@ -25,6 +28,11 @@ export default function Browser() {
         setToken(storedToken);
         setIdUtilisateur(getID());
     }, []);
+
+    useEffect(() => {
+        console.log("DANS LE BROWSER",showedPosts)
+
+    }, [showedPosts])
 
     const tokenManager = (jwtToken) => {
         setToken(jwtToken);
@@ -43,13 +51,13 @@ export default function Browser() {
                     {/* Routes protégées */}
                     <Route path='/' element={
                         <SecuredRoute>
-                            <Utilisateur tokenManager={tokenManager} token={token} />
+                            <Accueil tokenManager={tokenManager} token={token} />
                         </SecuredRoute>
                     } />
 
                     <Route path="/utilisateur/:pseudo" element={
                         <SecuredRoute token={token}>
-                            <Utilisateur idCurrentUser={idUtilisateurCourant}/>
+                            <Utilisateur idCurrentUser={idUtilisateurCourant} setShowedPosts={setShowedPosts}/>
                         </SecuredRoute>
                     } />
 
@@ -61,7 +69,7 @@ export default function Browser() {
 
                     <Route path='/post' element={
                         <SecuredRoute>
-                            <Posts tokenManager={tokenManager} token={token} />
+                            <Posts tokenManager={tokenManager} token={token} showedPosts={showedPosts} />
                         </SecuredRoute>
                     } />
 

@@ -15,8 +15,6 @@ export function Card(props) {
                 </div>
             </div>
 
-
-
         </>
     );
 }

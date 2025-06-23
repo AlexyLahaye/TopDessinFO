@@ -9,6 +9,7 @@ export function Overlay_Commentaire(props) {
 
     const token = sessionStorage.getItem("token");
     const tokenId = getID();
+    const BASE_URL = "http://localhost:3333/uploads/";
 
     const [com, setCom] = useState([]);
 
@@ -16,29 +17,23 @@ export function Overlay_Commentaire(props) {
         setCom(event.target.value);
     };
 
+    const images = props.infoPost?.images?.map(img => `${BASE_URL}${img}`) || [];
 
-    return (<>
-
+    return (
+        <>
             <div className="uk-flex uk-flex-around overlay-content allUti">
-
                 <div className="image uk-width-1-2">
-
-                    {props.infoPost?.nbImage === 1 ?
-                        <div >
-                            <img src={props.infoPost?.image[0]} alt="" className="imgCommentaire"/>
+                    {images.length === 1 &&
+                        <div>
+                            <img src={images[0]} alt="" className="imgCommentaire" />
                         </div>
-
-                        :""
                     }
-                    <div className="multipleImgCommentaire">
-                        {props.infoPost?.nbImage > 1 ?
-                            <MultipleImage images={props.infoPost?.image} contexte="commentaire"/>
 
-                            : ""
-                        }
-                    </div>
-
-
+                    {images.length > 1 &&
+                        <div className="multipleImgCommentaire">
+                            <MultipleImage images={images} contexte="commentaire" />
+                        </div>
+                    }
                 </div>
                 <div className="commentaire uk-width-1-2">
 
@@ -130,7 +125,6 @@ export function Overlay_Commentaire(props) {
 
             </div>
 
-
             <div className="allUtiResponsive responsiveCommentaire" onClick={props.hideOverlay}>
                 <div className="divCom">
                     {props.commentaires.length > 0 &&
@@ -214,8 +208,6 @@ export function Overlay_Commentaire(props) {
                     </div>
                 </div>
             </div>
-
         </>
     );
 }
-

@@ -26,7 +26,7 @@ export function NavbarHorizontal(props) {
             <nav className="navBarHorizontale backgroundViolet " data-uk-navbar>
                 <div className="uk-navbar-left backgroundViolet">
 
-                    <a className="uk-navbar-item uk-logo" href="/" aria-label="Back to Home"><img src={"/img/logo.png"} className="logoImg"/></a>
+                    <a className="uk-navbar-item uk-logo" href="/" aria-label="Back to Accueil"><img src={"/img/logo.png"} className="logoImg"/></a>
 
                     <ul className="uk-navbar-nav ulNavbar">
                         <li >
