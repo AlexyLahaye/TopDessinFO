@@ -6,6 +6,7 @@ import {NotationEtoile} from "./notation_etoile";
 
 import {showModal} from "../../function/modal";
 import {Modal_Reclamation_Post} from "../modal/parametre/reclamation_post";
+import {reportCom} from "../../function/parametre/signalement";
 
 //affichage des différents posts en mode vielles vignettes vintage
 export function CardSingle(props) {
@@ -37,7 +38,15 @@ export function CardSingle(props) {
                                 <FontAwesomeIcon icon="fa-regular fa-comment-dots" size="2xl" style={{color: "#000000"}}
                                                  onClick={() => { props.showOverlay(); props.setIdPostCom(1)}}
                                 />
+                                <span className= "pointer uk-margin-small-left"  style={{ color: 'red' }}
+                                      onClick={async () =>{
+
+                                      }
+                                      }
+
+                                      uk-icon="ban"></span>
                             </div>
+
 
                         </div>
                         <div className="annexePost">

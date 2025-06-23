@@ -31,7 +31,6 @@ export function Dernier_Post(props) {
                                 </div>
                             </div>
 
-
                         </div>
                     </div>
                 </div>
