@@ -6,7 +6,7 @@ import {NotationEtoile} from "./notation_etoile";
 
 import {showModal} from "../../function/modal";
 import {Modal_Reclamation_Post} from "../modal/parametre/reclamation_post";
-import {reportCom} from "../../function/parametre/signalement";
+import {reportCom, reportPost} from "../../function/parametre/signalement";
 
 //affichage des différents posts en mode vielles vignettes vintage
 export function CardSingle(props) {
@@ -40,7 +40,7 @@ export function CardSingle(props) {
                                 />
                                 <span className= "pointer uk-margin-small-left"  style={{ color: 'red' }}
                                       onClick={async () =>{
-
+                                            const signal = await reportPost(props.token, props.tokenId , 1)
                                       }
                                       }
 

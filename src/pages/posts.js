@@ -84,7 +84,7 @@ export function Posts(props) {
                     posts.map((post, cpt) => {
                         return (
                             <CardSingle id={post.id} like={post.nbLike} com={post.nbCom} images={post.image}  nbImage={post.nbImage} type={post.type}
-                                        note={post.note} isLike={post.is_like} classement={post.classement} showOverlay={showOverlay} setIdPostCom={setIdPostCom}  tokenId={id_utilisateur}/>
+                                        note={post.note} isLike={post.is_like} classement={post.classement} showOverlay={showOverlay} setIdPostCom={setIdPostCom}  tokenId={id_utilisateur} token={token}/>
                         )
                     })
                 }
