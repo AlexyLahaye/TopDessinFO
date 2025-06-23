@@ -6,6 +6,10 @@ import {CardSingle} from "../component/posts/card_single";
 import {Commentaire} from "../component/global/commentaire.js";
 import {MultipleImage} from "../component/posts/multiple_image";
 import {Overlay_Commentaire} from "../component/posts/overlay_commentaire";
+import {getID} from "../function/token";
+import {getFriends} from "../function/utilisateur/follows";
+import {recupCom} from "../function/post/commentaire";
+import {recupRéclamationt} from "../function/parametre/signalement";
 
 
 export function Posts(props) {
@@ -13,9 +17,11 @@ export function Posts(props) {
     // initialisation
     const [posts, setPosts] = useState([]);
     const [infoPost, setInfoPost] = useState("");
-    const [idPostCom, setIdPostCom] = useState("test");
+    const [idPostCom, setIdPostCom] = useState(0);
     const [commentaires, setCommentaires] = useState([]);
 
+    const token = sessionStorage.getItem("token");
+    const id_utilisateur = getID();
 
     //UseEffect
     useEffect( ()=>{
@@ -27,13 +33,19 @@ export function Posts(props) {
 
     //récupération des commentaire d'un post lors du click
     useEffect( ()=>{
+
+        const fetchData = async () => {
+
+            if(idPostCom !== undefined){
+                const  commentaires = await recupCom(token, idPostCom);
+                setCommentaires(commentaires);
+            }
+
+        }
+        fetchData();
+
         let postRecherche = posts.find(post => post.id === idPostCom);
         setInfoPost(postRecherche);
-
-        let commentaires = getCom(idPostCom);
-
-        console.log(postRecherche);
-        setCommentaires(commentaires);
 
 
     }, [idPostCom])
@@ -49,6 +61,20 @@ export function Posts(props) {
         document.getElementById("overlay").classList.remove("active");
         document.body.style.overflow = "auto"; // Permet de scroller à nouveau
     }
+
+    async function refreshcom() {
+        if(idPostCom !== undefined){
+            const  commentaires = await recupCom(token, idPostCom);
+            setCommentaires(commentaires);
+        }
+    }
+
+    const handleRefresh = async () => {
+
+        const  commentaires = await recupCom(token, idPostCom);
+        setCommentaires(commentaires);
+
+    };
 
     return (<>
 
@@ -68,7 +94,7 @@ export function Posts(props) {
 
             <div className="overlay " id="overlay" >
 
-                <Overlay_Commentaire infoPost={infoPost} commentaires={commentaires} hideOverlay={hideOverlay} />
+                <Overlay_Commentaire infoPost={infoPost} commentaires={commentaires} hideOverlay={hideOverlay} setIdPostCom={setIdPostCom} idPostCom={idPostCom}  handleRefresh={handleRefresh} refreshcom={refreshcom} tokenId={id_utilisateur}/>
 
             </div>
 

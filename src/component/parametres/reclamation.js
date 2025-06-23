@@ -14,6 +14,7 @@ import {Card} from "../utilisateur/dernier_post/card";
 
 import UIkit from 'uikit';
 import {deletepost} from "../../route/signalement";
+import {envoieCom} from "../../function/post/commentaire";
 
 export default function ReclamationMessagerie(props) {
 
@@ -219,11 +220,33 @@ export default function ReclamationMessagerie(props) {
 
                                         <div className="uk-margin">
                                             <textarea className="uk-textarea" rows="3" placeholder="Écrivez votre message ici..." onChange={handleWriteMess}  value={writeMess}
-                                            ></textarea>
+                                                      onKeyDown={async (e) => {
+                                                          if (e.key === "Enter") {
+                                                              if (e.shiftKey) {
+                                                                  // Ajouter un saut de ligne
+                                                                  e.preventDefault();
+                                                                  setWriteMess(prev => prev + "\n");
+                                                              } else {
+                                                                  // Envoyer le message
+                                                                  e.preventDefault(); // empêche un comportement par défaut éventuel
+                                                                  const message = await sendMess(
+                                                                      token,
+                                                                      idToken,
+                                                                      recla.postId,
+                                                                      writeMess,
+                                                                      1,
+                                                                      setError,
+                                                                      setMessError
+                                                                  );
+                                                                  handleClick(recla.postId);
+                                                              }
+                                                          }
+
+                                                      }}></textarea>
                                         </div>
                                         <button type="" className="uk-button uk-button-primary uk-align-right"
                                                 onClick={async () => {
-                                                    console.log("je clique")
+
                                                     const message = await sendMess(
                                                         token,
                                                         idToken,

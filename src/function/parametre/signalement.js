@@ -3,7 +3,7 @@ import {
     deletepost, getAllMineReclamations,
     getReclamation,
     getRéclamationPost,
-    getSignalementPost,
+    getSignalementPost, signalCom,
     writeMess
 } from "../../route/signalement";
 
@@ -65,8 +65,6 @@ export async function sendMess(token, tokenId, postId, commentaire, type, setErr
     if (commentaire.trim() !== "") {
 
         const [status, data] = await writeMess(token, tokenId, postId, commentaire, type);
-        console.log(status)
-        console.log(data)
         if (status !== 200){
             UIkit.notification({
                 message: 'Erreur lors de l\'envoie du message.',
@@ -78,6 +76,8 @@ export async function sendMess(token, tokenId, postId, commentaire, type, setErr
 
     }
 }
+
+
 
 export async function aprouvPost(token, postId) {
     const [status, data] = await approuvepost(token, postId);
@@ -119,6 +119,27 @@ export async function suppPost(token, postId) {
     }
 }
 
+
+
+export async function reportCom(token, userId, comId) {
+    const [status, data] = await signalCom(token, userId, comId);
+
+    if (status === 200) {
+        UIkit.notification({
+            message: 'Le commentaire à été signalé.',
+            status: 'success',
+            pos: 'top-center',
+            timeout: 3000
+        });
+    } else {
+        UIkit.notification({
+            message: 'Erreur lors du signalement du commentaire.',
+            status: 'danger',
+            pos: 'top-center',
+            timeout: 3000
+        });
+    }
+}
 
 
 
