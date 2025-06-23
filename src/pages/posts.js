@@ -1,20 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import "../css/post.css";
 
-import { CardSingle } from "../component/posts/card_single";
-import { Overlay_Commentaire } from "../component/posts/overlay_commentaire";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {CardSingle} from "../component/posts/card_single";
+import {Commentaire} from "../component/global/commentaire.js";
+import {MultipleImage} from "../component/posts/multiple_image";
+import {Overlay_Commentaire} from "../component/posts/overlay_commentaire";
+import {getID} from "../function/token";
+import {getFriends} from "../function/utilisateur/follows";
+import {recupCom} from "../function/post/commentaire";
+import {recupRéclamationt} from "../function/parametre/signalement";
 import { getInfoPost } from "../route/post"; // Fonction d'appel au backend pour récupérer les posts
 
 export function Posts() {
     // States
     const [posts, setPosts] = useState([]);
     const [infoPost, setInfoPost] = useState("");
-    const [idPostCom, setIdPostCom] = useState("test");
+    const [idPostCom, setIdPostCom] = useState(0);
     const [commentaires, setCommentaires] = useState([]);
     const [rechargePage, setRechargePage] = useState(false);
 
     const token = sessionStorage.getItem("token");
     const userIdSelected = sessionStorage.getItem("userIdSelected");
+    const token = sessionStorage.getItem("token");
+    const id_utilisateur = getID();
 
     // Appel API pour récupérer les posts du user
     useEffect(() => {
@@ -34,15 +43,27 @@ export function Posts() {
         fetchPosts();
     }, [userIdSelected, rechargePage]);
 
-    // Récupération des commentaires
-    useEffect(() => {
-        const postRecherche = posts.find(post => post.id === idPostCom);
-        setInfoPost(postRecherche);
-        const commentaires = getCom(idPostCom); // ❗ à remplacer par appel API réel plus tard
-        setCommentaires(commentaires);
-    }, [idPostCom]);
 
-    // Fonctions utilitaires
+    //récupération des commentaire d'un post lors du click
+    useEffect( ()=>{
+
+        const fetchData = async () => {
+
+            if(idPostCom !== undefined){
+                const  commentaires = await recupCom(token, idPostCom);
+                setCommentaires(commentaires);
+            }
+
+        }
+        fetchData();
+
+        let postRecherche = posts.find(post => post.id === idPostCom);
+        setInfoPost(postRecherche);
+
+
+    }, [idPostCom])
+
+    // Afficher l'overlay
     function showOverlay() {
         document.getElementById("overlay").classList.add("active");
         document.body.style.overflow = "hidden";
@@ -52,6 +73,20 @@ export function Posts() {
         document.getElementById("overlay").classList.remove("active");
         document.body.style.overflow = "auto";
     }
+
+    async function refreshcom() {
+        if(idPostCom !== undefined){
+            const  commentaires = await recupCom(token, idPostCom);
+            setCommentaires(commentaires);
+        }
+    }
+
+    const handleRefresh = async () => {
+
+        const  commentaires = await recupCom(token, idPostCom);
+        setCommentaires(commentaires);
+
+    };
 
     function formatPostsWithImages(posts) {
         return posts.map(post => {
@@ -82,8 +117,11 @@ export function Posts() {
                     ))}
             </div>
 
-            <div className="overlay" id="overlay">
-                <Overlay_Commentaire infoPost={infoPost} commentaires={commentaires} hideOverlay={hideOverlay} />
+
+            <div className="overlay " id="overlay" >
+
+                <Overlay_Commentaire infoPost={infoPost} commentaires={commentaires} hideOverlay={hideOverlay} setIdPostCom={setIdPostCom} idPostCom={idPostCom}  handleRefresh={handleRefresh} refreshcom={refreshcom} tokenId={id_utilisateur}/>
+
             </div>
         </>
     );

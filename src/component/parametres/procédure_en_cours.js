@@ -78,8 +78,6 @@ export function Procedure_en_Cours(props) {
 
     };
 
-
-
     const handleWriteMess = (event) => {
         setWriteMess(event.target.value);
     };

@@ -58,6 +58,10 @@ h6{
   color: #fff !important;
 }
 
+.h3Like{
+  color : #c8cbd3 !important;
+}
+
 
 .backgroundViolet{
   background-color: #201e34;
@@ -827,3 +831,21 @@ Css pour la page parametre
   color : #c8cbd3 !important;
 }
 
+
+/* commentaire **********************************************************************************************************************/
+/**********************************************************************************************/
+.commentaire {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* ou une hauteur fixe, genre 500px selon le besoin */
+}
+
+.divCom {
+  flex: 1;
+  overflow-y: auto; /* permet de scroller si y’a trop de commentaires */
+  padding-bottom: 10px; /* pour laisser de l’espace au-dessus de l’input */
+}
+
+.ajoutCommentaire {
+  padding-top: 10px;
+}
