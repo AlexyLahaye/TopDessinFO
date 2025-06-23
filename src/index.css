@@ -143,7 +143,7 @@ h6{
 
 /* ////////////////////////////////// HOME PAGE //////////////////////////////////////////////////////////////// */
 
-/* Loader centré */
+/* Loader */
 .loader {
   text-align: center;
   font-size: 2rem;
@@ -151,108 +151,114 @@ h6{
   color: #888;
 }
 
-/* Conteneur principal avec padding pour éviter les navbars */
-.accueil-container {
-    padding-top: 40px; /* pour éviter la navbar horizontale */
+/* Pinterest-style grid */
+.pinterest-grid {
+  column-count: 4;
+  column-gap: 1rem;
+  padding: 1rem;
+  margin-top: 80px; /* pour que les navbars ne couvrent pas */
 }
 
-/* Grille responsive avec UIkit */
-.uk-grid-match > div {
+@media (max-width: 1400px) {
+  .pinterest-grid {
+    column-count: 3;
+  }
+}
+@media (max-width: 992px) {
+  .pinterest-grid {
+    column-count: 2;
+  }
+}
+@media (max-width: 600px) {
+  .pinterest-grid {
+    column-count: 1;
+  }
+}
+
+/* Post Card sans fond blanc */
+.post-card {
+  break-inside: avoid;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
   margin-bottom: 1rem;
 }
 
-/* Carte post */
-.uk-card.post-card {
-  break-inside: avoid;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+/* Image container avec hauteur fixe */
+.post-image-container {
   position: relative;
-}
-
-/* Image principale */
-.uk-card.post-card img {
   width: 100%;
-  height: 180px;
-  object-fit: cover;
-  display: block;
-  transition: 0.3s ease-in-out;
+  height: 250px; /* 🔒 Taille fixe pour un rendu uniforme */
+  overflow: hidden;
+  border-radius: 10px;
 }
 
-/* Compteur d'image */
+/* Image ajustée */
+.post-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Crop l'image proprement */
+  display: block;
+}
+
+/* Navigation buttons */
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.8);
+  border: none;
+  padding: 4px 10px;
+  cursor: pointer;
+  z-index: 2;
+  border-radius: 50%;
+  font-size: 0.9rem;
+}
+
+.nav-btn.left {
+  left: 10px;
+}
+
+.nav-btn.right {
+  right: 10px;
+}
+
+/* Image counter (bottom-right icon) */
 .image-counter {
   position: absolute;
   bottom: 8px;
   right: 8px;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0,0,0,0.6);
   color: white;
-  padding: 3px 7px;
-  font-size: 0.75rem;
+  padding: 4px 8px;
+  font-size: 0.8rem;
   border-radius: 8px;
-  z-index: 3;
 }
 
-/* Boutons de navigation */
-.uk-icon-button {
-  background-color: rgba(255, 255, 255, 0.9);
-  border: none;
-  cursor: pointer;
-  padding: 5px;
-  font-size: 1rem;
-  z-index: 3;
-}
-
-.uk-icon-button:hover {
-  background-color: rgba(255, 255, 255, 1);
-}
-
-/* Positionnement des flèches */
-.uk-position-center-left.uk-icon-button,
-.uk-position-center-right.uk-icon-button {
-  transform: translateY(-50%);
-  top: 50%;
-}
-
-/* Description du post */
+/* Description sur fond sombre en bas de l'image */
 .post-description {
-  padding: 8px 12px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5); /* fond noir semi-transparent */
+  color: white;
+  padding: 8px 10px;
   font-size: 0.85rem;
-  color: #333;
-  white-space: normal;
-  word-break: break-word;
+  text-align: left;
+  box-sizing: border-box;
+  z-index: 1;
 }
 
-/* Responsive */
-@media (max-width: 1400px) {
-  .accueil-container {
-    padding-left: 60px;
-  }
-
-  .uk-card.post-card img {
-    height: 160px;
-  }
+.description-overlay {
+  padding: 4px 8px;              /* Réduit le padding */
+  font-size: 0.7rem;             /* Réduit la taille du texte */
+  background: rgba(0, 0, 0, 0.5); /* Fond noir transparent */
+  max-height: 24px;              /* Hauteur maximale */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-@media (max-width: 992px) {
-  .accueil-container {
-    padding-left: 40px;
-  }
-
-  .uk-card.post-card img {
-    height: 140px;
-  }
-}
-
-@media (max-width: 600px) {
-  .accueil-container {
-    padding-top: 50px;
-    padding-left: 0;
-  }
-
-  .uk-card.post-card img {
-    height: 120px;
-  }
-}
 
 
 /* *********************************************************************************************************************

@@ -51,6 +51,7 @@ export function Posts() {
             if(idPostCom !== undefined){
                 const  commentaires = await recupCom(token, idPostCom);
                 setCommentaires(commentaires);
+                console.log("💬 Commentaires reçus :", commentaires);
             }
 
         }
@@ -124,6 +125,8 @@ export function Posts() {
             </div>
         </>
     );
+
+
 }
 
 // ✴️ TEMP : commentaires de test
