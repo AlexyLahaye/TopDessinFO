@@ -67,16 +67,18 @@ export function CardSingle(props) {
                                     props.setIdPostCom(props.id);
                                 }}
                             />
-                            <span className= "pointer uk-margin-small-left"  style={{ color: 'red' }}
-                                      onClick={async () =>{
-
-                                          props.setIdSignalPost(props.id)
-                                          console.log("je set à ", props.id)
-                                          showModal("modalSignalPost")
-
-                                      }
-                                      }
-                                      uk-icon="ban"></span>
+                            {props.tokenId !== props.userID && (
+                                <span
+                                    className="pointer uk-margin-small-left"
+                                    style={{ color: 'red' }}
+                                    onClick={async () => {
+                                        props.setIdSignalPost(props.id);
+                                        console.log("je set à ", props.id);
+                                        showModal("modalSignalPost");
+                                    }}
+                                    uk-icon="ban"
+                                ></span>
+                            )}
 
 
                         </div>

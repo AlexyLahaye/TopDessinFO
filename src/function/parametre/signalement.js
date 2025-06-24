@@ -1,6 +1,6 @@
 import {
     approuvepost, createReclamation,
-    deletepost, getAllMineReclamations,
+    deletepost, getAllMineReclamations, getOnePost,
     getReclamation,
     getRéclamationPost,
     getSignalementPost, signalCom, signalPost,
@@ -54,6 +54,18 @@ export async function recupMesReclamation(token , tokenId) {
 
     if(status === 200 ){
         return data.success
+    }else{
+        return data.error
+    }
+
+}
+
+export async function recupUnPost(token , postId) {
+
+    const [status, data] = await getOnePost(token , postId);
+
+    if(status === 200 ){
+        return [data.success]
     }else{
         return data.error
     }

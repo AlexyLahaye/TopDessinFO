@@ -35,6 +35,7 @@ export function Posts() {
                 if (response && response[0] === 200) {
                     const rawPosts = response[1];
                     const formatted = formatPostsWithImages(rawPosts);
+                    console.log(formatted)
                     setPosts(formatted);
                 } else {
                     console.warn("Erreur récupération posts");
@@ -118,6 +119,7 @@ export function Posts() {
                             setIdPostCom={setIdPostCom}
                             tokenId={id_utilisateur}
                             token={token}
+                            userID={post.userId}
 
                             setIdSignalPost={setIdSignalPost}
                         />
