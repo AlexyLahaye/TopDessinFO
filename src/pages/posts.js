@@ -54,6 +54,7 @@ export function Posts() {
             if(idPostCom !== undefined){
                 const  commentaires = await recupCom(token, idPostCom);
                 setCommentaires(commentaires);
+                console.log("💬 Commentaires reçus :", commentaires);
             }
 
         }
@@ -133,6 +134,8 @@ export function Posts() {
             <Modal_Signalement_Post idSignalPost={idSignalPost} token={token} tokenId={id_utilisateur}/>
         </>
     );
+
+
 }
 
 // ✴️ TEMP : commentaires de test

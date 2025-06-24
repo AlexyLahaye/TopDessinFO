@@ -6,8 +6,6 @@ import { NotationEtoile } from "./notation_etoile";
 import { showModal } from "../../function/modal";
 
 import {Modal_Reclamation_Post} from "../modal/parametre/reclamation_post";
-
-
 import {reportCom, reportPost} from "../../function/parametre/signalement";
 import {Modal_Signalement_Post} from "../modal/utilisateur/signalPost";
 import {getID} from "../../function/token";
@@ -79,6 +77,7 @@ export function CardSingle(props) {
                                       }
                                       }
                                       uk-icon="ban"></span>
+
 
                         </div>
                     </div>

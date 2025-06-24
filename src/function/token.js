@@ -46,6 +46,5 @@ export function getPseudo(){
 
 export function isAuthorized() {
     const token = getToken();
-    console.log(token);
     return getToken() !== null;
 }
