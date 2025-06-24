@@ -5,9 +5,6 @@ import { MultipleImage } from "./multiple_image";
 import { NotationEtoile } from "./notation_etoile";
 import { showModal } from "../../function/modal";
 
-import {showModal} from "../../function/modal";
-import {Modal_Reclamation_Post} from "../modal/parametre/reclamation_post";
-
 import {Modal_Reclamation_Post} from "../modal/parametre/reclamation_post";
 import {reportCom, reportPost} from "../../function/parametre/signalement";
 
@@ -66,11 +63,11 @@ export function CardSingle(props) {
                             />
                             <span className= "pointer uk-margin-small-left"  style={{ color: 'red' }}
                                       onClick={async () =>{
-                                            const signal = await reportPost(props.token, props.tokenId , 1)
-                                      }
+                                            const signal = await reportPost(props.token, props.tokenId , props.id)
+                                      } }
                                       uk-icon="ban"></span>
 
-                                      }
+
                         </div>
                     </div>
 
