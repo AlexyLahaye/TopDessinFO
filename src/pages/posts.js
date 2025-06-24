@@ -10,7 +10,8 @@ import {getID} from "../function/token";
 import {getFriends} from "../function/utilisateur/follows";
 import {recupCom} from "../function/post/commentaire";
 import {recupRéclamationt} from "../function/parametre/signalement";
-import { getInfoPost } from "../route/post"; // Fonction d'appel au backend pour récupérer les posts
+import { getInfoPost } from "../route/post";
+import {Modal_Signalement_Post} from "../component/modal/utilisateur/signalPost"; // Fonction d'appel au backend pour récupérer les posts
 
 export function Posts() {
     // States
@@ -19,6 +20,8 @@ export function Posts() {
     const [idPostCom, setIdPostCom] = useState(0);
     const [commentaires, setCommentaires] = useState([]);
     const [rechargePage, setRechargePage] = useState(false);
+
+    const [idSignalPost, setIdSignalPost] = useState("");
 
     const token = sessionStorage.getItem("token");
     const userIdSelected = sessionStorage.getItem("userIdSelected");
@@ -115,6 +118,8 @@ export function Posts() {
                             setIdPostCom={setIdPostCom}
                             tokenId={id_utilisateur}
                             token={token}
+
+                            setIdSignalPost={setIdSignalPost}
                         />
                     ))}
             </div>
@@ -125,6 +130,8 @@ export function Posts() {
                 <Overlay_Commentaire infoPost={infoPost} commentaires={commentaires} hideOverlay={hideOverlay} setIdPostCom={setIdPostCom} idPostCom={idPostCom}  handleRefresh={handleRefresh} refreshcom={refreshcom} tokenId={id_utilisateur}/>
 
             </div>
+
+            <Modal_Signalement_Post idSignalPost={idSignalPost} token={token} tokenId={id_utilisateur}/>
         </>
     );
 

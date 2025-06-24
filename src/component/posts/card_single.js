@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import UIkit from 'uikit';
 import { MultipleImage } from "./multiple_image";
@@ -7,6 +7,8 @@ import { showModal } from "../../function/modal";
 
 import {Modal_Reclamation_Post} from "../modal/parametre/reclamation_post";
 import {reportCom, reportPost} from "../../function/parametre/signalement";
+import {Modal_Signalement_Post} from "../modal/utilisateur/signalPost";
+import {getID} from "../../function/token";
 
 //affichage des différents posts en mode vielles vignettes vintage
 export function CardSingle(props) {
@@ -16,6 +18,9 @@ export function CardSingle(props) {
 
     // Formatage des images
     const formattedImages = props.images?.map(img => `${BASE_URL}${img}`) || [];
+
+    const token = sessionStorage.getItem("token");
+    const tokenId = getID();
 
     return (
         <>
@@ -64,8 +69,13 @@ export function CardSingle(props) {
                             />
                             <span className= "pointer uk-margin-small-left"  style={{ color: 'red' }}
                                       onClick={async () =>{
-                                            const signal = await reportPost(props.token, props.tokenId , props.id)
-                                      } }
+
+                                          props.setIdSignalPost(props.id)
+                                          console.log("je set à ", props.id)
+                                          showModal("modalSignalPost")
+
+                                      }
+                                      }
                                       uk-icon="ban"></span>
 
 
@@ -117,36 +127,38 @@ export function CardSingle(props) {
             </div>
         </div>
 
-        <div className={props.context === "procédure_en_cours" ? "cardPost uk-margin-bottom uk-margin-top" : "uk-hidden"}>
-            <div className="medaillePost">
-                <img src="img/badge2.png" className={props.classement === 1 ? "" : "uk-hidden"} alt="Concours 1" />
-                <img src="img/badge15.png" className={props.classement === 3 ? "" : "uk-hidden"} alt="Concours 3" />
-            </div>
-            <div className="cardenfant uk-card ">
 
-                {/* Affichage image unique ou multiple */}
-                {props.nbImage > 1 ? (
-                    <MultipleImage images={formattedImages} />
-                ) : (
-                    <div className="img uk-card-media-top">
-                        <div data-uk-lightbox>
-                            <a href={formattedImages[0]}>
-                                <img src={formattedImages[0]} alt="" />
-                            </a>
+            <div className={props.context === "procédure_en_cours" ? "cardPost uk-margin-bottom uk-margin-top" : "uk-hidden"}>
+                <div className="medaillePost">
+                    <img src="img/badge2.png" className={props.classement === 1 ? "" : "uk-hidden"} alt="Concours 1" />
+                    <img src="img/badge15.png" className={props.classement === 3 ? "" : "uk-hidden"} alt="Concours 3" />
+                </div>
+                <div className="cardenfant uk-card ">
+
+                    {/* Affichage image unique ou multiple */}
+                    {props.nbImage > 1 ? (
+                        <MultipleImage images={formattedImages} />
+                    ) : (
+                        <div className="img uk-card-media-top">
+                            <div data-uk-lightbox>
+                                <a href={formattedImages[0]}>
+                                    <img src={formattedImages[0]} alt="" />
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                )}
+                    )}
 
-                <div>
-                    {props?.description}
+                    <div>
+                        {props?.description}
+                    </div>
+
                 </div>
 
             </div>
 
-        </div>
-
 
         </>
+
 
     );
 }
