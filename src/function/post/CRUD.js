@@ -1,4 +1,4 @@
-import {addPostRoute, getUserFromPost} from "../../route/post";
+import {addPostRoute, getPostReportedByIdUser, getUserFromPost} from "../../route/post";
 import UIkit from "uikit";
 
 export async function addPost(
@@ -57,4 +57,22 @@ export async function fetchUserFromPost(postId) {
         return [500, { error: "Erreur serveur" }];
     }
 }
+
+export async function getAllPostsReportedFromUserId(token, userId) {
+    try {
+        const [status, data] = await getPostReportedByIdUser(token, userId);
+        return [status, data];
+    } catch (error) {
+        UIkit.notification({
+            message: 'Erreur lors de la récupération des posts report.',
+            status: 'danger',
+            pos: 'top-center',
+            timeout: 3000
+        });
+        return [500, []]; // renvoie un format cohérent même en cas d’erreur
+    }
+}
+
+
+
 
