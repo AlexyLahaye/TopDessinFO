@@ -48,7 +48,7 @@ export async function getInfoPost(userId) {
 }
 
 
-export async function getPostByIdRoute(postId) {
+export async function getPostByIdUser(postId) {
     try {
         const response = await fetch(`http://localhost:3333/posts/${postId}`);
         const data = await response.json();
@@ -57,3 +57,14 @@ export async function getPostByIdRoute(postId) {
         return [500, { error: "Erreur réseau ou serveur" }];
     }
 }
+
+export async function getUserFromPost(postId) {
+    try {
+        const response = await fetch(`http://localhost:3333/posts/user-from-post/${postId}`);
+        const data = await response.json();
+        return [response.status, data];
+    } catch (error) {
+        return [500, { error: "Erreur réseau ou serveur" }];
+    }
+}
+

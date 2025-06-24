@@ -2,44 +2,38 @@ import React, { useEffect, useState } from 'react';
 import { getAllPostsRoute } from '../route/post';
 import { NavbarHorizontal, NavbarVertical } from "../component/global/navbar";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft, faChevronRight, faImages } from '@fortawesome/free-solid-svg-icons';
+import { faImages, faHeart as faHeartSolid, faThLarge, faTh } from '@fortawesome/free-solid-svg-icons';
+import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons';
+import PostMasonryGrid from '../component/global/postMasonryGrid';
+import PostFeed from '../component/global/postFeed';
 
 export default function Accueil() {
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [currentImageIndex, setCurrentImageIndex] = useState({});
+    const [displayMode, setDisplayMode] = useState("grid"); // "grid" ou "feed"
 
     useEffect(() => {
         const fetchPosts = async () => {
             try {
-                const result = await getAllPostsRoute();
-                const formatted = result[1].map(post => {
-                    const images = [post.image_1, post.image_2, post.image_3, post.image_4].filter(Boolean);
-                    return { ...post, images };
-                });
+                const [status, data] = await getAllPostsRoute();
+                if (status !== 200 || !Array.isArray(data)) throw new Error('Réponse API inattendue');
+                const formatted = data.map(p => ({
+                    ...p,
+                    images: [p.image_1, p.image_2, p.image_3, p.image_4].filter(Boolean),
+                    liked: p.liked || false
+                }));
                 setPosts(formatted);
-                setLoading(false);
-            } catch (error) {
-                console.error("Erreur lors du chargement des posts :", error);
+            } catch (err) {
+                console.error('Erreur chargement posts :', err);
+            } finally {
                 setLoading(false);
             }
         };
         fetchPosts();
     }, []);
 
-    const changeImage = (postId, direction) => {
-        setCurrentImageIndex(prev => {
-            const current = prev[postId] || 0;
-            const total = posts.find(p => p.id === postId)?.images.length || 1;
-            let newIndex = current + direction;
-            if (newIndex < 0) newIndex = total - 1;
-            if (newIndex >= total) newIndex = 0;
-            return { ...prev, [postId]: newIndex };
-        });
-    };
-
     if (loading) {
-        return <div className="uk-text-center uk-margin-large-top uk-text-muted">Chargement...</div>;
+        return <div className="loader">Chargement...</div>;
     }
 
     return (
@@ -51,46 +45,32 @@ export default function Accueil() {
                 <NavbarVertical />
             </div>
 
-            <div className="uk-container uk-margin-large-top uk-margin-left accueil-container">
 
-                {/* ✅ Titre principal */}
-                <h2 className="uk-heading-line uk-text-center uk-margin-large-bottom"><span>Accueil</span></h2>
+            {/* BOUTONS DE SWITCH AFFICHAGE */}
+            <div className="display-switcher">
+                <button
+                    className={`display-btn ${displayMode === "grid" ? "active" : ""}`}
+                    onClick={() => setDisplayMode("grid")}
+                    aria-label="Affichage grille"
+                >
+                    <FontAwesomeIcon icon={faThLarge} />
+                </button>
+                <button
+                    className={`display-btn ${displayMode === "feed" ? "active" : ""}`}
+                    onClick={() => setDisplayMode("feed")}
+                    aria-label="Affichage feed"
+                >
+                    <FontAwesomeIcon icon={faTh} />
+                </button>
+            </div>
 
-                <div className="uk-child-width-1-2@s uk-child-width-1-3@m uk-child-width-1-4@l uk-grid-small" data-uk-grid>
-                    {posts.map(post => (
-                        <div key={post.id}>
-                            <div className="post-card-no-border uk-position-relative uk-overflow-hidden uk-border-rounded uk-transition-toggle">
-                                <img
-                                    src={`http://localhost:3333/uploads/${post.images[currentImageIndex[post.id] || 0]}`}
-                                    alt="post"
-                                    className="post-img uk-transition-scale-up uk-transition-opaque"
-                                />
-
-                                {/* Description en bas */}
-                                <div className="uk-position-bottom uk-overlay uk-overlay-primary description-overlay">
-                                    <p className="uk-margin-remove">{post.description}</p>
-                                </div>
-
-                                {/* Icône image */}
-                                {post.images.length > 1 && (
-                                    <>
-                                    <span className="uk-position-bottom-right uk-label uk-margin-small image-counter">
-                                        <FontAwesomeIcon icon={faImages} /> {post.images.length}
-                                    </span>
-                                        <button className="nav-btn left" onClick={() => changeImage(post.id, -1)}>
-                                            <FontAwesomeIcon icon={faChevronLeft} />
-                                        </button>
-                                        <button className="nav-btn right" onClick={() => changeImage(post.id, 1)}>
-                                            <FontAwesomeIcon icon={faChevronRight} />
-                                        </button>
-                                    </>
-                                )}
-                            </div>
-                        </div>
-                    ))}
-                </div>
+            <div className="displayPostContainer">
+                {/* Affichage conditionnel */}
+                {displayMode === "grid"
+                    ? <PostMasonryGrid posts={posts} />
+                    : <PostFeed posts={posts} />
+                }
             </div>
         </>
     );
-
 }

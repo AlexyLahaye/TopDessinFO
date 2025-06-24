@@ -38,10 +38,14 @@ body {
 }
 
 html, body {
-  height: 100%;
+  height: auto;
+  min-height: 100vh;
   margin: 0;
   padding: 0;
   background-color: #1a0d26;
+}
+body {
+  min-height: 100vh;
 }
 
 
@@ -143,7 +147,49 @@ h6{
 
 /* ////////////////////////////////// HOME PAGE //////////////////////////////////////////////////////////////// */
 
-/* Loader */
+
+.displayPostContainer{
+  margin:0px 200px 200px 200px;
+  padding: 50px 0px 0px 0px;
+}
+
+.display-switcher {
+  position: fixed;
+  top: 150px;
+  right: 50px;
+  z-index: 50;
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
+
+.display-btn {
+  background: #25223a;
+  color: #BBB;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.65rem;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0.82;
+  transition: background 0.18s, color 0.18s;
+  outline: none;
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.09);
+}
+.display-btn.active,
+.display-btn:hover {
+  background: #f7ebff;
+  color: #a030d8;
+  opacity: 1;
+}
+
+/* Affichage petit format */
+
+/* Loader (optionnel) */
 .loader {
   text-align: center;
   font-size: 2rem;
@@ -151,112 +197,245 @@ h6{
   color: #888;
 }
 
-/* Pinterest-style grid */
-.pinterest-grid {
-  column-count: 4;
-  column-gap: 1rem;
-  padding: 1rem;
-  margin-top: 80px; /* pour que les navbars ne couvrent pas */
+/* Masonry effect */
+.pinterest-masonry {
+  column-count: 5;
+  column-gap: 14px;
+  margin: 3.5rem auto 0 auto;
+  max-width: 1800px;
+  padding: 16px;
 }
+@media (max-width: 1600px) { .pinterest-masonry { column-count: 4; } }
+@media (max-width: 1200px) { .pinterest-masonry { column-count: 3; } }
+@media (max-width: 900px)  { .pinterest-masonry { column-count: 2; } }
+@media (max-width: 600px)  { .pinterest-masonry { column-count: 1; } }
 
-@media (max-width: 1400px) {
-  .pinterest-grid {
-    column-count: 3;
-  }
-}
-@media (max-width: 992px) {
-  .pinterest-grid {
-    column-count: 2;
-  }
-}
-@media (max-width: 600px) {
-  .pinterest-grid {
-    column-count: 1;
-  }
-}
-
-/* Post Card sans fond blanc */
-.post-card {
+.masonry-card {
   break-inside: avoid;
-  position: relative;
-  border-radius: 12px;
+  margin-bottom: 16px;
+  border-radius: 20px;
+  box-shadow: 0 4px 18px 0 rgba(0,0,0,0.10), 0 1.5px 5px 0 rgba(0,0,0,0.09);
   overflow: hidden;
-  margin-bottom: 1rem;
+  background: white;
+  position: relative;
+  transition: box-shadow 0.22s;
+}
+.masonry-card:hover {
+  box-shadow: 0 10px 30px 0 rgba(0,0,0,0.18), 0 2px 8px 0 rgba(0,0,0,0.14);
 }
 
-/* Image container avec hauteur fixe */
-.post-image-container {
+.masonry-image-wrapper {
   position: relative;
   width: 100%;
-  height: 250px; /* 🔒 Taille fixe pour un rendu uniforme */
-  overflow: hidden;
+  display: block;
+  cursor: pointer;
+  background: #222233;
+}
+
+.masonry-image {
+  width: 100%;
+  display: block;
+  border-radius: 20px;
+  transition: transform 0.22s cubic-bezier(.37,.31,.55,.8);
+  object-fit: cover;
+}
+
+/* Overlay description (apparaît au survol) */
+.masonry-overlay {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  background: linear-gradient(0deg, rgba(18,18,28,0.93) 80%, rgba(18,18,28,0.04) 100%);
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.22s;
+  padding: 1rem 1.2rem 1.3rem 1.2rem;
+  font-size: 1.06rem;
+  pointer-events: none;
+  z-index: 2;
+}
+.masonry-card:hover .masonry-overlay {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Badge compteur d'images */
+.image-count-badge {
+  position: absolute;
+  bottom: 18px;
+  right: 18px;
+  background: rgba(18,18,28,0.83);
+  color: #fff;
+  border-radius: 20px;
+  font-size: 0.95rem;
+  padding: 4px 13px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Petit effet zoom image au hover */
+.masonry-card:hover .masonry-image {
+  transform: scale(1.036) rotate(-0.8deg);
+}
+
+/* Bouton like en haut à droite */
+.like-btn {
+  position: absolute;
+  top: 13px;
+  right: 13px;
+  z-index: 4;
+  background: rgba(255,255,255,0.81);
+  border-radius: 50%;
+  padding: 7px 9px 6px 9px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.10);
+  border: none;
+  transition: background 0.16s;
+  outline: none;
+  opacity: 0.85;
+}
+.like-btn:hover {
+  background: rgba(255,255,255,1);
+  opacity: 1;
+}
+.like-heart-icon {
+  font-size: 1.28rem;
+  color: #D0D0D5;
+  transition: color 0.17s;
+  vertical-align: middle;
+}
+.like-btn.liked .like-heart-icon {
+  color: #bd3a3a;
+}
+
+/* ******* FEED AFFICHAGE EN GRAND FORMAT *********** */
+
+.feed-container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 32px 0 0 0;
+}
+.feed-card {
+  background: rgba(18,18,28,0.90);
+  border-radius: 18px;
+  margin-bottom: 38px;
+  box-shadow: 0 2px 16px 0 rgba(0,0,0,0.10);
+  padding: 32px 32px 16px 32px;
+  position: relative;
+}
+
+.feed-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 9px;
+}
+.feed-avatar {
+  width: 38px; height: 38px; border-radius: 50%; display: inline-block;
+}
+.feed-username {
+  font-weight: bold; font-size: 1.27rem;
+}
+.feed-time {
+  margin-left: auto; font-size: 0.93rem; color: #b8b8c8;
+}
+.feed-description {
+  display: flex;
+  justify-content: center;
+  font-size: 1.11rem;
+  margin-bottom: 17px;
+  color: #f0f0f0;
+}
+
+.feed-main-image-wrapper {
+  width: 100%;
+  text-align: center;
+}
+.feed-main-image {
+  width: 450px;
+  max-width: 100%;
+  border-radius: 15px;
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.08);
+  margin-bottom: 13px;
+}
+.feed-thumbnails-row {
+  display: flex;
+  gap: 8px;
+  margin: 0 0 12px 0;
+}
+.feed-thumbnail {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 10px;
+  background: #181826;
+}
+
+.feed-actions {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  margin: 11px 0 0 0;
+}
+.like-btn-feed{
+  margin-right: -12px;
+}
+.feed-actions .like-btn-feed {
+  padding: 3px 7px 3px 7px;
+  background: none;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.feed-actions .like-heart-icon {
+  font-size: 1.2rem;
+  color: #D0D0D5;
+  transition: color 0.15s;
+}
+.feed-actions .like-btn-feed.liked .like-heart-icon {
+  color: #F651A0;
+}
+.feed-likes-count {
+  font-size: 1.07rem;
+  color: #9fa1b7;
+  font-weight: bold;
+}
+.feed-comments {
+  font-size: 1.13rem;
+  color: #9fa1b7;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.image-preview-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.image-preview-modal img {
+  max-width: 90%;
+  max-height: 90%;
   border-radius: 10px;
 }
 
-/* Image ajustée */
-.post-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Crop l'image proprement */
-  display: block;
-}
 
-/* Navigation buttons */
-.nav-btn {
+.preview-close {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255,255,255,0.8);
+  top: 2rem;
+  right: 2rem;
+  font-size: 2rem;
+  background: none;
+  color: white;
   border: none;
-  padding: 4px 10px;
   cursor: pointer;
-  z-index: 2;
-  border-radius: 50%;
-  font-size: 0.9rem;
-}
-
-.nav-btn.left {
-  left: 10px;
-}
-
-.nav-btn.right {
-  right: 10px;
-}
-
-/* Image counter (bottom-right icon) */
-.image-counter {
-  position: absolute;
-  bottom: 8px;
-  right: 8px;
-  background: rgba(0,0,0,0.6);
-  color: white;
-  padding: 4px 8px;
-  font-size: 0.8rem;
-  border-radius: 8px;
-}
-
-/* Description sur fond sombre en bas de l'image */
-.post-description {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.5); /* fond noir semi-transparent */
-  color: white;
-  padding: 8px 10px;
-  font-size: 0.85rem;
-  text-align: left;
-  box-sizing: border-box;
-  z-index: 1;
-}
-
-.description-overlay {
-  padding: 4px 8px;              /* Réduit le padding */
-  font-size: 0.7rem;             /* Réduit la taille du texte */
-  background: rgba(0, 0, 0, 0.5); /* Fond noir transparent */
-  max-height: 24px;              /* Hauteur maximale */
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 
@@ -352,7 +531,7 @@ Overlay
   left: 0px;
   z-index: 5;
   width: 100%;
-  height: 70px;
+  height: 65px;
 }
 
 .logoImg{
