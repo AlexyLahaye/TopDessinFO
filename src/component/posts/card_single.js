@@ -94,15 +94,7 @@ export function CardSingle(props) {
                     </div>
 
                     <div className="uk-flex">
-                        <div className="AjoutCom uk-inline">
-                            <a className="uk-form-icon" href="#" uk-icon="icon: pencil"></a>
-                            <input
-                                className="radius-Small uk-input"
-                                type="text"
-                                aria-label="Clickable icon"
-                                placeholder="Ecrire un commentaire..."
-                            />
-                        </div>
+                        <p className="uk-heading-bullet uk-text-secondary">{props.description}</p>
 
                         {/* Si post de type rank → étoiles */}
                         <div className={props.type === "rank" ? "AjoutCom uk-inline" : "uk-hidden"}>

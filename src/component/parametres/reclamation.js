@@ -58,6 +58,7 @@ export default function ReclamationMessagerie(props) {
     const handleClick = async (postId) => {
 
         const response = await recupSignalementPost(token, postId);
+        console.log(response)
 
         if (response && response.signalements) {
             const descriptions = response.signalements.map(s => s.description);

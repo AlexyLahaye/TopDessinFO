@@ -120,6 +120,7 @@ export function Posts() {
                             tokenId={id_utilisateur}
                             token={token}
                             userID={post.userId}
+                            description={post.description}
 
                             setIdSignalPost={setIdSignalPost}
                         />
