@@ -157,6 +157,7 @@ export function CardSingle(props) {
             </div>
 
 
+
         </>
 
 
