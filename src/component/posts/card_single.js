@@ -5,7 +5,13 @@ import { MultipleImage } from "./multiple_image";
 import { NotationEtoile } from "./notation_etoile";
 import { showModal } from "../../function/modal";
 
-// Affichage des différents posts en mode vignettes
+import {showModal} from "../../function/modal";
+import {Modal_Reclamation_Post} from "../modal/parametre/reclamation_post";
+
+import {Modal_Reclamation_Post} from "../modal/parametre/reclamation_post";
+import {reportCom, reportPost} from "../../function/parametre/signalement";
+
+//affichage des différents posts en mode vielles vignettes vintage
 export function CardSingle(props) {
 
     // Préfixe pour toutes les images
@@ -58,6 +64,13 @@ export function CardSingle(props) {
                                     props.setIdPostCom(props.id);
                                 }}
                             />
+                            <span className= "pointer uk-margin-small-left"  style={{ color: 'red' }}
+                                      onClick={async () =>{
+                                            const signal = await reportPost(props.token, props.tokenId , 1)
+                                      }
+                                      uk-icon="ban"></span>
+
+                                      }
                         </div>
                     </div>
 

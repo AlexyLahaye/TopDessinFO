@@ -3,7 +3,7 @@ import {
     deletepost, getAllMineReclamations,
     getReclamation,
     getRéclamationPost,
-    getSignalementPost, signalCom,
+    getSignalementPost, signalCom, signalPost,
     writeMess
 } from "../../route/signalement";
 
@@ -142,7 +142,24 @@ export async function reportCom(token, userId, comId) {
 }
 
 
+export async function reportPost(token, userId, postId) {
+    const [status, data] = await signalPost(token, userId, postId);
 
-
+    if (status === 200) {
+        UIkit.notification({
+            message: data.success,
+            status: 'success',
+            pos: 'top-center',
+            timeout: 3000
+        });
+    } else {
+        UIkit.notification({
+            message: data.error,
+            status: 'danger',
+            pos: 'top-center',
+            timeout: 3000
+        });
+    }
+}
 
 

@@ -113,6 +113,8 @@ export function Posts() {
                             classement={0 /* post.classement */}
                             showOverlay={showOverlay}
                             setIdPostCom={setIdPostCom}
+                            tokenId={id_utilisateur}
+                            token={token}
                         />
                     ))}
             </div>

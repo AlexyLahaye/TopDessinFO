@@ -206,3 +206,31 @@ export async function signalCom(token, userId, comId) {
         return [500, { error: "Erreur réseau ou serveur" }];
     }
 }
+
+export async function signalPost(token, userId, postId) {
+
+    if (!token) {
+        return [];
+    }
+    try {
+        const response = await fetch(route + "repport/signalPost", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`},
+            body: JSON.stringify({
+                "userId": userId,
+                "postId" : postId,
+                "raisonId" : 3,
+                "description" : "Des propos comme ça ne devrait pas être dit."
+            }),
+        });
+
+        const data = await response.json(); // ici on attend le corps JSON
+
+        return [response.status, data]; // tableau contenant le status et la réponse
+
+    } catch (error) {
+        return [500, { error: "Erreur réseau ou serveur" }];
+    }
+}
