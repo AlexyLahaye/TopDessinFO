@@ -67,16 +67,18 @@ export function CardSingle(props) {
                                     props.setIdPostCom(props.id);
                                 }}
                             />
-                            <span className= "pointer uk-margin-small-left"  style={{ color: 'red' }}
-                                      onClick={async () =>{
-
-                                          props.setIdSignalPost(props.id)
-                                          console.log("je set à ", props.id)
-                                          showModal("modalSignalPost")
-
-                                      }
-                                      }
-                                      uk-icon="ban"></span>
+                            {props.tokenId !== props.userID && (
+                                <span
+                                    className="pointer uk-margin-small-left"
+                                    style={{ color: 'red' }}
+                                    onClick={async () => {
+                                        props.setIdSignalPost(props.id);
+                                        console.log("je set à ", props.id);
+                                        showModal("modalSignalPost");
+                                    }}
+                                    uk-icon="ban"
+                                ></span>
+                            )}
 
 
                         </div>
@@ -92,15 +94,7 @@ export function CardSingle(props) {
                     </div>
 
                     <div className="uk-flex">
-                        <div className="AjoutCom uk-inline">
-                            <a className="uk-form-icon" href="#" uk-icon="icon: pencil"></a>
-                            <input
-                                className="radius-Small uk-input"
-                                type="text"
-                                aria-label="Clickable icon"
-                                placeholder="Ecrire un commentaire..."
-                            />
-                        </div>
+                        <p className="uk-heading-bullet uk-text-secondary">{props.description}</p>
 
                         {/* Si post de type rank → étoiles */}
                         <div className={props.type === "rank" ? "AjoutCom uk-inline" : "uk-hidden"}>

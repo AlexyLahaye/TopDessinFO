@@ -3,7 +3,7 @@ import {
     aprouvPost,
     recupRéclamationt,
     recupRéclamationtPost,
-    recupSignalementPost,
+    recupSignalementPost, recupUnPost,
     sendMess, suppPost
 } from '../../function/parametre/signalement';
 import {Link} from "react-router-dom";
@@ -15,6 +15,7 @@ import {Card} from "../utilisateur/dernier_post/card";
 import UIkit from 'uikit';
 import {deletepost} from "../../route/signalement";
 import {envoieCom} from "../../function/post/commentaire";
+import {CardSingle} from "../posts/card_single";
 
 export default function ReclamationMessagerie(props) {
 
@@ -34,6 +35,7 @@ export default function ReclamationMessagerie(props) {
     const [messages, setMessages] = useState([]);
 
     const [writeMess, setWriteMess] = useState([]);
+    const [post, setPost] = useState([]);
 
 
     const token = getToken();
@@ -56,6 +58,7 @@ export default function ReclamationMessagerie(props) {
     const handleClick = async (postId) => {
 
         const response = await recupSignalementPost(token, postId);
+        console.log(response)
 
         if (response && response.signalements) {
             const descriptions = response.signalements.map(s => s.description);
@@ -74,6 +77,12 @@ export default function ReclamationMessagerie(props) {
         setMessages(message)
         setWriteMess("")
 
+        const post = await recupUnPost(token, postId);
+        const formatted = formatPostsWithImages(post);
+        console.log(formatted)
+        setPost(formatted);
+
+
     };
 
     const handleRefresh = async () => {
@@ -83,11 +92,17 @@ export default function ReclamationMessagerie(props) {
 
     };
 
-
-
     const handleWriteMess = (event) => {
         setWriteMess(event.target.value);
     };
+
+
+    function formatPostsWithImages(posts) {
+        return posts.map(post => {
+            const images = [post.image_1, post.image_2, post.image_3, post.image_4].filter(Boolean);
+            return { ...post, images };
+        });
+    }
 
     return (
         <>
@@ -120,6 +135,26 @@ export default function ReclamationMessagerie(props) {
                                                 </Link>
                                             </strong>
                                         </p>
+
+                                        {post.length > 0 &&
+                                            post.map(post => (
+                                                    <CardSingle
+                                                        key={`post-${post.id}`}
+                                                        id={post.id}
+                                                        like={post.nb_like}
+                                                        com={post.nb_com}
+                                                        description={post.description}
+                                                        images={post.images}
+                                                        nbImage={post.images.length}
+                                                        type={post.type}
+                                                        note={4 /* post.note */}
+                                                        isLike={false /* post.is_like */}
+                                                        classement={0 /* post.classement */}
+                                                        tokenId={idToken}
+                                                        token={token}
+                                                        context={"procédure_en_cours"}
+                                                    />
+                                                ))}
 
                                         <hr className="uk-divider-icon"/>
                                         <div className="uk-flex uk-flex-around">
