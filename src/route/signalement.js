@@ -234,3 +234,31 @@ export async function signalPost(token, userId, postId) {
         return [500, { error: "Erreur réseau ou serveur" }];
     }
 }
+
+export async function createReclamation(token, userId, postId, commentaire) {
+
+    if (!token) {
+        return [];
+    }
+    try {
+        const response = await fetch(route + "repport/creaReclamation", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`},
+            body: JSON.stringify({
+                "userId": userId,
+                "postId": postId,
+                "commentaire": commentaire,
+                "type": 0
+            }),
+        });
+
+        const data = await response.json(); // ici on attend le corps JSON
+
+        return [response.status, data]; // tableau contenant le status et la réponse
+
+    } catch (error) {
+        return [500, { error: "Erreur réseau ou serveur" }];
+    }
+}

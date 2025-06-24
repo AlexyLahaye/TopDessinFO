@@ -10,6 +10,7 @@ import {
 } from "../../function/parametre/signalement";
 import {getID, getToken} from "../../function/token";
 import {Link} from "react-router-dom";
+import {CardSingle} from "../posts/card_single";
 
 
 export function Procedure_en_Cours(props) {
@@ -44,7 +45,7 @@ export function Procedure_en_Cours(props) {
         }
 
         fetchSignalements();
-    }, [ props.token]);
+    }, [ props.token, props.refresh]);
 
 
     //La fonction appelée quand on clique sur un item
@@ -100,6 +101,38 @@ export function Procedure_en_Cours(props) {
                                     <div className="uk-container uk-margin-top uk-accordion-content">
 
                                         <div className="messagerieReclamation uk-card uk-card-default uk-card-body uk-margin messagerie-container">
+
+
+                                            <div className="uk-flex uk-flex-right uk-margin-small">
+                                                <div className="">
+
+
+                                                    {props.posts.length > 0 &&
+                                                        props.posts
+                                                            .filter(post => post.id === recla.postId)
+                                                            .map((post, cpt) => (
+                                                                <CardSingle
+                                                                    key={post.id}
+                                                                    id={post.id}
+                                                                    like={post.nb_like}
+                                                                    com={post.nb_com}
+                                                                    description={post.description}
+                                                                    images={post.images}
+                                                                    nbImage={post.images.length}
+                                                                    type={post.type}
+                                                                    note={4 /* post.note */}
+                                                                    isLike={false /* post.is_like */}
+                                                                    classement={0 /* post.classement */}
+                                                                    tokenId={idToken}
+                                                                    token={token}
+                                                                    context={"procédure_en_cours"}
+
+                                                                />
+                                                            ))
+                                                    }
+                                                </div>
+
+                                            </div>
 
 
                                             {messages.length > 0 &&

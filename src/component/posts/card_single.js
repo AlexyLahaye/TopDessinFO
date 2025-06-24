@@ -18,7 +18,8 @@ export function CardSingle(props) {
     const formattedImages = props.images?.map(img => `${BASE_URL}${img}`) || [];
 
     return (
-        <div className="cardPost uk-margin-bottom uk-margin-top">
+        <>
+        <div className={props.context !==  "procédure_en_cours"  ? "cardPost uk-margin-bottom uk-margin-top" : "uk-hidden"}>
             <div className="medaillePost">
                 <img src="img/badge2.png" className={props.classement === 1 ? "" : "uk-hidden"} alt="Concours 1" />
                 <img src="img/badge15.png" className={props.classement === 3 ? "" : "uk-hidden"} alt="Concours 3" />
@@ -104,12 +105,48 @@ export function CardSingle(props) {
                         {props.description}
                     </div>
                     <div className="uk-flex uk-flex-center uk-margin-top">
-                        <button className="uk-button uk-button-danger" onClick={() => showModal("modalReclamationPost")}>
+                        <button className="uk-button uk-button-danger"
+                                onClick={() => {
+                                    showModal("modalReclamationPost");
+                                    props.setPostReclaId(props.id);
+                        }}>
                             Porter réclamation
                         </button>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div className={props.context === "procédure_en_cours" ? "cardPost uk-margin-bottom uk-margin-top" : "uk-hidden"}>
+            <div className="medaillePost">
+                <img src="img/badge2.png" className={props.classement === 1 ? "" : "uk-hidden"} alt="Concours 1" />
+                <img src="img/badge15.png" className={props.classement === 3 ? "" : "uk-hidden"} alt="Concours 3" />
+            </div>
+            <div className="cardenfant uk-card ">
+
+                {/* Affichage image unique ou multiple */}
+                {props.nbImage > 1 ? (
+                    <MultipleImage images={formattedImages} />
+                ) : (
+                    <div className="img uk-card-media-top">
+                        <div data-uk-lightbox>
+                            <a href={formattedImages[0]}>
+                                <img src={formattedImages[0]} alt="" />
+                            </a>
+                        </div>
+                    </div>
+                )}
+
+                <div>
+                    {props?.description}
+                </div>
+
+            </div>
+
+        </div>
+
+
+        </>
+
     );
 }

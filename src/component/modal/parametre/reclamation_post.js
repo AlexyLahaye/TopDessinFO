@@ -4,6 +4,7 @@ import {setVar, updateInfoReseaux} from "../../../function/utilisateur/reseaux";
 import {getToken} from "../../../function/token";
 
 import {hideModal} from "../../../function/modal";
+import {creaRecla} from "../../../function/parametre/signalement";
 
 // POur fonctionner ce composant à besoin d'être appelé par la fonction :
 //
@@ -21,9 +22,11 @@ export function Modal_Reclamation_Post(props) {
     const [success, setSuccess] = useState(false);
     const [messSuccess, setMessSuccess] = useState("");
 
+    const [explication, setExplication] = useState('');
+
     return (<>
 
-            {props.id_utilisateur !== undefined && (
+            {props.tokenId !== undefined && (
 
                 <>
 
@@ -54,8 +57,14 @@ export function Modal_Reclamation_Post(props) {
                                         Tout propos insultant ou tout manque de respect envers l’équipe de modération entraînera un bannissement temporaire.
                                     </div>
                                     <div className="uk-margin">
-                                        <textarea className=" uk-textarea inputModif" rows="7" placeholder="Explication"
-                                                  aria-label="Explication"></textarea>
+                                       <textarea
+                                           className="uk-textarea inputModif"
+                                           rows="7"
+                                           placeholder="Explication"
+                                           aria-label="Explication"
+                                           value={explication}
+                                           onChange={(e) => setExplication(e.target.value)}
+                                       ></textarea>
                                     </div>
 
                                 </div>
@@ -77,8 +86,11 @@ export function Modal_Reclamation_Post(props) {
                                 <button
                                     className="uk-button uk-button-primary"
                                     type="button"
-                                    onClick={ () => {
-                                        console.log("je click");
+                                    onClick={ async () => {
+
+                                        const recla = await creaRecla(props.token , props.tokenId, props.postReclaId, explication);
+                                        props.setRefresh(!props.refresh);
+                                        hideModal("modalReclamationPost");
                                         }}
                                 >
                                     Réclamer
@@ -90,7 +102,6 @@ export function Modal_Reclamation_Post(props) {
                 </>
 
             )}
-
 
 
         </>
