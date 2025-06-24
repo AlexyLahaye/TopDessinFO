@@ -18,6 +18,9 @@ export function Signalement(props) {
     const [success, setSuccess] = useState(false);
     const [messSuccess, setMessSuccess] = useState("");
 
+
+    const [postReclaId, setPostReclaId] = useState("");
+
     const token = sessionStorage.getItem("token");
     const id_utilisateur = getID();
 
@@ -65,18 +68,34 @@ export function Signalement(props) {
                                     {props.posts.length > 0 &&
                                         props.posts.map((post, cpt) => {
                                             return (
-                                                <CardSingle id={post.id} like={post.nbLike} com={post.nbCom} images={post.image}  nbImage={post.nbImage} type={post.type}
-                                                            note={post.note} isLike={post.is_like} classement={post.classement} description={post.Description} context={"parametre_mine"}/>
+
+                                            <CardSingle
+                                                key={post.id}
+                                                id={post.id}
+                                                like={post.nb_like}
+                                                com={post.nb_com}
+                                                images={post.images}
+                                                nbImage={post.images.length}
+                                                type={post.type}
+                                                note={4 /* post.note */}
+                                                isLike={false /* post.is_like */}
+                                                classement={0 /* post.classement */}
+                                                tokenId={id_utilisateur}
+                                                token={token}
+                                                context={"parametre_mine"}
+
+                                                setPostReclaId={setPostReclaId}
+                                            />
                                             )
                                         })
                                     }
                                 </div>
 
                                 <div>
-                                  <Procedure_en_Cours  token={token}/>
+                                  <Procedure_en_Cours  token={token}  refresh={props.refresh}  setRefresh={props.setRefresh} posts={props.posts}/>
                                 </div>
                                 <div>
-                                    <ReclamationMessagerie  token={token}/>
+                                    <ReclamationMessagerie  token={token}  refresh={props.refresh}  setRefresh={props.setRefresh}/>
                                 </div>
                             </div>
                         </div>
@@ -84,12 +103,7 @@ export function Signalement(props) {
                 </div>
             </div>
 
-
-
-
-
-
-            <Modal_Reclamation_Post id_utilisateur={id_utilisateur}/>
+            <Modal_Reclamation_Post token={token} tokenId={id_utilisateur} postReclaId={postReclaId}  refresh={props.refresh}  setRefresh={props.setRefresh}/>
 
         </>
     );

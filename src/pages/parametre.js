@@ -10,20 +10,46 @@ import {NavbarHorizontal, NavbarVertical} from "../component/global/navbar";
 import {Profil} from "../component/parametres/profil";
 import {ListeAmis} from "../component/parametres/listeAmis";
 import {Signalement} from "../component/parametres/signalement";
+import {getAllPostsReportedFromUserId} from "../function/post/CRUD";
+import {getInfoPost} from "../route/post";
+import {getID} from "../function/token";
 
 
 export function Parametre(props) {
 
     // initialisation
     const [posts, setPosts] = useState([]);
+    const [refresh, setRefresh] = useState(true);
 
+    const token = sessionStorage.getItem("token");
+    const id_utilisateur = getID();
 
     //UseEffect
     useEffect( ()=>{
-        let tab = getInfotest();
-        setPosts(tab);
+
+        async function fetchPosts() {
+                const response = await getAllPostsReportedFromUserId(token, id_utilisateur);
+                const formatted = formatPostsWithImages(response);
+                setPosts(formatted)
+        }
+
+        fetchPosts();
+
 
     }, [])
+
+    function formatPostsWithImages(posts) {
+        return posts.map(post => {
+            const images = [post.image_1, post.image_2, post.image_3, post.image_4].filter(Boolean);
+            return { ...post, images };
+        });
+    }
+
+    async function refreshPostReported(posts) {
+        const response = await getAllPostsReportedFromUserId(token, id_utilisateur);
+        const formatted = formatPostsWithImages(response);
+        setPosts(formatted)
+    }
 
 
     return (<>
@@ -57,7 +83,7 @@ export function Parametre(props) {
                     </div>
                     <div>
 
-                        <Signalement posts={posts}/>
+                        <Signalement posts={posts} refresh={refresh}  setRefresh={setRefresh} />
 
                     </div>
 

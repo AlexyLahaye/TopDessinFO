@@ -1,3 +1,5 @@
+import {route} from "./route";
+
 export async function addPostRoute(formData) {
     try {
         const response = await fetch("http://localhost:3333/posts/crea", {
@@ -58,14 +60,28 @@ export async function getPostByIdUser(userId) {
     }
 }
 
-export async function getPostReportedByIdUser(token, userId) {
+export async function getPostReportedByIdUser(token, userId)  {
+
+    if (!token) {
+        return [];
+    }
+
     try {
-        const response = await fetch(`http://localhost:3333/posts/${userId}/reported`);
-        const data = await response.json();
-        return [response.status, data];
-    } catch (error) {
+        const response = await fetch(route +`posts/${userId}/reported`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`}
+        })
+
+        const data = await response.json(); // ici on attend le corps JSON
+
+        return [response.status, data]; // tableau contenant le status et la réponse
+    }
+    catch (error) {
         return [500, { error: "Erreur réseau ou serveur" }];
     }
+
 }
 
 export async function getUserFromPost(postId) {
