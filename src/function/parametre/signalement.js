@@ -142,8 +142,12 @@ export async function reportCom(token, userId, comId) {
 }
 
 
-export async function reportPost(token, userId, postId) {
-    const [status, data] = await signalPost(token, userId, postId);
+export async function reportPost(token, userId, postId, description, raison) {
+
+    if(raison === 0 ){
+        raison = 1
+    }
+    const [status, data] = await signalPost(token, userId, postId,description, raison);
 
     if (status === 200) {
         UIkit.notification({
