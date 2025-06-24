@@ -21,18 +21,12 @@ export default function Browser() {
     const [token, setToken] = useState("");
     const [idUtilisateur, setIdUtilisateur]= useState(idUtilisateurCourant);
     const [showedPosts, setShowedPosts]= useState("");
-    console.log(idUtilisateur)
 
     useEffect(() => {
         const storedToken = sessionStorage.getItem("token");
         setToken(storedToken);
         setIdUtilisateur(getID());
     }, []);
-
-    useEffect(() => {
-        console.log("DANS LE BROWSER",showedPosts)
-
-    }, [showedPosts])
 
     const tokenManager = (jwtToken) => {
         setToken(jwtToken);

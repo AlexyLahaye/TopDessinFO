@@ -1,4 +1,5 @@
-import {addPostRoute} from "../../route/post";
+import {addPostRoute, getUserFromPost} from "../../route/post";
+import UIkit from "uikit";
 
 export async function addPost(
     setError,
@@ -45,3 +46,15 @@ export async function addPost(
         setMessError(data.error || "Erreur inconnue lors de la création du post.");
     }
 }
+
+export async function fetchUserFromPost(postId) {
+    try {
+        const response = await fetch(`http://localhost:3333/posts/user-from-post/${postId}`);
+        const data = await response.json();
+        return [response.status, data]; // <-- bien retourner un tableau ici !
+    } catch (error) {
+        console.error("Erreur dans fetchUserFromPost :", error);
+        return [500, { error: "Erreur serveur" }];
+    }
+}
+

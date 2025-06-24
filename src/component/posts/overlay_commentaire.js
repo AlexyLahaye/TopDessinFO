@@ -19,6 +19,8 @@ export function Overlay_Commentaire(props) {
 
     const images = props.infoPost?.images?.map(img => `${BASE_URL}${img}`) || [];
 
+    console.log("props.commentaires", props.commentaires)
+
     return (
         <>
             <div className="uk-flex uk-flex-around overlay-content allUti">
