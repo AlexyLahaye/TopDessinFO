@@ -1,4 +1,4 @@
-import {signalCom} from "../../route/signalement";
+import {getAllRaison, signalCom} from "../../route/signalement";
 import UIkit from "uikit";
 
 export async function reportCom(token, userId, comId) {
@@ -18,5 +18,17 @@ export async function reportCom(token, userId, comId) {
             pos: 'top-center',
             timeout: 3000
         });
+    }
+}
+
+
+
+export async function recupAllRaison(token) {
+    const [status, data] = await getAllRaison(token);
+
+    if (status === 200) {
+        return data.success;
+    } else {
+        return [];
     }
 }

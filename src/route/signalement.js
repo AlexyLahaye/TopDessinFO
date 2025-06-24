@@ -99,6 +99,31 @@ export async function getAllMineReclamations(token, tokenId) {
 
 }
 
+export async function getAllRaison(token) {
+
+    if (!token) {
+        return [];
+    }
+
+    try {
+        const response = await fetch(route +`repport/raisonAll`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`}
+        })
+
+        const data = await response.json(); // ici on attend le corps JSON
+
+        return [response.status, data]; // tableau contenant le status et la réponse
+    }
+    catch (error) {
+        return [500, { error: "Erreur réseau ou serveur" }];
+    }
+
+}
+
+
 //POST
 
 export async function writeMess(token, userId, postId, commentaire, type) {
@@ -207,7 +232,7 @@ export async function signalCom(token, userId, comId) {
     }
 }
 
-export async function signalPost(token, userId, postId) {
+export async function signalPost(token, userId, postId, description, raison) {
 
     if (!token) {
         return [];
@@ -221,8 +246,8 @@ export async function signalPost(token, userId, postId) {
             body: JSON.stringify({
                 "userId": userId,
                 "postId" : postId,
-                "raisonId" : 3,
-                "description" : "Des propos comme ça ne devrait pas être dit."
+                "raisonId" : raison,
+                "description" : description
             }),
         });
 

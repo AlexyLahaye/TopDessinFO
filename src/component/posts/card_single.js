@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import UIkit from 'uikit';
 import { MultipleImage } from "./multiple_image";
@@ -9,6 +9,8 @@ import {Modal_Reclamation_Post} from "../modal/parametre/reclamation_post";
 
 
 import {reportCom, reportPost} from "../../function/parametre/signalement";
+import {Modal_Signalement_Post} from "../modal/utilisateur/signalPost";
+import {getID} from "../../function/token";
 
 //affichage des différents posts en mode vielles vignettes vintage
 export function CardSingle(props) {
@@ -19,7 +21,11 @@ export function CardSingle(props) {
     // Formatage des images
     const formattedImages = props.images?.map(img => `${BASE_URL}${img}`) || [];
 
+    const token = sessionStorage.getItem("token");
+    const tokenId = getID();
+
     return (
+        <>
         <div className="cardPost uk-margin-bottom uk-margin-top">
             <div className="medaillePost">
                 <img src="img/badge2.png" className={props.classement === 1 ? "" : "uk-hidden"} alt="Concours 1" />
@@ -65,11 +71,14 @@ export function CardSingle(props) {
                             />
                             <span className= "pointer uk-margin-small-left"  style={{ color: 'red' }}
                                       onClick={async () =>{
-                                            const signal = await reportPost(props.token, props.tokenId , props.id)
+
+                                          props.setIdSignalPost(props.id)
+                                          console.log("je set à ", props.id)
+                                          showModal("modalSignalPost")
+
                                       }
                                       }
                                       uk-icon="ban"></span>
-
 
                         </div>
                     </div>
@@ -114,5 +123,7 @@ export function CardSingle(props) {
                 </div>
             </div>
         </div>
+
+        </>
     );
 }
