@@ -1,0 +1,277 @@
+/* ====== STRUCTURE GÉNÉRALE ====== */
+.page-tournois {
+    display: flex;
+    padding: 2rem;
+    gap: 2rem;
+    background-color: #0f0b1a;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* ====== COLONNE GAUCHE ====== */
+.left-column {
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+}
+
+.left-column h1 {
+    font-size: 2.3rem;
+    color: white;
+    margin-bottom: 1rem;
+}
+
+.button-group {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.btn-gradient {
+    background: linear-gradient(to right, #5f71d4, #b63842);
+    border: none;
+    padding: 0.6rem 1.4rem;
+    border-radius: 10px;
+    font-size: 1rem;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.btn-gradient:hover {
+    transform: scale(1.05);
+}
+
+.left-column h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: #b4b8ff;
+}
+
+.mes-tournois-container {
+    background-color: #201e34;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+/* ====== CARD TOURNOIS UTILISATEUR ====== */
+.tournoi-card {
+    display: flex;
+    background: radial-gradient(
+            circle at 0% 0%,
+            rgba(139, 74, 155, 0.3),  /* #8b4a9b avec 30% de transparence */
+            #1c0422
+    );
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+
+.tournoi-left {
+    padding: 1rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.tournoi-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: white;
+    margin-bottom: 0.5rem;
+}
+
+.tournoi-participants {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: white;
+}
+
+.tournoi-theme,
+.tournoi-date,
+.tournoi-place {
+    font-size: 0.85rem;
+    color: white;
+    margin-bottom: 0.4rem;
+}
+
+.tournoi-place span {
+    color: #5f71d4;
+    font-weight: 600;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    background-color: #5efc82;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 0.4rem;
+}
+
+.tournoi-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.4rem;
+}
+
+.tournoi-tag {
+    background-color: #2d2342;
+    color: white;
+    font-size: 0.7rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 999px;
+    width: fit-content;
+}
+
+.tournoi-options {
+    margin-top: 0.6rem;
+    align-self: flex-start;
+    cursor: pointer;
+    color: white;
+}
+
+/* ====== TOP IMAGES (Right part) ====== */
+.tournoi-right {
+    width: 130px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 1rem;
+}
+
+.tournoi-top-img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0 15px 15px 0;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+}
+
+.tournoi-top-img:nth-child(1) {
+    z-index: 3;
+    transform: translateX(0);
+}
+
+.tournoi-top-img:nth-child(2) {
+    z-index: 2;
+    transform: translateX(12px); /* décalage visible à droite */
+    opacity: 0.7;
+}
+
+.tournoi-top-img:nth-child(3) {
+    z-index: 1;
+    transform: translateX(24px);
+    opacity: 0.4;
+}
+
+
+
+/* ====== COLONNE DROITE ====== */
+.right-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.section-tournoi {
+    background-color: #1a1329;
+    padding: 1.2rem;
+    border-radius: 12px;
+}
+
+.section-tournoi h3 {
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: #fff;
+    margin-bottom: 1rem;
+}
+
+/* ====== SCROLL HORIZONTAL POUR TOURNOIS ====== */
+.carousel-container {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+}
+
+.carousel-container::-webkit-scrollbar {
+    height: 6px;
+}
+
+.carousel-container::-webkit-scrollbar-thumb {
+    background-color: #b4b8ff;
+    border-radius: 10px;
+}
+
+/* ====== MINI CARD TOURNOIS ====== */
+.tournoi-mini-card {
+    background-color: #b63842;
+    border-radius: 14px;
+    padding: 1rem;
+    min-width: 200px;
+    max-width: 220px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.tournoi-mini-card h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+    color: white;
+}
+
+.tournoi-mini-card .tag {
+    background-color: rgba(0, 0, 0, 0.3);
+    color: white;
+    font-size: 0.8rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 999px;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    width: fit-content;
+}
+
+.tournoi-mini-card .reward {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: white;
+    margin-top: auto;
+}
+
+
+/* === Images de fond animées (si nécessaire) ===
+.section-droite-bloc::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 120px;
+    width: 100%;
+    background: url('/img/background_wave.svg') no-repeat right bottom;
+    background-size: cover;
+    opacity: 0.2;
+    pointer-events: none;
+} */
