@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {Utilisateur} from "./utilisateur";
 import {Participation} from "./participation";
+import TimelineLogs from "./timelineLogs";
 import {Posts} from "./posts";
 import {Connexion} from "./connexion";
+import TournoisPage from "./tournois";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {getID} from "../function/token";
@@ -70,6 +72,18 @@ export default function Browser() {
                     <Route path='/parametres' element={
                         <SecuredRoute>
                             <Parametre tokenManager={tokenManager} token={token} />
+                        </SecuredRoute>
+                    } />
+
+                    <Route path='/logs' element={
+                        <SecuredRoute>
+                            <TimelineLogs tokenManager={tokenManager} token={token} />
+                        </SecuredRoute>
+                    } />
+
+                    <Route path='/tournois' element={
+                        <SecuredRoute>
+                            <TournoisPage tokenManager={tokenManager} token={token} />
                         </SecuredRoute>
                     } />
 

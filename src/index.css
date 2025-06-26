@@ -318,7 +318,7 @@ h6{
   padding: 32px 0 0 0;
 }
 .feed-card {
-  background: rgba(18,18,28,0.90);
+  background: #1f112d;
   border-radius: 18px;
   margin-bottom: 38px;
   box-shadow: 0 2px 16px 0 rgba(0,0,0,0.10);
@@ -332,6 +332,16 @@ h6{
   align-items: center;
   margin-bottom: 6px;
 }
+
+.feed-header-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  margin-left: 30px;
+  margin-bottom: 35px;
+}
+
 .feed-user {
   display: flex;
   align-items: center;
@@ -495,6 +505,9 @@ h6{
   border: none;
   cursor: pointer;
 }
+
+
+/** post partie COMMENTAIRE  */
 
 
 
@@ -1091,4 +1104,322 @@ Css pour la page parametre
 
 .ajoutCommentaire {
   padding-top: 10px;
+}
+
+/* *********************************************************************************************************************
+Css pour la page post
+ *********************************************************************************************************************** */
+.conteneurPost{
+  background-color: #1a0d26;
+}
+.cardPost{
+  width: 550px !important;
+  height : 600px !important;
+  /*height : 45em !important;*/
+  margin: auto;
+  background-color: #f2f1eb;
+  position: relative;
+}
+
+.cardenfant{
+  height: 100% !important;
+}
+.img img {
+  width: 550px;
+  height: 450px;
+  object-fit: cover; /* Ajuste l'image pour remplir l'espace */
+}
+.img{
+  border-right : 2px ridge #3c3333;
+  border-top : 2px ridge #3c3333 ;
+  border-bottom : 2px ridge #fefefe ;
+  border-left : 2px ridge #fefefe ;
+
+  margin-top : 10px;
+
+}
+
+.hidden-div {
+  visibility: hidden;
+}
+
+.topCard{
+  height: 450px !important;
+}
+
+.nbComment{
+  color :#000000;
+  margin: 10px;
+  font-size: 18px !important;
+}
+
+.AjoutCom{
+  margin: auto;
+  width: 50%;
+}
+
+.annexePost{
+  position: absolute;
+  right: 20px;
+  top: 520px;
+}
+
+.annexePost img{
+  height: 80px !important;
+}
+
+.etoile{
+  text-align: right;
+  padding-right: 10px;
+}
+
+
+.like {
+  transition: color 0.2s ease-in-out;
+}
+
+.like:hover {
+  color: #fe5152 !important; /* Changement de couleur au survol */
+}
+
+.medaillePost{
+  position: absolute;
+  top : -20px;
+  left : -35px;
+  z-index: 2;
+}
+
+.overlay-content {
+  color: white;
+  text-align: center;
+  font-size: 2rem;
+  width : 100%;
+}
+
+.conteneurCardCom{
+  height: 300px;
+}
+
+
+.imgCommentaire{
+  height : 700px;
+  position: relative;
+}
+
+.multipleImgCommentaire{
+  width: 90%;
+}
+
+.tailleMultiImgCom{
+  height: 700px !important;
+}
+
+.responsiveCommentaire{
+  width: 100% !important;
+}
+
+
+/********************************************************************************************************************************* */
+
+/* Base */
+.timeline-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #dcdcff;
+  background-color: #130f1d;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* En-tête */
+.timeline-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.timeline-h1-header {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  color: #8c76a8;
+}
+
+.timeline-header-btn {
+  background: none;
+  border: none;
+  color: #cfcfff;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  margin: 0 20px;
+}
+
+.timeline-header-btn:hover {
+  transform: scale(1.2);
+}
+
+/* Popup (modale) */
+.timeline-popup {
+  position: absolute;
+  z-index: 10;
+  bottom: 130px;
+  background: #8c76a8;
+  border-radius: 10px;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  animation: fadeIn 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translateX(-50%);
+  transition: all 0.3s ease;
+}
+
+.popup-header {
+  text-align: center;
+  color: #fff;
+  font-size: 1rem;
+  padding: 10px 20px 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.popup-header span {
+  display: block;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.popup-header small {
+  color: #c0c0ff;
+  font-size: 0.85rem;
+  display: block;
+}
+
+.popup-header button {
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+/* Flèche */
+.popup-arrow {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #8c76a8;
+}
+
+/* Image */
+.popup-image-container {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  border-radius: 0 0 10px 10px;
+}
+
+.popup-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Index (dans image) */
+.popup-index {
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px 12px 0 0;
+  font-size: 0.8rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Barre fixe en bas */
+.timeline-bar {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 35px;
+  max-width: 1500px;
+  width: 100%;
+  padding: 10px 20px;
+  z-index: 2;
+}
+
+.timeline-bar::before {
+  content: "";
+  position: absolute;
+  height: 5px;
+  width: 100%;
+  background-color: #6d597a;
+  border-radius: 3px;
+  z-index: 0;
+}
+
+/* Points */
+.timeline-point {
+  position: relative;
+  z-index: 1;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.timeline-point.has-data {
+  background-color: #8c76a8;
+  width: 16px;
+  height: 16px;
+}
+
+.timeline-point.no-data {
+  background-color: #8c76a8;
+  opacity: 0.5;
+  width: 10px;
+  height: 10px;
+}
+
+.timeline-point.active {
+  transform: scale(1.3);
+  border: 2px solid #fff;
+  background-color: #edb129;
+  box-shadow: 0 0 10px #ffd76f;
+}
+
+.timeline-point:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 8px #b4aaff;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
