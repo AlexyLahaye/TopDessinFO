@@ -27,6 +27,31 @@ root.render(
         <Browser />
     </React.StrictMode>
 );
+// Corrige l'erreur ResizeObserver en bloquant l'erreur globale
+window.addEventListener("error", (e) => {
+    if (e.message === "ResizeObserver loop completed with undelivered notifications.") {
+        const overlay = document.getElementById('webpack-dev-server-client-overlay');
+        if (overlay) {
+            overlay.style.display = 'none';
+        }
+        e.stopImmediatePropagation();
+    }
+});
+
+
+// Ignore ResizeObserver loop errors (Chrome/Edge quirk)
+const ignoreResizeObserverError = () => {
+    const resizeObserverErrRe = /^[^(ResizeObserver loop limit exceeded)]/;
+    if (window.console && (typeof window.console.warn === 'function')) {
+        const originalWarn = console.warn;
+        console.warn = function (...args) {
+            if (typeof args[0] === 'string' && args[0].includes('ResizeObserver')) return;
+            originalWarn.apply(console, args);
+        };
+    }
+};
+ignoreResizeObserverError();
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

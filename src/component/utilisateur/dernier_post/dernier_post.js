@@ -1,16 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import {Card} from "./card";
+import {showModal} from "../../../function/modal";
+import {useNavigate} from "react-router-dom";
+import {route} from "../../../route/route";
 
 export function Dernier_Post(props) {
 
     // initialisation
     const [posts, setPosts] = useState([]);
+    const navigate = useNavigate();
 
     //UseEffect
     useEffect( ()=>{
         setPosts(props.posts);
-
     }, [props.posts])
+
+    function handleShowAllPosts() {
+        sessionStorage.setItem("userIdSelected", props.userId);
+    }
 
     return (<>
             <div className="travail  participationConteneur uk-container-large">
@@ -19,17 +26,17 @@ export function Dernier_Post(props) {
                     <div className=" partieTitre radius-Small backgroundViolet uk-border-rounded">
                         <div className="conTitreParti uk-flex uk-align-center">
                             <div>
-                                <h2 className="uk-padding-small uk-padding-remove"> DERNIERS POSTS</h2>
+                                <h2 className="uk-padding-small uk-padding-remove"> DERNIERS POSTS  <button uk-icon="icon: plus-circle" onClick={() =>{ showModal("modalAjoutPost")}}></button></h2>
                             </div>
                             <div data-uk-lightbox className="pointer">
 
                                 <div data-uk-lightbox>
                                     <a className="show_all"
-                                        href="http://localhost:3000/post"
-                                        data-type="iframe">Show all</a>
+                                       href="/post"
+                                       data-type="iframe"
+                                       onClick={handleShowAllPosts}>Show all</a>
                                 </div>
                             </div>
-
 
                         </div>
                     </div>
@@ -45,9 +52,8 @@ export function Dernier_Post(props) {
 
                                 {posts.length > 0 &&
                                     posts.map((post, cpt) => {
-
                                         return (
-                                            <Card id={post.id} chemin={post.chemin}/>
+                                            <Card id={post.id} chemin={route +`uploads/${post.image_1}`} />
                                         )
                                     })
                                 }
