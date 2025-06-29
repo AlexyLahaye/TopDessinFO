@@ -53,7 +53,7 @@ export function NavbarHorizontal(props) {
                             </Link>
                         </li>
                         <li>
-                            <Link to={`/utilisateur/${pseudoCurrentUser}`+`#${idCurrentUser}`} className="aNavVerti">
+                            <Link to={`/utilisateur/${idCurrentUser}`} className="aNavVerti">
                                 <FontAwesomeIcon icon="fa-solid fa-user-pen" size="2xl" />
                             </Link>
                         </li>

@@ -51,7 +51,7 @@ export default function Browser() {
                         </SecuredRoute>
                     } />
 
-                    <Route path="/utilisateur/:pseudo" element={
+                    <Route path="/utilisateur/:userId" element={
                         <SecuredRoute token={token}>
                             <Utilisateur idCurrentUser={idUtilisateurCourant} setShowedPosts={setShowedPosts}/>
                         </SecuredRoute>

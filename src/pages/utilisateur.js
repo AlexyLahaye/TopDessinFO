@@ -12,7 +12,7 @@ import {Modal_Add_Post} from "../component/modal/utilisateur/addPost";
 
 import{getInfoReseaux} from "../function/utilisateur/reseaux"
 import{getInfoNonSensible} from "../function/utilisateur/info"
-import {useLocation} from "react-router-dom";
+import {useLocation, useParams} from "react-router-dom";
 import {getInfoPost} from "../route/post";
 
 
@@ -44,9 +44,7 @@ export function Utilisateur(props) {
 
     const token = sessionStorage.getItem("token");
 
-    const location = useLocation();         // contient aussi le fragment
-
-    const userId = location.hash ? location.hash.slice(1) : null;
+    const { userId } = useParams();
     // slice(1) enlève "#" pour ne garder que "42"
     //Vérif si la page appartien à l'utilisateur actif
     let isCurrentUser = false;
