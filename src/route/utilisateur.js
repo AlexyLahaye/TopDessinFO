@@ -28,7 +28,7 @@ export async function getReseaux(token, id_utilisateur) {
 
 export async function getInfoNS(token, id_utilisateur) {
     try {
-        const response = await fetch(`${route}users/info/${id_utilisateur}`, {
+        const response = await fetch(route + `users/info/${id_utilisateur}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
