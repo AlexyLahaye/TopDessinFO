@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {Card} from "./card";
 import {showModal} from "../../../function/modal";
 import {useNavigate} from "react-router-dom";
+import {route} from "../../../route/route";
 
 export function Dernier_Post(props) {
 
@@ -52,7 +53,7 @@ export function Dernier_Post(props) {
                                 {posts.length > 0 &&
                                     posts.map((post, cpt) => {
                                         return (
-                                            <Card id={post.id} chemin={`http://localhost:3333/uploads/${post.image_1}`} />
+                                            <Card id={post.id} chemin={route +`uploads/${post.image_1}`} />
                                         )
                                     })
                                 }

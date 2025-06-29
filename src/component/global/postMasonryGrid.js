@@ -5,6 +5,7 @@ import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons';
 import { getID } from '../../function/token';
 import UIkit from 'uikit';
 import {checkIfLiked, removeLike, sendLike} from "../../function/post/like";
+import {route} from "../../route/route";
 
 export default function PostMasonryGrid({ posts }) {
     const userId = getID();
@@ -45,7 +46,7 @@ export default function PostMasonryGrid({ posts }) {
                 <div key={post.id} className="masonry-card">
                     <div className="masonry-image-wrapper">
                         <img
-                            src={`http://localhost:3333/uploads/${post.images[0]}`}
+                            src={route +`uploads/${post.images[0]}`}
                             alt="post"
                             className="masonry-image"
                         />

@@ -1,5 +1,6 @@
 import {addPostRoute, getPostReportedByIdUser, getUserFromPost} from "../../route/post";
 import UIkit from "uikit";
+import {route} from "../../route/route";
 
 export async function addPost(
     setError,
@@ -49,14 +50,20 @@ export async function addPost(
 
 export async function fetchUserFromPost(postId) {
     try {
-        const response = await fetch(`http://localhost:3333/posts/user-from-post/${postId}`);
+        const response = await fetch(route + `posts/user-from-post/${postId}`, {
+            method: 'GET',
+            headers: {
+                'ngrok-skip-browser-warning': 'true'
+            }
+        });
         const data = await response.json();
-        return [response.status, data]; // <-- bien retourner un tableau ici !
+        return [response.status, data];
     } catch (error) {
         console.error("Erreur dans fetchUserFromPost :", error);
         return [500, { error: "Erreur serveur" }];
     }
 }
+
 
 export async function getAllPostsReportedFromUserId(token, userId) {
     try {

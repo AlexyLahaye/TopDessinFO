@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import "../../css/commentaire.css";
-import {getID, getPseudo} from "../../function/token";
+import {getID} from "../../function/token";
 
 
 //Pour fonctionner ce component à besoin des props suivante :
@@ -15,10 +15,12 @@ import {getID, getPseudo} from "../../function/token";
 
 export function NavbarHorizontal(props) {
 
-    // initialisation
-    const pseudoCurrentUser = getPseudo()
-    const idCurrentUser = getID()
-    //UseEffect
+    const [idCurrentUser, setIdCurrentUser] = useState(null);
+
+    useEffect(() => {
+        const id = getID();
+        if (id) setIdCurrentUser(id);
+    }, []);
 
     return (<>
 
@@ -53,7 +55,7 @@ export function NavbarHorizontal(props) {
                             </Link>
                         </li>
                         <li>
-                            <Link to={`/utilisateur/${pseudoCurrentUser}`+`#${idCurrentUser}`} className="aNavVerti">
+                            <Link to={`/utilisateur/${idCurrentUser}`} className="aNavVerti">
                                 <FontAwesomeIcon icon="fa-solid fa-user-pen" size="2xl" />
                             </Link>
                         </li>
@@ -90,7 +92,7 @@ export function NavbarVertical(props) {
                     <Link to="/taches" className="uk-padding-small aNavVerti">
                         <FontAwesomeIcon icon="fa-solid fa-list-check" size="2xl" />
                     </Link>
-                    <Link to="/concours" className="uk-padding-small aNavVerti">
+                    <Link to="/tournois" className="uk-padding-small aNavVerti">
                         <FontAwesomeIcon icon="fa-solid fa-trophy" size="2xl" />
                     </Link>
                     <Link to="/tutoriels" className="uk-padding-small aNavVerti">
