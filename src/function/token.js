@@ -28,7 +28,7 @@ export function getToken() {
     return null;
 }
 
-export function getID() {
+export async function getID() {
     const token = getToken();
     if (!token) return null;
 
