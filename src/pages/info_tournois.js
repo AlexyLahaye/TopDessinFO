@@ -9,12 +9,15 @@ import {suppCom} from "../function/post/commentaire";
 import {reportCom} from "../function/parametre/signalement";
 import {Link} from "react-router-dom";
 import {NotationEtoile} from "../component/posts/notation_etoile";
+import {recupInfoTournois} from "../function/tournois/infoTournois";
 
 
 export function Info_Tournois(props) {
 
     // initialisation
     const [infoTournois, setInfoTournois] = useState(null);
+    const [classement, setClassement] = useState(null);
+    const [juges, setJuges] = useState(null);
     const [refresh, setRefresh] = useState(true);
 
     const token = sessionStorage.getItem("token");
@@ -24,8 +27,14 @@ export function Info_Tournois(props) {
     useEffect( ()=>{
 
         async function fetchPosts() {
-            const tab = getInfotest()
+
+            const tab = await recupInfoTournois(token, 2)
+            console.log(tab)
+            const tab2 = getInfoClassement()
+            const tab3 = getInfoJuges()
             setInfoTournois(tab)
+            setClassement(tab2)
+            setJuges(tab3)
         }
 
         fetchPosts();
@@ -49,6 +58,7 @@ export function Info_Tournois(props) {
                     <div className="conteneurAllPage">
 
 
+                        <span className="voter pointer uk-label uk-margin-small-left ">Commencer à voter</span>
 
                         <div
                             className="uk-margin-large-top uk-height-large uk-background-cover uk-overflow-hidden uk-light uk-flex header_TournoisIMG"
@@ -135,7 +145,7 @@ export function Info_Tournois(props) {
 
                                             Thème : {infoTournois?.theme} <br/>
                                             Style : {infoTournois?.style} <br/>
-                                            Durée totale : <br/>
+
 
                                         </div>
                                         <div className="borderTournois text-blanc">
@@ -170,7 +180,7 @@ export function Info_Tournois(props) {
 
 
                         <div className="uk-container uk-container-medium uk-margin-auto">
-                            <h2 className="classementProv uk-text-center uk-position-absolute"> Classement provisoire</h2>
+
                             <div className="uk-flex uk-flex-center uk-flex-wrap uk-position-relative">
 
                                 {infoTournois.podium_provisoire?.length > 0 &&
@@ -207,9 +217,171 @@ export function Info_Tournois(props) {
                         </div>
 
 
+
+
                     </div>
 
-                    <div style={{ height: '200vh' }}></div>
+
+
+                    <div className="">
+
+                        <div className=" travail ">
+                            <h2 className=" uk-text-center "> * Classement provisoire *</h2>
+
+                            <div className="uk-container uk-container-medium uk-margin-auto ">
+
+
+                                {infoTournois?.monClassement !== undefined && (
+                                    <>
+                                        <div className="uk-margin-medium-top text-blanc" >
+                                            Mon classement :
+
+                                            <div className="boxclassement uk-margin-medium-top uk-flex uk-flex-around divInfoClassement">
+
+                                               <span className="monoton text-blanc uk-margin-small-left"> #23 </span>
+                                                <div className="perso-longeur-50 uk-flex uk-flex-around uk-margin-small-top">
+
+                                                    {infoTournois?.monClassement !== undefined && (
+                                                        <>
+                                                                <NotationEtoile note={infoTournois?.monClassement.originalite} />
+                                                                <NotationEtoile note={infoTournois?.monClassement.theme} />
+                                                                <NotationEtoile note={infoTournois?.monClassement.technique} />
+
+                                                        </>
+                                                    )}
+
+                                                </div>
+
+                                                <div className="userinfoClassement uk-margin-small-top perso-longeur-30 uk-text-right">
+                                                    {infoTournois?.monClassement !== undefined && (
+                                                        <>
+                                                            <Link
+                                                                to={`/utilisateur/${infoTournois?.monClassement.user.pseudo}#${infoTournois?.monClassement.user.id}`}
+                                                                className="perso-longeur-100 uk-text-center  aNavVerti uk-text-lead uk-width-1-1"
+                                                            >
+                                                                {infoTournois?.monClassement.user.pseudo}
+                                                            </Link>
+
+                                                             <img
+                                                                 className={infoTournois?.monClassement.user.icone ? "classementIcone header_user_logo icone " : "uk-hidden"}
+                                                                 src={"/img/icone/" + infoTournois?.monClassement.user.icone}
+                                                             />
+                                                        </>
+
+                                                    )}
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                        </>
+                                )}
+
+                                <div className="uk-margin-medium-top text-blanc" >
+                                    Classement :
+
+                                    <div className="containerClassement">
+                                        {classement.classement?.length > 0 &&
+                                            classement.classement.map((info, index) => (
+
+                                                <div className="boxclassement uk-margin-medium-top uk-flex uk-flex-around divInfoClassement">
+
+                                                    <span className="monoton text-blanc uk-margin-small-left"> #{info.rang} </span>
+                                                    <div className="perso-longeur-50 uk-flex uk-flex-around uk-margin-small-top">
+                                                        <NotationEtoile note={info.originalite} />
+                                                        <NotationEtoile note={info.theme} />
+                                                        <NotationEtoile note={info.technique} />
+                                                    </div>
+
+                                                    <div className="userinfoClassement uk-margin-small-top perso-longeur-30 uk-text-right ">
+                                                        <Link
+                                                            to={`/utilisateur/${info.user.pseudo}#${info.user.id}`}
+                                                            className="perso-longeur-100 uk-text-center  aNavVerti uk-text-lead uk-width-1-1"
+                                                        >
+                                                            {info.user.pseudo}
+                                                        </Link>
+
+                                                        <img
+                                                            className={info.user.icone ? "classementIcone header_user_logo icone " : "uk-hidden"}
+                                                            src={"/img/icone/" + info.user.icone}
+                                                        />
+                                                    </div>
+
+                                                </div>
+
+                                            ))}
+
+                                    </div>
+
+                                </div>
+
+
+                                <div className="uk-margin-large-top">
+
+                                    <h2 className=" uk-text-center "> L'équipe de juges </h2>
+                                </div>
+
+                                <div className="uk-flex uk-flex-center uk-margin-large-top">
+
+                                    {juges.juges?.length > 0 &&
+                                        juges.juges.map((info, index) => (
+
+
+                                            <div key={index} className=" boxClassement8 radius-Small">
+                                                <div className="uk-flex uk-flex-middle uk-margin-medium-top">
+                                                    <Link
+                                                        to={`/utilisateur/${info.user.pseudo}#${info.user.id}`}
+                                                        className="perso-longeur-100 uk-text-center  aNavVerti uk-text-lead uk-width-1-1"
+                                                    >
+                                                        {info.user.pseudo}
+                                                    </Link>
+
+                                                    <img
+                                                        className={info.user.icone ? " jugesIcone icone " : "uk-hidden"}
+                                                        src={"/img/icone/" + info.user.icone}
+                                                    />
+                                                </div>
+
+                                                <div className=" uk-flex uk-flex-center uk-position-bottom uk-margin-small-top">
+                                                    <img src="/img/rang/diamand.png" className="rangJuges"/>
+                                                </div>
+
+                                            </div>
+
+
+
+
+                                        ))}
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div className="parentVague" >
+
+                        {infoTournois?.monClassement === undefined && (
+                            <>
+                                <div className="uk-container uk-container-medium uk-margin-auto ">
+                                    <div className="btn-wrapper">
+                                        <div className="btn-like">Participer</div>
+                                    </div>
+                                </div>
+
+                            </>
+                        )}
+
+
+                        <img src="/img/back/fumee.png" className="VagueImg"/>
+
+                    </div>
+
 
 
 
@@ -226,7 +398,7 @@ function getInfotest() {
 
     var tab = {
         "banner": "jinxx.jpg",
-        "paralaxe": "arcanes_fan_art.jpg",
+        "paralaxe": "victor.jpg",
         "user": {
             "id" : 1,
             "pseudo" : "Kiunn",
@@ -281,10 +453,107 @@ function getInfotest() {
             "theme" : 4.5,
             "technique" : 5,
             "rang" : 3
-        }]
+        }],
+        "monClassement" : {
+            "user" : {
+                "id" : 1,
+                "pseudo" : "Moi !!!",
+                "icone" : "anime/fille_3.png",
+            },
+            "originalite" : 4.5,
+            "theme" : 5,
+            "technique" : 3,
+            "rang" : 2
+        }
     };
 
     return tab;
 
 }
 
+function getInfoClassement() {
+
+    var tab = {
+        "classement" : [{
+            "user" : {
+                "id" : 1,
+                "pseudo" : "Kiunn",
+                "icone" : "anime/fille_3.png",
+            },
+            "originalite" : 4.5,
+            "theme" : 5,
+            "technique" : 3,
+            "rang" : 2
+        },{
+            "user" : {
+                "id" : 1,
+                "pseudo" : "Papa Nini",
+                "icone" : "anime/gojo.png",
+            },
+            "originalite" : 5,
+            "theme" : 5,
+            "technique" : 4.7,
+            "rang" : 1
+        },{
+            "user" : {
+                "id" : 1,
+                "pseudo" : "Zazou",
+                "icone" : "animaux/lapin_rose.png",
+            },
+            "originalite" : 4,
+            "theme" : 4.5,
+            "technique" : 5,
+            "rang" : 3
+        },{
+            "user" : {
+                "id" : 1,
+                "pseudo" : "Test2",
+                "icone" : "animaux/lapin_rose.png",
+            },
+            "originalite" : 3,
+            "theme" : 3,
+            "technique" : 3,
+            "rang" : 4
+        },{
+            "user" : {
+                "id" : 1,
+                "pseudo" : "ThierryTHOMAS",
+                "icone" : "animaux/lapin_rose.png",
+            },
+            "originalite" : 3,
+            "theme" : 3,
+            "technique" : 3,
+            "rang" : 4
+        }],
+    };
+
+    return tab;
+
+}
+
+function getInfoJuges() {
+
+    var tab = {
+        "juges" : [{
+            "user" : {
+                "id" : 1,
+                "pseudo" : "ThierryTHOMAS",
+                "icone" : "animaux/lapin_rose.png"
+            }},
+            {
+                "user" : {
+                    "id" : 1,
+                    "pseudo" : "SUPERMAN",
+                    "icone" : "anime/gojo.png"
+                }},
+            {
+                "user" : {
+                    "id" : 1,
+                    "pseudo" : "Corrinnee_XXX",
+                    "icone" : "animaux/lapin_rose.png"
+                }}]
+    };
+
+    return tab;
+
+}

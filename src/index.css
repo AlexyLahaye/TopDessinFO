@@ -1528,3 +1528,94 @@ Css pour la page post
   text-align: center;  /* au cas où */
   z-index: 10;         /* pour être sûr qu’il soit au-dessus */
 }
+
+.boxclassement{
+  border : solid white 1px;
+  border-radius: 5px;
+}
+
+.monoton {
+  font-family: 'Inspiration', cursive;
+  font-size:  40px;
+}
+
+.classementIcone{
+  position : absolute;
+  top : -65px;
+  right : 10px;
+}
+
+.divInfoClassement{
+  position : relative;
+}
+
+.userinfoClassement{
+  padding-right: 70px;
+}
+
+.containerClassement{
+  height : 300px;
+  overflow: auto;
+}
+
+.voter{
+  position : fixed;
+  z-index : 4;
+  right: 25px;
+}
+
+.boxClassement8{
+  position : relative;
+  background-color: #201e34;
+  opacity: 0.9;
+  margin : 30px;
+  width : 200px;
+  height : 200px;
+  padding: 10px;
+}
+
+.rangJuges{
+  height : 100px;
+  margin-bottom: 30px;
+}
+
+.jugesIcone{
+  position : absolute;
+  top : -50px;
+}
+.parentVague{
+  position : relative;
+  overflow: hidden;
+  height: 550px;
+}
+.VagueImg{
+  position : absolute;
+
+  opacity : 0.9
+}
+
+
+.btn-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-like {
+  position : absolute;
+  top : 220px;
+  background-color: #2d89ef; /* bleu sympa */
+  color: white;
+  padding: 1rem 3rem;
+  font-size: 2rem;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.3s ease;
+  z-index: 5;
+}
+
+.btn-like:hover {
+  background-color: #1b5fad;
+}
