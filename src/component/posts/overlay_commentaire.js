@@ -4,12 +4,13 @@ import {MultipleImage} from "./multiple_image";
 import {Commentaire} from "../global/commentaire";
 import {envoieCom} from "../../function/post/commentaire";
 import {getID} from "../../function/token";
+import {route} from "../../route/route";
 
 export function Overlay_Commentaire(props) {
 
     const token = sessionStorage.getItem("token");
     const tokenId = getID();
-    const BASE_URL = "http://localhost:3333/uploads/";
+    const BASE_URL = "uploads/";
 
     const [com, setCom] = useState([]);
 
@@ -17,7 +18,7 @@ export function Overlay_Commentaire(props) {
         setCom(event.target.value);
     };
 
-    const images = props.infoPost?.images?.map(img => `${BASE_URL}${img}`) || [];
+    const images = props.infoPost?.images?.map(img => route +`${BASE_URL}${img}`) || [];
 
     console.log("props.commentaires", props.commentaires)
 

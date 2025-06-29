@@ -91,7 +91,7 @@ export function Header(props) {
 
                                 <div data-uk-lightbox>
                                     <a className="show_all"
-                                       href="http://localhost:3001/participation"
+                                       href="/participation"
                                        data-type="iframe">Show all</a>
                                 </div>
                             </div>

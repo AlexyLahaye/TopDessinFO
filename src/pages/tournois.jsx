@@ -33,9 +33,9 @@ export default function TournoisPage() {
             participants: 35,
             hashtags: ["Digital art", "Pink", "Eyes", "Face", "Skin", "Glow"],
             imagesTop: [
-                "http://localhost:3333/uploads/1750496613333-602611.jpeg",
-                "http://localhost:3333/uploads/1750496613366-609085.jpg",
-                "http://localhost:3333/uploads/1750496613363-693681.jpg"
+                "https://60fa-92-184-112-13.ngrok-free.app/uploads/1750496613333-602611.jpeg",
+                "https://60fa-92-184-112-13.ngrok-free.app/uploads/1750496613366-609085.jpg",
+                "https://60fa-92-184-112-13.ngrok-free.app/uploads/1750496613363-693681.jpg"
             ]
         },
         {
@@ -47,9 +47,9 @@ export default function TournoisPage() {
             participants: 18,
             hashtags: ["Pixel", "Retro", "Game"],
             imagesTop: [
-                "http://localhost:3333/uploads/1750689105117-647335.jpg",
-                "http://localhost:3333/uploads/1750496613333-602611.jpeg",
-                "http://localhost:3333/uploads/1750496613333-602611.jpeg"
+                "https://60fa-92-184-112-13.ngrok-free.app/uploads/1750689105117-647335.jpg",
+                "https://60fa-92-184-112-13.ngrok-free.app/uploads/1750496613333-602611.jpeg",
+                "https://60fa-92-184-112-13.ngrok-free.app/uploads/1750496613333-602611.jpeg"
             ]
         }
     ];

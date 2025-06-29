@@ -2,7 +2,7 @@ import {route} from "./route";
 
 export async function addPostRoute(formData) {
     try {
-        const response = await fetch("http://localhost:3333/posts/crea", {
+        const response = await fetch(route + "posts/crea", {
             method: 'POST',
             body: formData // ⚠️ Pas de headers ici car FormData gère les boundaries
         });
@@ -16,7 +16,7 @@ export async function addPostRoute(formData) {
 
 export async function deletePostRoute(postId) {
     try {
-        const response = await fetch(`http://localhost:3333/posts/${postId}`, {
+        const response = await fetch(route + `posts/${postId}`, {
             method: 'DELETE'
         });
 
@@ -30,7 +30,7 @@ export async function deletePostRoute(postId) {
 
 export async function getAllPostsRoute() {
     try {
-        const response = await fetch("http://localhost:3333/posts");
+        const response = await fetch(route + "posts");
         const data = await response.json();
         return [response.status, data];
     } catch (error) {
@@ -41,7 +41,7 @@ export async function getAllPostsRoute() {
 
 export async function getInfoPost(userId) {
     try {
-        const response = await fetch(`http://localhost:3333/posts/user/${userId}`);
+        const response = await fetch(route + `posts/user/${userId}`);
         const data = await response.json();
         return [response.status, data];
     } catch (error) {
@@ -52,7 +52,7 @@ export async function getInfoPost(userId) {
 
 export async function getPostByIdUser(userId) {
     try {
-        const response = await fetch(`http://localhost:3333/posts/${userId}`);
+        const response = await fetch(route + `posts/${userId}`);
         const data = await response.json();
         return [response.status, data];
     } catch (error) {
@@ -86,7 +86,7 @@ export async function getPostReportedByIdUser(token, userId)  {
 
 export async function getUserFromPost(postId) {
     try {
-        const response = await fetch(`http://localhost:3333/posts/user-from-post/${postId}`);
+        const response = await fetch(route + `posts/user-from-post/${postId}`);
         const data = await response.json();
         return [response.status, data];
     } catch (error) {

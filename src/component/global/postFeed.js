@@ -15,6 +15,7 @@ import { checkIfLiked, sendLike, removeLike, timeSince } from "../../function/po
 import { fetchUserFromPost } from "../../function/post/CRUD";
 import { recupCom } from "../../function/post/commentaire";
 import { Overlay_Commentaire } from "../posts/overlay_commentaire";
+import {route} from "../../route/route";
 
 export default function PostFeed({ posts }) {
     const [likesState, setLikesState] = useState({});
@@ -178,7 +179,7 @@ export default function PostFeed({ posts }) {
                             style={{ cursor: 'pointer' }}
                         >
                             <img
-                                src={`http://localhost:3333/uploads/${mainImages[post.id]}`}
+                                src={route +`uploads/${mainImages[post.id]}`}
                                 alt="post"
                                 className="feed-main-image"
                             />
@@ -189,7 +190,7 @@ export default function PostFeed({ posts }) {
                                 {post.images.map((img, idx) => (
                                     <img
                                         key={idx}
-                                        src={`http://localhost:3333/uploads/${img}`}
+                                        src={route + `uploads/${img}`}
                                         alt=""
                                         className="feed-thumbnail"
                                         onClick={() => changeMainImage(post.id, img)}
@@ -229,7 +230,7 @@ export default function PostFeed({ posts }) {
                         <FontAwesomeIcon icon={faXmark} />
                     </button>
                     <img
-                        src={`http://localhost:3333/uploads/${previewData.images[previewData.currentIndex]}`}
+                        src={route +`uploads/${previewData.images[previewData.currentIndex]}`}
                         alt="preview"
                     />
                 </div>

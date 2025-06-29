@@ -9,15 +9,16 @@ import {Modal_Reclamation_Post} from "../modal/parametre/reclamation_post";
 import {reportCom, reportPost} from "../../function/parametre/signalement";
 import {Modal_Signalement_Post} from "../modal/utilisateur/signalPost";
 import {getID} from "../../function/token";
+import {route} from "../../route/route";
 
 //affichage des différents posts en mode vielles vignettes vintage
 export function CardSingle(props) {
 
     // Préfixe pour toutes les images
-    const BASE_URL = "http://localhost:3333/uploads/";
+    const BASE_URL = "uploads/";
 
     // Formatage des images
-    const formattedImages = props.images?.map(img => `${BASE_URL}${img}`) || [];
+    const formattedImages = props.images?.map(img => route +`${BASE_URL}${img}`) || [];
 
     const token = sessionStorage.getItem("token");
     const tokenId = getID();
