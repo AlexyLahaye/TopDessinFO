@@ -9,7 +9,8 @@ export async function createLike(token, userId, postId) {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`
+                "Authorization": `Bearer ${token}`,
+                "ngrok-skip-browser-warning": "true"
             },
             body: JSON.stringify({ userId, postId })
         });
@@ -30,7 +31,8 @@ export async function deleteLike(token, userId, postId) {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`
+                "Authorization": `Bearer ${token}`,
+                "ngrok-skip-browser-warning": "true"
             },
             body: JSON.stringify({ userId, postId })
         });
@@ -42,7 +44,6 @@ export async function deleteLike(token, userId, postId) {
     }
 }
 
-
 // Vérifier si un utilisateur a liké un post
 export async function hasUserLiked(token, userId, postId) {
     if (!token) return [];
@@ -52,7 +53,8 @@ export async function hasUserLiked(token, userId, postId) {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`
+                "Authorization": `Bearer ${token}`,
+                "ngrok-skip-browser-warning": "true"
             }
         });
 
@@ -72,7 +74,8 @@ export async function getAllPostsLikedByUser(token, userId) {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`
+                "Authorization": `Bearer ${token}`,
+                "ngrok-skip-browser-warning": "true"
             }
         });
 
