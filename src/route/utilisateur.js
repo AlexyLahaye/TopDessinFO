@@ -12,6 +12,7 @@ export async function getReseaux(token, id_utilisateur) {
         const response = await fetch(route +`users/getReseaux/${id_utilisateur}`, {
             method: 'GET',
             headers: {
+                'ngrok-skip-browser-warning': 'true',
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`}
         })
@@ -31,6 +32,7 @@ export async function getInfoNS(token, id_utilisateur) {
         const response = await fetch(route + `users/info/${id_utilisateur}`, {
             method: 'GET',
             headers: {
+                'ngrok-skip-browser-warning': 'true',
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
             }
@@ -50,6 +52,7 @@ export async function getMailUser(token, id_utilisateur) {
         const response = await fetch(`${route}users/mail/${id_utilisateur}`, {
             method: 'GET',
             headers: {
+                'ngrok-skip-browser-warning': 'true',
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
             }
@@ -76,6 +79,7 @@ export async function updateReseaux(token, userId, instagram, twitter, discord, 
         const response = await fetch(route + "users/modifReseaux", {
             method: 'POST',
             headers: {
+                'ngrok-skip-browser-warning': 'true',
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`},
             body: JSON.stringify({
@@ -107,6 +111,7 @@ export async function updateMail(token, userId, mail) {
         const response = await fetch(route + "users/modifMail", {
             method: 'POST',
             headers: {
+                'ngrok-skip-browser-warning': 'true',
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`},
             body: JSON.stringify({
@@ -134,6 +139,7 @@ export async function updateMdp(token, userId, mdp) {
         const response = await fetch(route + "users/modifMdp", {
             method: 'POST',
             headers: {
+                'ngrok-skip-browser-warning': 'true',
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`},
             body: JSON.stringify({
@@ -161,6 +167,7 @@ export async function deleteUser(token, userId) {
         const response = await fetch(route + "users/suppUser", {
             method: 'POST',
             headers: {
+                'ngrok-skip-browser-warning': 'true',
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`},
             body: JSON.stringify({
@@ -192,6 +199,7 @@ export async function updateUser(token, userId, fields = {}) {
         const response = await fetch(`${route}users/${userId}`, {
             method: 'PATCH',
             headers: {
+                'ngrok-skip-browser-warning': 'true',
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
             },
