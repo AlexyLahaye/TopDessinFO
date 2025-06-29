@@ -13,11 +13,14 @@ import {getID} from "../../function/token";
 //la page où il est actuellement
 
 
-export async function NavbarHorizontal(props) {
+export function NavbarHorizontal(props) {
 
-    // initialisation
-    const idCurrentUser = await getID()
-    //UseEffect
+    const [idCurrentUser, setIdCurrentUser] = useState(null);
+
+    useEffect(() => {
+        const id = getID();
+        if (id) setIdCurrentUser(id);
+    }, []);
 
     return (<>
 
@@ -25,11 +28,10 @@ export async function NavbarHorizontal(props) {
             <nav className="navBarHorizontale backgroundViolet " data-uk-navbar>
                 <div className="uk-navbar-left backgroundViolet">
 
-                    <a className="uk-navbar-item uk-logo" href="/" aria-label="Back to Accueil"><img
-                        src={"/img/logo.png"} className="logoImg"/></a>
+                    <a className="uk-navbar-item uk-logo" href="/" aria-label="Back to Accueil"><img src={"/img/logo.png"} className="logoImg"/></a>
 
                     <ul className="uk-navbar-nav ulNavbar">
-                        <li>
+                        <li >
                             <div className="uk-inline uk-margin-small-bottom">
                                 <span className="uk-form-icon uk-form-icon-flip" uk-icon="icon:  search"></span>
                                 <input className="uk-input radius-Small" type="text" aria-label="Not clickable icon"/>
@@ -44,17 +46,17 @@ export async function NavbarHorizontal(props) {
                     <ul className="uk-navbar-nav EditProfilNavbar">
                         <li>
                             <Link to="/boite-outil" className="aNavVerti">
-                                <FontAwesomeIcon icon="fa-solid fa-toolbox" size="2xl"/>
+                                <FontAwesomeIcon icon="fa-solid fa-toolbox" size="2xl" />
                             </Link>
                         </li>
                         <li>
                             <Link to="/parametres" className="aNavVerti">
-                                <FontAwesomeIcon icon="fa-solid fa-gears" size="2xl"/>
+                                <FontAwesomeIcon icon="fa-solid fa-gears" size="2xl" />
                             </Link>
                         </li>
                         <li>
                             <Link to={`/utilisateur/${idCurrentUser}`} className="aNavVerti">
-                                <FontAwesomeIcon icon="fa-solid fa-user-pen" size="2xl"/>
+                                <FontAwesomeIcon icon="fa-solid fa-user-pen" size="2xl" />
                             </Link>
                         </li>
                     </ul>

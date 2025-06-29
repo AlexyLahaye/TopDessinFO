@@ -45,7 +45,7 @@ export function Utilisateur(props) {
     const token = sessionStorage.getItem("token");
 
     const { userId } = useParams();
-    // slice(1) enlève "#" pour ne garder que "42"
+    console.log("CA MARCHE PAS ?",userId)
     //Vérif si la page appartien à l'utilisateur actif
     let isCurrentUser = false;
 

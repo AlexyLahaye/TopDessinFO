@@ -28,13 +28,19 @@ export function getToken() {
     return null;
 }
 
-export async function getID() {
+export function getID() {
     const token = getToken();
     if (!token) return null;
 
-    const decoded = jwtDecode(token);
-    return decoded.id;
+    try {
+        const decoded = jwtDecode(token);
+        return decoded.id;
+    } catch (err) {
+        console.error("❌ Token invalide :", err);
+        return null;
+    }
 }
+
 
 export function getPseudo(){
     const token = getToken();
