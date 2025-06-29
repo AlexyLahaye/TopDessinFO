@@ -7,7 +7,7 @@ import {NavbarHorizontal, NavbarVertical} from "../component/global/navbar";
 import {getID} from "../function/token";
 import {suppCom} from "../function/post/commentaire";
 import {reportCom} from "../function/parametre/signalement";
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import {NotationEtoile} from "../component/posts/notation_etoile";
 import {recupInfoTournois} from "../function/tournois/infoTournois";
 
@@ -22,13 +22,14 @@ export function Info_Tournois(props) {
 
     const token = sessionStorage.getItem("token");
     const id_utilisateur = getID();
+    const { id } = useParams();
 
     //UseEffect
     useEffect( ()=>{
 
         async function fetchPosts() {
 
-            const tab = await recupInfoTournois(token, 2)
+            const tab = await recupInfoTournois(token, id)
             console.log(tab)
             const tab2 = getInfoClassement()
             const tab3 = getInfoJuges()
@@ -46,7 +47,7 @@ export function Info_Tournois(props) {
 
     return (<>
 
-            {infoTournois !== null && (
+            {infoTournois !== null && infoTournois !== undefined && (
                 <>
                     <div className="navBarHorizontale">
                         <NavbarHorizontal />
@@ -388,6 +389,16 @@ export function Info_Tournois(props) {
 
                 </>
             )}
+
+            {infoTournois === null &&
+                (
+                    <h2>Tournois introuvable</h2>
+
+                )
+
+            }
+
+
 
         </>
     );

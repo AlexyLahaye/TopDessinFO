@@ -9,7 +9,7 @@ export async function recupInfoTournois(token , tournoisId) {
     if(status === 200 ){
         return data.success
     }else{
-        return data.error
+        return null
     }
 
 }
