@@ -92,7 +92,7 @@ export function NavbarVertical(props) {
                     <Link to="/taches" className="uk-padding-small aNavVerti">
                         <FontAwesomeIcon icon="fa-solid fa-list-check" size="2xl" />
                     </Link>
-                    <Link to="/concours" className="uk-padding-small aNavVerti">
+                    <Link to="/tournois" className="uk-padding-small aNavVerti">
                         <FontAwesomeIcon icon="fa-solid fa-trophy" size="2xl" />
                     </Link>
                     <Link to="/tutoriels" className="uk-padding-small aNavVerti">
