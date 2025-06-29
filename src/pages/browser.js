@@ -12,6 +12,7 @@ import {getID} from "../function/token";
 import SecuredRoute from "./securedRoute";
 import {Parametre} from "./parametre";
 import Accueil from "./accueil";
+import {Info_Tournois} from "./info_tournois";
 
 
 
@@ -86,6 +87,14 @@ export default function Browser() {
                             <TournoisPage tokenManager={tokenManager} token={token} />
                         </SecuredRoute>
                     } />
+
+                    <Route path='/tournois/:id' element={
+                        <SecuredRoute>
+                            <Info_Tournois token={token} />
+                        </SecuredRoute>
+                    } />
+
+
 
 
                 </Routes>
