@@ -95,6 +95,7 @@ export async function getTournoiById( token, id) {
         const response = await fetch(route + `tournois/getTournoi/${id}`, {
             method: 'GET',
             headers: {
+                'ngrok-skip-browser-warning': 'true',
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
             }
