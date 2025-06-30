@@ -111,3 +111,21 @@ export async function getUserFromPost(postId) {
         return [500, { error: "Erreur réseau ou serveur" }];
     }
 }
+
+export async function getFollowedPostsRoute(userId) {
+    try {
+        const response = await fetch(route + `posts/followed/${userId}`, {
+            method: 'GET',
+            headers: {
+                'ngrok-skip-browser-warning': 'true',
+                'Content-Type': 'application/json'
+            }
+        });
+
+        const data = await response.json();
+        return [response.status, data];
+    } catch (error) {
+        return [500, { error: "Erreur réseau ou serveur" }];
+    }
+}
+

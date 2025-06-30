@@ -42,7 +42,7 @@ html, body {
   min-height: 100vh;
   margin: 0;
   padding: 0;
-  background-color: #1a0d26;
+  background-color: #1a0d26 !important;
 }
 body {
   min-height: 100vh;
@@ -195,6 +195,15 @@ h6{
   font-size: 2rem;
   padding: 2rem;
   color: #888;
+}
+
+.text-blanc{
+  color : #c8cbd3 !important;
+}
+
+.padding-right-15{
+  padding-right: 15px;
+  padding-top: 5px;
 }
 
 /* Masonry effect */
@@ -1422,4 +1431,191 @@ Css pour la page post
     opacity: 1;
     transform: scale(1);
   }
+}
+
+
+/* *********************************************************************************************************/
+/*                                                Tournois                                                 */
+/* *********************************************************************************************************/
+
+.headerTournois{
+  position: relative;
+}
+.header_TournoisIMG {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 650px;
+  object-fit: cover; /* Adapte l'image sans la déformer */
+  z-index: 0;
+  margin-top : 65px;
+}
+.prezTournois {
+  position: absolute;
+  z-index: 1;
+  opacity: 0.9;
+  width: 30em;
+  height: 130px;
+
+  top: 150px;
+  left: 30px; /* fixe la distance par rapport à la gauche */
+  transform: translateY(-50%); /* centre verticalement seulement */
+}
+
+.AvatarTournois{
+  position : relative;
+}
+
+.avatarPlacement{
+  position : absolute;
+  top : -50px;
+  left : -10px;
+}
+
+.iconeTournois{
+  height: 40px;
+}
+
+.corpTournois{
+  margin-top: 420px;
+}
+
+.borderTournois{
+  width : 400px;
+  height : 80px;
+  padding : 10px;
+  border-left: 10px solid;
+  border-image: linear-gradient(to bottom, #8c52ff , #ff5757) 1;
+}
+
+.paralaxe{
+  opacity : 0.7 !important;
+}
+
+.boxClassement{
+
+  position : relative;
+  background-color: #1a0d26;
+  opacity: 0.9;
+  margin : 30px;
+  margin-top : 120px !important;
+  width : 250px;
+  height : 280px;
+}
+
+.boxClassement1{
+  position : relative;
+  background-color: #1a0d26;
+  opacity: 0.9;
+  margin : 30px;
+  margin-top : 80px !important;
+  width : 250px;
+  height : 320px;
+}
+
+.tournoisIcone{
+  position : absolute;
+  top : -55px;
+}
+
+.classementProv.uk-position-absolute {
+  position: absolute;
+  top: 0;              /* ou la distance verticale que tu souhaites */
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;  /* pour que la largeur soit celle du texte */
+  text-align: center;  /* au cas où */
+  z-index: 10;         /* pour être sûr qu’il soit au-dessus */
+}
+
+.boxclassement{
+  border : solid white 1px;
+  border-radius: 5px;
+}
+
+.monoton {
+  font-family: 'Inspiration', cursive;
+  font-size:  40px;
+}
+
+.classementIcone{
+  position : absolute;
+  top : -65px;
+  right : 10px;
+}
+
+.divInfoClassement{
+  position : relative;
+}
+
+.userinfoClassement{
+  padding-right: 70px;
+}
+
+.containerClassement{
+  height : 300px;
+  overflow: auto;
+}
+
+.voter{
+  position : fixed;
+  z-index : 4;
+  right: 25px;
+}
+
+.boxClassement8{
+  position : relative;
+  background-color: #201e34;
+  opacity: 0.9;
+  margin : 30px;
+  width : 200px;
+  height : 200px;
+  padding: 10px;
+}
+
+.rangJuges{
+  height : 100px;
+  margin-bottom: 30px;
+}
+
+.jugesIcone{
+  position : absolute;
+  top : -50px;
+}
+.parentVague{
+  position : relative;
+  overflow: hidden;
+  height: 550px;
+}
+.VagueImg{
+  position : absolute;
+
+  opacity : 0.9
+}
+
+
+.btn-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-like {
+  position : absolute;
+  top : 220px;
+  background-color: #2d89ef; /* bleu sympa */
+  color: white;
+  padding: 1rem 3rem;
+  font-size: 2rem;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.3s ease;
+  z-index: 5;
+}
+
+.btn-like:hover {
+  background-color: #1b5fad;
 }

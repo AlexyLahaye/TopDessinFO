@@ -163,8 +163,8 @@ export function Modal_Add_Post({ idUtilisateur, rechargePage, setRechargePage })
                                 description,
                                 categorie,
                                 type,
-                                "", // inputEtat supprimé de l'UI, mais laissé vide ici si requis par backend
-                                hashtags.split(",").map(tag => tag.trim()), // transformation simple en tableau
+                                "", // etat
+                                hashtags.split(",").map(tag => tag.trim()),
                                 images,
                                 idUtilisateur,
                                 () => {
@@ -173,12 +173,15 @@ export function Modal_Add_Post({ idUtilisateur, rechargePage, setRechargePage })
                                     setType("");
                                     setHashtags("");
                                     setImages([]);
-                                }
+                                },
+                                setRechargePage,
+                                rechargePage
                             );
                         }}
                     >
                         Publier
                     </button>
+
                 </div>
             </div>
         </div>

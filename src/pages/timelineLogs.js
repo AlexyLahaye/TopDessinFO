@@ -9,19 +9,19 @@ const sampleData = {
             id: 1,
             title: "Ajout post",
             date: "2024-11-29",
-            image: "https://60fa-92-184-112-13.ngrok-free.app/uploads/1750689105117-647335.jpg",
+            image: "http://localhost:3333/uploads/1750689105117-647335.jpg",
         },
         {
             id: 2,
             title: "Participation au concours",
             date: "2024-11-20",
-            image: "https://60fa-92-184-112-13.ngrok-free.app/uploads/1750688646679-898577.jpg",
+            image: "http://localhost:3333/uploads/1750688646679-898577.jpg",
         },
         {
             id: 4,
             title: "Ajout post (bis)",
             date: "2024-11-29",
-            image: "https://60fa-92-184-112-13.ngrok-free.app/uploads/1750702828620-891548.jpg",
+            image: "http://localhost:3333/uploads/1750702828620-891548.jpg",
         },
     ],
     "2024-10": [
@@ -29,7 +29,7 @@ const sampleData = {
             id: 3,
             title: "Like d'un post",
             date: "2024-10-15",
-            image: "https://60fa-92-184-112-13.ngrok-free.app/uploads/1750702828620-891548.jpg",
+            image: "http://localhost:3333/uploads/1750702828620-891548.jpg",
         },
     ],
 };
