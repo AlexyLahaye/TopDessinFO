@@ -1,12 +1,54 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Modal_Add_Tournoi } from "../component/modal/tournois/addTournois";
 import "../css/tournois.css";
 import TournoisCard from "../component/tournois/tournoisCard";
 import CarouselTournois from "../component/tournois/carouselTournois";
-import {NavbarHorizontal, NavbarVertical} from "../component/global/navbar";
+import { NavbarHorizontal, NavbarVertical } from "../component/global/navbar";
+import { showModal } from "../function/modal";
+import { getID } from "../function/token";
+import { getAllTournoisRoute } from "../route/tournois";
 
 export default function TournoisPage() {
+    const [topTournois, setTopTournois] = useState([]);
+    const [officiel, setOfficiel] = useState([]);
+    const [hasard, setHasard] = useState([]);
+    const [loading, setLoading] = useState(true);
 
-    // Simulation de données de tournoi
+    useEffect(() => {
+        const fetchTournois = async () => {
+            const [status, data] = await getAllTournoisRoute();
+            if (status === 200 && Array.isArray(data)) {
+                // Prioriser les filtres : officiel > hasard > en feu
+                const officielList = [];
+                const hasardList = [];
+                const enFeuList = [];
+
+                data.forEach(tournoi => {
+                    switch (tournoi.couleur) {
+                        case "#5f71d4":
+                            officielList.push(tournoi);
+                            break;
+                        case "#ba71c8":
+                            hasardList.push(tournoi);
+                            break;
+                        case "#d44545":
+                        default:
+                            enFeuList.push(tournoi);
+                            break;
+                    }
+                });
+
+                setOfficiel(officielList.slice(0, 3));
+                setHasard(hasardList.slice(0, 3));
+                setTopTournois(enFeuList.slice(0, 6)); // ⚠️ ne pas mélanger avec les autres
+            }
+            setLoading(false);
+        };
+
+        fetchTournois();
+    }, []);
+
+
     const fakeTournois = [
         {
             id: 1,
@@ -35,139 +77,11 @@ export default function TournoisPage() {
                 "http://localhost:3333/uploads/1750496613333-602611.jpeg",
                 "http://localhost:3333/uploads/1750496613333-602611.jpeg"
             ]
-        },
-        {
-            id: 2,
-            mode: "FUN",
-            theme: "RETRO",
-            dateFin: "22/01/2025",
-            place: 2,
-            participants: 18,
-            hashtags: ["Pixel", "Retro", "Game"],
-            imagesTop: [
-                "http://localhost:3333/uploads/1750689105117-647335.jpg",
-                "http://localhost:3333/uploads/1750496613333-602611.jpeg",
-                "http://localhost:3333/uploads/1750496613333-602611.jpeg"
-            ]
-        },
-        {
-            id: 2,
-            mode: "FUN",
-            theme: "RETRO",
-            dateFin: "22/01/2025",
-            place: 2,
-            participants: 18,
-            hashtags: ["Pixel", "Retro", "Game"],
-            imagesTop: [
-                "http://localhost:3333/uploads/1750689105117-647335.jpg",
-                "http://localhost:3333/uploads/1750496613333-602611.jpeg",
-                "http://localhost:3333/uploads/1750496613333-602611.jpeg"
-            ]
-        },
-        {
-            id: 2,
-            mode: "FUN",
-            theme: "RETRO",
-            dateFin: "22/01/2025",
-            place: 2,
-            participants: 18,
-            hashtags: ["Pixel", "Retro", "Game"],
-            imagesTop: [
-                "http://localhost:3333/uploads/1750689105117-647335.jpg",
-                "http://localhost:3333/uploads/1750496613333-602611.jpeg",
-                "http://localhost:3333/uploads/1750496613333-602611.jpeg"
-            ]
-        },
-        {
-            id: 2,
-            mode: "FUN",
-            theme: "RETRO",
-            dateFin: "22/01/2025",
-            place: 2,
-            participants: 18,
-            hashtags: ["Pixel", "Retro", "Game"],
-            imagesTop: [
-                "http://localhost:3333/uploads/1750689105117-647335.jpg",
-                "http://localhost:3333/uploads/1750496613333-602611.jpeg",
-                "http://localhost:3333/uploads/1750496613333-602611.jpeg"
-            ]
         }
     ];
 
-    const topTournois = [
-        {
-            id: 10,
-            titre: "LA VIE EN ROSE",
-            tags: ["Digital ART"],
-            recompense: 12000,
-            color: "#d44545"
-        },
-        {
-            id: 11,
-            titre: "FAIS MOI PEUR !",
-            tags: ["Réalisme"],
-            recompense: 10000,
-            color: "#d44545"
-        },
-        {
-            id: 10,
-            titre: "LA VIE EN ROSE",
-            tags: ["Digital ART"],
-            recompense: 12000,
-            color: "#d44545"
-        },
-        {
-            id: 10,
-            titre: "LA VIE EN ROSE",
-            tags: ["Digital ART"],
-            recompense: 12000,
-            color: "#d44545"
-        },
-        {
-            id: 10,
-            titre: "LA VIE EN ROSE",
-            tags: ["Digital ART"],
-            recompense: 12000,
-            color: "#d44545"
-        },
-        {
-            id: 10,
-            titre: "LA VIE EN ROSE",
-            tags: ["Digital ART"],
-            recompense: 12000,
-            color: "#d44545"
-        },
-        {
-            id: 10,
-            titre: "LA VIE EN ROSE",
-            tags: ["Digital ART"],
-            recompense: 12000,
-            color: "#d44545"
-        }
-
-    ];
-
-    const officiel = [
-        {
-            id: 20,
-            titre: "PARTICIPE À UNE ..",
-            tags: ["Digital ART"],
-            recompense: 12000,
-            color: "#5f71d4"
-        }
-    ];
-
-    const hasard = [
-        {
-            id: 30,
-            titre: "AVOIR UN POSTE ...",
-            tags: ["Digital ART"],
-            recompense: 100,
-            color: "#ba71c8"
-        }
-    ];
-
-    return (<>
+    return (
+        <>
             <div className="navBarHorizontale">
                 <NavbarHorizontal />
             </div>
@@ -178,8 +92,12 @@ export default function TournoisPage() {
                 <div className="left-column">
                     <h1>Tournois classique</h1>
                     <div className="button-group">
-                        <button className="btn-gradient">Rechercher</button>
-                        <button className="btn-gradient">Créer</button>
+                        <button
+                            className="btn-gradient"
+                            onClick={() => showModal("modalAjoutTournoi")}
+                        >
+                            Créer
+                        </button>
                     </div>
                     <h3>MES TOURNOIS</h3>
                     <div className="mes-tournois-container">
@@ -206,6 +124,7 @@ export default function TournoisPage() {
                     </div>
                 </div>
             </div>
+            <Modal_Add_Tournoi idUtilisateur={getID()} />
         </>
     );
 }

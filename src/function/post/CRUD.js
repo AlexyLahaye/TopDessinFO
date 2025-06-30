@@ -1,5 +1,4 @@
-import {addPostRoute, getPostReportedByIdUser, getUserFromPost} from "../../route/post";
-import UIkit from "uikit";
+import {addPostRoute, getFollowedPostsRoute, getPostReportedByIdUser} from "../../route/post";
 import {route} from "../../route/route";
 
 export async function addPost(
@@ -14,8 +13,11 @@ export async function addPost(
     inputHashtags,
     inputImages,
     userId,
-    resetForm // une fonction pour réinitialiser les champs si tu veux
+    resetForm,           // pour vider le formulaire
+    setRechargePage,     // pour déclencher la recharge (facultatif)
+    rechargePage         // pour inverser le booléen (facultatif)
 ) {
+    // Vérification des champs obligatoires
     if (!inputDescription || !inputCategorie || !inputType) {
         setError(true);
         setMessError("Tous les champs doivent être remplis.");
@@ -27,6 +29,7 @@ export async function addPost(
     formData.append("description", inputDescription);
     formData.append("categorie", inputCategorie);
     formData.append("type", inputType);
+    formData.append("etat", inputEtat); // même si vide
     formData.append("userId", userId);
     formData.append("hashtags", JSON.stringify(inputHashtags));
 
@@ -39,8 +42,10 @@ export async function addPost(
     if (status === 201) {
         setSuccess(true);
         setError(false);
-        setMessSuccess(data.message);
+        setMessSuccess(data.message || "Post créé avec succès.");
+
         if (resetForm) resetForm();
+        if (setRechargePage) setRechargePage(!rechargePage);
     } else {
         setError(true);
         setSuccess(false);
@@ -74,6 +79,18 @@ export async function getAllPostsReportedFromUserId(token, userId) {
     }
 }
 
+export async function getFollowedPosts(userId) {
+    try {
+        const [status, data] = await getFollowedPostsRoute(userId);
+        if (status === 200) {
+            return data;
+        } else {
+            console.warn("Erreur récupération posts suivis :", data.error || data);
+        }
+    } catch (error) {
+        console.error("Erreur dans getFollowedPosts :", error);
+    }
+}
 
 
 

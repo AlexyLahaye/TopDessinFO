@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import "../css/post.css";
+import { route } from "../route/route";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -63,7 +64,7 @@ export function Info_Tournois(props) {
 
                         <div
                             className="uk-margin-large-top uk-height-large uk-background-cover uk-overflow-hidden uk-light uk-flex header_TournoisIMG"
-                            style={{ backgroundImage: `url('/img/${infoTournois?.banner}')` }}
+                            style={{ backgroundImage: `url('${route}uploads/${infoTournois?.banner}')` }}
                             uk-parallax="bgy: -400"
                         >
 
@@ -79,7 +80,7 @@ export function Info_Tournois(props) {
 
                                 <div className="uk-flex uk-flex-between ">
                                     <div className="conteneurCom">
-                                        <Link to={`/utilisateur/${infoTournois?.user.pseudo}`+`#${infoTournois?.user.id}`} className="listeAmis uk-margin-large-left aNavVerti uk-text-lead">
+                                        <Link to={`/utilisateur/${infoTournois?.user.id}`} className="listeAmis uk-margin-large-left aNavVerti uk-text-lead">
                                             {infoTournois?.user.pseudo}
                                         </Link>
 
@@ -173,7 +174,7 @@ export function Info_Tournois(props) {
                         <div
                             className="uk-position-cover uk-background-cover paralaxe"
                             style={{
-                                backgroundImage: `url('/img/${infoTournois?.paralaxe}')`,
+                                backgroundImage: `url('${route}uploads/${infoTournois?.paralaxe}')`,
                                 opacity: 0.4
                             }}
                             uk-parallax="bgy: -400"
